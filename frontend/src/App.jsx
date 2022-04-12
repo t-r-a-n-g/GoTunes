@@ -1,13 +1,15 @@
+import React, { Suspense } from "react";
 import Home from "@pages/Home";
 
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-      <p>coucou</p>
-    </div>
+    <Suspense fallback="loading">
+      <div className="App">
+        <Home />
+      </div>
+    </Suspense>
   );
 }
 
