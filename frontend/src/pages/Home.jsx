@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import i18n from "../i18nextConfig";
+import Authentification from "./Authentification";
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div>
@@ -13,6 +13,7 @@ export default function Home() {
         DE
       </button>
       <p>{t("welcome-text")}</p>
+      <Authentification />
     </div>
   );
 }
