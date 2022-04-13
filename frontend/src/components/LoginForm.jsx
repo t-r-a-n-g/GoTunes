@@ -23,7 +23,9 @@ function LoginForm() {
       <p>
         <a href="/">{t("login-forgot-password")}</a>
       </p>
-      <Button variant="contained" id="button">{t("login-button")}</Button>
+      <Button variant="contained" id="button">
+        {t("login-button")}
+      </Button>
       <p>
         {t("login-no-account-text")} <a href="/">{t("sign-up-button")}</a>
       </p>

@@ -1,14 +1,13 @@
-import { createTheme } from '@material-ui/styles';
+import { createTheme } from "@material-ui/styles";
 import "@fontsource/khula";
 import "@fontsource/montserrat";
 import "@fontsource/give-you-glory";
 
-
 const themeGlobal = createTheme({
-    typography: {
-        fontFamily: ["Montserrat"].join(',')
-       }
-})
+  typography: {
+    fontFamily: ["Montserrat"].join(","),
+  },
+});
 
 /* const theme = createTheme({
   palette: {
@@ -32,6 +31,5 @@ const themeGlobal = createTheme({
     
   },
 }); */
-
 
 export default themeGlobal;
