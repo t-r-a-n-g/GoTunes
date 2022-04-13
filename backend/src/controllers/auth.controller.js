@@ -1,34 +1,43 @@
-// import { authService } from "../services";
+const { authService } = require("../services");
 
 class AuthController {
   static async login(req, res) {
-    let resData = {};
+    let resData = { success: false };
 
     try {
       const { email, password } = req.body;
-      if (email === "INVALID") {
-        res.status(400);
-        resData = {
-          success: false,
-          errors: { email: "Enter a valid email address" },
-        };
-      } else if (password === "INVALID") {
-        res.status(403);
-        resData = {
-          success: false,
-          errors: { email: "Email or password not found" },
-        };
-      } else {
-        const token = "KJBHIHLKkjh89kjbgiu766zztHKUIi";
-        resData = { success: true, token: `Bearer ${token}` };
-      }
+      const token = await authService.login(email, password);
+
+      resData = { token, success: true };
     } catch (err) {
-      console.error(err);
-      res.status(500);
-      resData = {
-        success: false,
-        errors: { server: "Internal server error" },
-      };
+      switch (err.name) {
+        case "AuthentificationError":
+          res.status(403);
+          resData = {
+            success: false,
+            errors: {
+              email: "email and password do not match",
+              password: "email and password do not match",
+            },
+          };
+          break;
+
+        case "ValidationError":
+          res.status(400);
+          resData = {
+            success: false,
+            errors: { email: "Enter a valid email address" },
+          };
+          break;
+
+        default:
+          console.error(err);
+          res.status(500);
+          resData = {
+            success: false,
+            errors: { server: "Internal server error" },
+          };
+      }
     }
 
     return res.json(resData);
@@ -38,31 +47,35 @@ class AuthController {
     let resData = {};
 
     try {
-      const { email, password, username } = req.body;
-
-      if (email === "INVALID" || password === "INVALID") {
-        res.status(400);
-        resData = {
-          success: false,
-          errors: { email: "Enter a valid email address" },
-        };
-      } else if (email === "INUSE") {
-        res.status(409);
-        resData = {
-          success: false,
-          errors: { email: "Email already used" },
-        };
-      } else {
-        resData = { success: true, user: { email, username } };
-      }
+      const user = await authService.register(req.body);
+      resData = { success: true, user };
     } catch (err) {
-      console.error(err);
+      switch (err.name) {
+        case "DuplicationError":
+          res.status(409);
+          resData = {
+            success: false,
+            errors: { email: "Email already used" },
+          };
+          break;
 
-      res.status(500);
-      resData = {
-        success: false,
-        errors: { server: "Internal server error" },
-      };
+        case "ValidationError":
+          res.status(400);
+          resData = {
+            success: false,
+            errors: { email: "Enter a valid email address" },
+          };
+          break;
+
+        default:
+          console.error(err);
+
+          res.status(500);
+          resData = {
+            success: false,
+            errors: { server: "Internal server error" },
+          };
+      }
     }
 
     return res.json(resData);
