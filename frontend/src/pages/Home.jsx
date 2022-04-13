@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Authentification from "./Authentification";
+import UserProfil from "./UserProfil";
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -14,6 +15,7 @@ export default function Home() {
       </button>
       <p>{t("welcome-text")}</p>
       <Authentification />
+      <UserProfil />
     </div>
   );
 }
