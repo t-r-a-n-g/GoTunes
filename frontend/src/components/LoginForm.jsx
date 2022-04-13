@@ -7,8 +7,18 @@ function LoginForm() {
   const { t } = useTranslation();
   return (
     <form id="login-form">
-      <TextField id="standard-basic" label="E-Mail" variant="standard" />
-      <TextField id="standard-basic" label="Password" variant="standard" />
+      <TextField
+        id="standard-basic"
+        label="E-Mail"
+        variant="standard"
+        type="email"
+      />
+      <TextField
+        id="standard-basic"
+        label="Password"
+        variant="standard"
+        type="password"
+      />
       <p>
         <a href="/">{t("login-forgot-password")}</a>
       </p>
