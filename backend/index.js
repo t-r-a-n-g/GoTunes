@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 
 const db = require("./src/models");
 const routes = require("./src/routes");
@@ -44,6 +45,24 @@ async function syncDB() {
     console.error("DB CONNECTION FAILED", err);
     throw err;
   }
+
+  await db.User.create({
+    username: "User 1",
+    email: "user1@example.com",
+    password: await bcrypt.hash("user1password", 10),
+  });
+
+  await db.User.create({
+    username: "User 2",
+    email: "user2@example.com",
+    password: await bcrypt.hash("user2password", 10),
+  });
+
+  await db.User.create({
+    username: "User 3",
+    email: "user3@example.com",
+    password: await bcrypt.hash("user3password", 10),
+  });
 }
 
 startServer();
