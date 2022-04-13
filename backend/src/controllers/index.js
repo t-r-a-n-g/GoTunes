@@ -1,27 +1,8 @@
-const fs = require("fs");
-const path = require("path");
+const album = require("./album.controller");
+const artist = require("./artist.controller");
+const search = require("./search.controller");
+const track = require("./track.controller");
+const playlist = require("./playlist.controller");
+const auth = require("./auth.controller");
 
-const controllers = fs
-  .readdirSync(__dirname)
-  .filter((file) => file !== "index.js")
-  .reduce((controllerList, file) => {
-    const key = file.slice(0, -".js".length);
-
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    const Controller = require(path.join(__dirname, file));
-
-    return { ...controllerList, [key]: Controller };
-  }, {});
-
-const handler = {
-  get(obj, prop) {
-    if (prop in obj) {
-      return obj[prop];
-    }
-    throw new ReferenceError(
-      `controllers.${prop} is not defined. Did you create ${prop}.js?`
-    );
-  },
-};
-
-module.exports = new Proxy(controllers, handler);
+module.exports = { album, artist, search, track, playlist, auth };

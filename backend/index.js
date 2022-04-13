@@ -1,14 +1,34 @@
 require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
 
-const app = require("./src/app");
+// const db = require("./utils/db");
+const routes = require("./src/routes");
 
-const port = parseInt(process.env.APP_PORT ?? "5000", 10);
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.listen(port, (err) => {
-  if (err) {
-    console.error("Something bad happened");
-  } else {
-    // eslint-disable-next-line no-restricted-syntax
-    console.log(`Server is listening on ${port}`);
-  }
+Object.keys(routes).forEach((route) => {
+  app.use(`/api/${route}`, routes[route]);
 });
+
+const port = process.env.APP_PORT || 5000;
+app.listen(port, () => {
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(`Server started on port ${port}`);
+});
+
+// db.sync()
+//   .then((result) => {
+//     console.log("Databse synced");
+//     const port = process.env.PORT || 3000;
+//     app.listen(port, () => {
+//       console.log(`Server started on port ${port}`);
+//     });
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//     process.exit(-1);
+//   });

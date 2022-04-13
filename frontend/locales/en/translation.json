@@ -4,5 +4,8 @@
   "login-no-account-text": "Don't have an account yet?",
   "sign-up-button": "Sign up",
   "login-forgot-password": "Forgot Password?",
-  "registration-already-have-acc": "Already have an account?"
+  "registration-already-have-acc": "Already have an account?",
+  "user-profil-playlist": "Playlists",
+  "user-profil-following": "Following",
+  "edit-profil-button": "Edit"
 }
