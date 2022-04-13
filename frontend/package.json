@@ -19,7 +19,8 @@
     "materialize-css": "^1.0.0-rc.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-i18next": "^11.16.5"
+    "react-i18next": "^11.16.5",
+    "template-fullstack": "file:.."
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",
