@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
+import "./RegistrationForm.css";
 
 export default function RegistrationForm() {
   const { t } = useTranslation();

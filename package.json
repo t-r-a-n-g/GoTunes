@@ -19,6 +19,9 @@
     "husky": "^7.0.0"
   },
   "dependencies": {
+    "@fontsource/give-you-glory": "^4.5.7",
+    "@fontsource/khula": "^4.5.5",
+    "@fontsource/montserrat": "^4.5.7",
     "materialize-css": "^1.0.0-rc.2"
   }
 }

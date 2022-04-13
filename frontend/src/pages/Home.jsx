@@ -6,13 +6,13 @@ export default function Home() {
 
   return (
     <div>
-      <button type="button" onClick={() => i18n.changeLanguage("en")}>
+      {/* <button type="button" onClick={() => i18n.changeLanguage("en")}>
         EN
       </button>
       <button type="button" onClick={() => i18n.changeLanguage("de")}>
         DE
       </button>
-      <p>{t("welcome-text")}</p>
+      <p>{t("welcome-text")}</p> */}
       <Authentification />
     </div>
   );
