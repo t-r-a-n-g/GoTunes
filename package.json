@@ -19,6 +19,7 @@
     "husky": "^7.0.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "materialize-css": "^1.0.0-rc.2"
   }
 }
