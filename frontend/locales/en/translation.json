@@ -7,5 +7,6 @@
   "registration-already-have-acc": "Already have an account?",
   "user-profil-playlist": "Playlists",
   "user-profil-following": "Following",
-  "edit-profil-button": "Edit"
+  "edit-profil-button": "Edit",
+  "login-invalid-email-message": "Invalid email address"
 }
