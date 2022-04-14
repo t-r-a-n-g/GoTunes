@@ -20,10 +20,9 @@ function LoginForm() {
     if (email.match(/@/)) {
       setEmailInvalid(false);
       return true;
-    } else {
-      setEmailInvalid(true);
-      return false;
     }
+    setEmailInvalid(true);
+    return false;
   }
 
   function handleLoginRequest() {
@@ -59,7 +58,11 @@ function LoginForm() {
       <p>
         <a href="/">{t("login-forgot-password")}</a>
       </p>
-      <Button variant="contained" id="button" onClick={handleLoginRequest}>
+      <Button
+        variant="contained"
+        id="button"
+        onClick={() => handleLoginRequest()}
+      >
         {t("login-button")}
       </Button>
       <p>
