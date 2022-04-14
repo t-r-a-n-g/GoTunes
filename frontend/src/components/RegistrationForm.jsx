@@ -51,7 +51,7 @@ export default function RegistrationForm() {
     <div>
       <form id="registration-form">
         <TextField
-          id="standard-basic"
+          id="registration-email"
           label="E-Mail"
           variant="standard"
           type="email"
@@ -59,7 +59,7 @@ export default function RegistrationForm() {
         />
 
         <TextField
-          id="standard-basic"
+          id="registration-confirm-email"
           label="Confirm E-Mail"
           variant="standard"
           type="email"
@@ -68,21 +68,21 @@ export default function RegistrationForm() {
         {/* Error Message below: just testing, not final */}
         {/* {isSameEmail() ? <p /> : <p>E-Mails don't match!</p>} */}
         <TextField
-          id="standard-basic"
+          id="registration-username"
           label="Choose Your User Name"
           variant="standard"
           onChange={(e) => setUserName(e.target.value)}
         />
         <TextField
           type="password"
-          id="standard-basic"
+          id="registration-password"
           label="Password"
           variant="standard"
           onChange={(e) => setPassword(e.target.value)}
         />
         <TextField
           type="password"
-          id="standard-basic"
+          id="registration-confirm-password"
           label="Confirm Password"
           variant="standard"
           /* onChange={(e) => setPasswordConfirm(e.target.value)} */

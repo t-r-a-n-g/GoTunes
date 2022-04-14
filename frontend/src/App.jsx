@@ -19,6 +19,7 @@ function App() {
       <Suspense fallback="loading">
         <ThemeProvider theme={themeGlobal}>
           <CssBaseline />
+
           <div className="App">
             <Routes>
               <Route path="/" element={<Home />} />

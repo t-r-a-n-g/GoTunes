@@ -19,7 +19,7 @@ function Card({ cover, name, details }) {
 Card.propTypes = {
   cover: PropTypes.string,
   name: PropTypes.string,
-  details: PropTypes.number,
+  details: PropTypes.string,
 };
 
 Card.defaultProps = {

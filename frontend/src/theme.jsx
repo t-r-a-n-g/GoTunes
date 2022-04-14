@@ -27,7 +27,7 @@ const themeGlobal = createTheme({
     },
   },
   typography: {
-    fontFamily: ["Khula"].join(","),
+    fontFamily: ["Give You Glory"].join(","),
   },
 });
 

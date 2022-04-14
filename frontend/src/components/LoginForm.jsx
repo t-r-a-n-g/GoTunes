@@ -51,14 +51,14 @@ function LoginForm() {
         helperText={
           emailInvalid === true ? t("login-invalid-email-message") : null
         }
-        id="standard-basic"
+        id="login-email"
         label="E-Mail"
         variant="standard"
         type="email"
         onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
-        id="standard-basic"
+        id="login-password"
         label="Password"
         variant="standard"
         type="password"
@@ -69,7 +69,7 @@ function LoginForm() {
       </p>
       <Button
         variant="contained"
-        id="button"
+        id="login-button"
         onClick={() => handleLoginRequest()}
       >
         {t("login-button")}
