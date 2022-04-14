@@ -11,7 +11,7 @@ function User({ avatar, playlistcount, followingcount, userName }) {
     <div id="user-container">
       <Avatar id="user-avatar" src={avatar} />
       <br />
-      <p id="user-userName">{userName}</p>
+      <h1 id="user-userName">{userName}</h1>
       <Button variant="contained">{t("edit-profil-button")}</Button>
       <div id="user-button-container">
         <div>

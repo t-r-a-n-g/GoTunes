@@ -59,7 +59,7 @@ export default function RegistrationForm() {
     <div>
       <form id="registration-form">
         <TextField
-          id="standard-basic"
+          id="registration-email"
           label="E-Mail"
           variant="standard"
           type="email"
@@ -68,7 +68,7 @@ export default function RegistrationForm() {
         />
 
         <TextField
-          id="standard-basic"
+          id="registration-confirm-email"
           label="Confirm E-Mail"
           variant="standard"
           type="email"
@@ -84,7 +84,7 @@ export default function RegistrationForm() {
           </p>
         )}
         <TextField
-          id="standard-basic"
+          id="registration-username"
           label="Choose Your User Name"
           variant="standard"
           required
@@ -92,7 +92,7 @@ export default function RegistrationForm() {
         />
         <TextField
           type="password"
-          id="standard-basic"
+          id="registration-password"
           label="Password"
           variant="standard"
           required
@@ -100,7 +100,7 @@ export default function RegistrationForm() {
         />
         <TextField
           type="password"
-          id="standard-basic"
+          id="registration-confirm-password"
           label="Confirm Password"
           variant="standard"
           required

@@ -1,35 +1,34 @@
-import { createTheme } from "@material-ui/styles";
+import { createTheme } from "@mui/material/styles";
 import "@fontsource/khula";
 import "@fontsource/montserrat";
 import "@fontsource/give-you-glory";
 
-const themeGlobal = createTheme({
+/* const themeGlobal = createTheme({
   typography: {
     fontFamily: ["Montserrat"].join(","),
   },
-});
+}); */
 
-/* const theme = createTheme({
+const themeGlobal = createTheme({
   palette: {
     primary: {
       main: "#EE4540",
-      contrastText: "#fff"
+      contrastText: "#fff",
     },
     secondary: {
       main: "#C72C41",
     },
     background: {
-      default: "#510A32"
+      default: "#510A32",
     },
     text: {
       primary: "#fff",
-      secondary: "#fff"
+      secondary: "#fff",
     },
-    typography: {
-      fontFamily: "khula",
-    },
-    
   },
-}); */
+  typography: {
+    fontFamily: ["Give You Glory"].join(","),
+  },
+});
 
 export default themeGlobal;
