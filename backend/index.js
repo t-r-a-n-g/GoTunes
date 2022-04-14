@@ -35,9 +35,9 @@ async function checkDB() {
   }
 }
 
-async function syncDB() {
+async function syncDB(force = false) {
   try {
-    await db.sequelize.sync({ force: true });
+    await db.sequelize.sync({ force });
 
     // eslint-disable-next-line no-restricted-syntax
     console.log(`DB synced`);

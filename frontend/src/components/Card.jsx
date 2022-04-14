@@ -21,6 +21,7 @@ Card.propTypes = {
   name: PropTypes.string,
   details: PropTypes.number,
 };
+
 Card.defaultProps = {
   cover: "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png",
   name: "Artist",
