@@ -1,9 +1,8 @@
 import React, { Suspense } from "react";
 import Home from "@pages/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Authentification from "@pages/Authentification";
 import Login from "@pages/Login";
 import Registration from "@pages/Registration";
 import UserProfil from "@pages/UserProfil";
@@ -23,8 +22,8 @@ const theme = createTheme({
 });
 
 function App() {
-  //add function to check if user is auth, and return a boolean into "user"
-  let user = true;
+  // add function to check if user is auth, and return a boolean into "user"
+  const user = true;
   return (
     <Router>
       <Suspense fallback="loading">
