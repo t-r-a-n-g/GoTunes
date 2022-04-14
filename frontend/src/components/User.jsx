@@ -3,19 +3,26 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import "./User.css";
 
 function User({ avatar, playlistcount, followingcount, userName }) {
   const { t } = useTranslation();
   return (
-    <div>
-      <Avatar src={avatar} sx={{ width: 48, height: 48 }} />
+    <div id="user-container">
+      <Avatar id="user-avatar" src={avatar} />
       <br />
-      <p>{userName}</p>
+      <p id="user-userName">{userName}</p>
       <Button variant="contained">{t("edit-profil-button")}</Button>
-      <p>{playlistcount}</p>
-      <Button variant="text">{t("user-profil-playlist")}</Button>
-      <p>{followingcount}</p>
-      <Button variant="text">{t("user-profil-following")}</Button>
+      <div id="user-button-container">
+        <div>
+          <p id="user-playlistcount">{playlistcount}</p>
+          <Button variant="text">{t("user-profil-playlist")}</Button>
+        </div>
+        <div>
+          <p id="user-followingcount">{followingcount}</p>
+          <Button variant="text">{t("user-profil-following")}</Button>
+        </div>
+      </div>
     </div>
   );
 }

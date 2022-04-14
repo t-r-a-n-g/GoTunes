@@ -1,14 +1,17 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
+import "./Card.css";
 
 function Card({ cover, name, details }) {
   return (
     <div>
-      <img src={cover} alt="cover" />
-      <h2>{name}</h2>
-      <p>{details}</p>
-      <Divider />
+      <div id="card-container">
+        <img id="card-cover-image" src={cover} alt="cover" />
+        <h2 id="card-heading">{name}</h2>
+        <p id="card-subheading">{details}</p>
+      </div>
+      <Divider id="card-divider" />
     </div>
   );
 }

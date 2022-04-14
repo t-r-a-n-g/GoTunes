@@ -1,0 +1,11 @@
+#user-avatar {
+  width: 64px;
+  height: 64px;
+  margin: auto;
+}
+
+#user-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
