@@ -1,12 +1,14 @@
 import React, { useCallback, useState } from "react";
 import Button from "@mui/material/Button";
-/* import Snackbar from "@mui/material/Snackbar";
-import Alert from '@mui/material/Alert'; */
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import validator from "validator";
 import { registerEndpoint } from "./API";
 import "./RegistrationForm.css";
+
+// TO DO: ROUTING TO ANOTHER PAGE AFTER SUCCESSFUL REGISTRATION
+// IF USER SHOULD BE ALREADY LOGGED IN AFTER SIGN UP THEN USERTOKEN NEEDS TO BE STORED IN LOCALSTORAGE
 
 export default function RegistrationForm() {
   const { t } = useTranslation();
@@ -20,17 +22,11 @@ export default function RegistrationForm() {
 
   // Checking if user provides correct (matching) emails and passwords
   function isSameEmail() {
-    if (email === emailConfirm) {
-      return true;
-    }
-    return false;
+    // this returns true if both matches, false if not
+    return email === emailConfirm;
   }
-
   function isSamePassword() {
-    if (password === passwordConfirm) {
-      return true;
-    }
-    return false;
+    return password === passwordConfirm;
   }
 
   // putting correct email, password and username in object to send it to API
@@ -39,11 +35,17 @@ export default function RegistrationForm() {
   userRegisterData.email = email;
   userRegisterData.password = password;
 
-  // POST REQUEST TO API on SignUp Button, only possible if emails and passwords match
+  // POST REQUEST TO API on SignUp Button
+  // only possible if emails and passwords match and if email format is valid
   // update state of status in response and error response
   const [status, setStatus] = useState("");
+  const [emailValid, setEmailValid] = useState("");
+
   const handleSignUp = useCallback(() => {
-    if (isSameEmail && isSamePassword) {
+    if (validator.isEmail(email)) {
+      setEmailValid(true);
+    } else setEmailValid(false);
+    if (isSameEmail && isSamePassword && emailValid) {
       axios
         .post(registerEndpoint, userRegisterData)
         .then((response) => {
@@ -75,7 +77,6 @@ export default function RegistrationForm() {
           required
           onChange={(e) => setEmailConfirm(e.target.value)}
         />
-        {/* Error Message below: just testing, not final */}
         {isSameEmail() ? (
           <p />
         ) : (
@@ -83,6 +84,7 @@ export default function RegistrationForm() {
             {t("registration-emails-not-matching")}
           </p>
         )}
+        {emailValid === false ? <p>{t("registration-invalid-email")}</p> : ""}
         <TextField
           id="registration-username"
           label="Choose Your User Name"
@@ -124,7 +126,6 @@ export default function RegistrationForm() {
           <a href="/">{t("login-button")}</a>
         </p>
       </form>
-      {/* Snackbar isn't working so far */}
     </div>
   );
 }

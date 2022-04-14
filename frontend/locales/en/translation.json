@@ -13,5 +13,6 @@
   "registration-internal-server-error": "Internal server problems. Please try again later!",
   "registration-password-not-matching": "Passwords do not match!",
   "registration-emails-not-matching": "E-Mails do not match!",
-  "login-invalid-email-message": "Invalid email address"
+  "login-invalid-email-message": "Invalid email address",
+  "registration-invalid-email": "Please provide a valid E-Mail Address"
 }
