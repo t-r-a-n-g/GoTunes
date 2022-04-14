@@ -5,7 +5,8 @@ import Alert from '@mui/material/Alert'; */
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
 /* import axios from "axios"; */
-/* import { loginEndpoint } from "@components/API"; */
+/* import { loginEndpoint } from "./API"; */
+import "./RegistrationForm.css";
 
 export default function RegistrationForm() {
   const { t } = useTranslation();
@@ -30,8 +31,8 @@ export default function RegistrationForm() {
       return true;
     }
     return false;
-  } */
-
+  }
+ */
   // putting correct email, password and username in object to send it to API
   const userRegisterData = {};
   userRegisterData.email = email;
@@ -44,8 +45,8 @@ export default function RegistrationForm() {
     axios
       .post(loginEndpoint, userRegisterData)
       .then((response) => console.warn(response));
-  }
- */
+  } */
+
   return (
     <div>
       <form id="registration-form">
