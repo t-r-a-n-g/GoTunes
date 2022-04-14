@@ -27,7 +27,7 @@
     ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
-    "linebreak-style": "off"
+    "linebreak-style": ["error", "unix"]
   },
   "settings": {
     "import/resolver": {
