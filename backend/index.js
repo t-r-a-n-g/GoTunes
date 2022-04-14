@@ -67,4 +67,4 @@ async function syncDB(force = false) {
 
 startServer();
 checkDB();
-syncDB();
+syncDB(true);
