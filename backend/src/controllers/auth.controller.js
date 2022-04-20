@@ -16,8 +16,8 @@ class AuthController {
           resData = {
             success: false,
             errors: {
-              email: "email and password do not match",
-              password: "email and password do not match",
+              email: "err-email-password-match",
+              password: "err-email-password-match",
             },
           };
           break;
@@ -59,7 +59,11 @@ class AuthController {
           res.status(409);
           resData = {
             success: false,
-            errors: { email: "Email already used" },
+            errors: err.fields.map((field) => {
+              return {
+                [field]: `err-${field}-already-exists`,
+              };
+            }),
           };
           break;
 
