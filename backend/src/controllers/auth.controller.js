@@ -35,7 +35,7 @@ class AuthController {
           res.status(500);
           resData = {
             success: false,
-            errors: { server: "Internal server error" },
+            errors: { server: "err-internal" },
           };
       }
     }
@@ -81,7 +81,7 @@ class AuthController {
           res.status(500);
           resData = {
             success: false,
-            errors: { server: "Internal server error" },
+            errors: { server: "err-internal" },
           };
       }
     }

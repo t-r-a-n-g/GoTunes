@@ -10,6 +10,7 @@ class SearchController {
       res.json(artists);
     } catch (err) {
       console.error(err);
+      res.status(500).json({ errors: { server: "err-internal" } });
     }
   }
 
@@ -22,6 +23,7 @@ class SearchController {
       res.json(albums);
     } catch (err) {
       console.error(err);
+      res.status(500).json({ errors: { server: "err-internal" } });
     }
   }
 
@@ -34,6 +36,7 @@ class SearchController {
       res.json(playlists);
     } catch (err) {
       console.error(err);
+      res.status(500).json({ errors: { server: "err-internal" } });
     }
   }
 
@@ -46,6 +49,7 @@ class SearchController {
       res.json(tracks);
     } catch (err) {
       console.error(err);
+      res.status(500).json({ errors: { server: "err-internal" } });
     }
   }
 }

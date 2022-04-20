@@ -1,5 +1,5 @@
 const Controller = require("./controller");
-const { albumService } = require("../services");
+const { AlbumService } = require("../services");
 
 class AlbumController {
   static async getAlbum(req, res) {
@@ -7,7 +7,7 @@ class AlbumController {
     let resData = {};
 
     try {
-      const album = await albumService.getAlbum(albumId, src);
+      const album = await AlbumService.getAlbum(albumId, src);
       resData = album;
     } catch (err) {
       console.error(err);
@@ -23,7 +23,7 @@ class AlbumController {
     let resData = {};
 
     try {
-      const tracks = await albumService.getTracks(albumId, src);
+      const tracks = await AlbumService.getTracks(albumId, src);
       resData = tracks;
     } catch (err) {
       console.error(err);

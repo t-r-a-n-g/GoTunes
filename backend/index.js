@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("./swagger-output.json");
 
 const db = require("./src/models");
 const routes = require("./src/routes");
@@ -64,6 +66,8 @@ async function syncDB(force = false) {
     password: await bcrypt.hash("user3password", 10),
   });
 }
+
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 startServer();
 checkDB();
