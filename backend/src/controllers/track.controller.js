@@ -1,12 +1,12 @@
 const Controller = require("./controller");
-const { trackService } = require("../services");
+const { TrackService } = require("../services");
 
 class Track {
   static async getTrack(req, res) {
     let resData = {};
     try {
       const { trackId, src } = Controller.getParams(req);
-      const track = await trackService.getTrack(trackId, src);
+      const track = await TrackService.getTrack(trackId, src);
 
       resData = track;
     } catch (err) {
@@ -22,7 +22,7 @@ class Track {
     let resData = {};
     try {
       const { trackId, src } = Controller.getParams(req);
-      const streamUrl = await trackService.getTrackStreamUrl(trackId, src);
+      const streamUrl = await TrackService.getTrackStreamUrl(trackId, src);
 
       resData = streamUrl;
     } catch (err) {

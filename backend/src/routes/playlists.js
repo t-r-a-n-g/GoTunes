@@ -55,7 +55,7 @@ router.get("/:playlistId", (req, res) => {
 
 router.get("/:playlistId/tracks", (req, res) => {
   /*
-        #swagger.path = "/playlists/{playlistId}"
+        #swagger.path = "/playlists/{playlistId}/tracks"
         #swagger.tags = ["Playlists"]
 
         #swagger.parameters["playlistId"] = {

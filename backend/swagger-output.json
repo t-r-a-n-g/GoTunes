@@ -1256,18 +1256,386 @@
         }
       }
     },
-    "/{playlistId}/tracks": {
+    "/playlists/{playlistId}/tracks": {
       "get": {
+        "tags": [
+          "Playlists"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "playlistId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "number",
+            "description": "The playlist id",
+            "schema": {
+              "type": "number",
+              "example": 123456
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 123
+                  },
+                  "cover": {
+                    "type": "string",
+                    "example": "http://url-to-cover.com"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Great Track!"
+                  },
+                  "duration": {
+                    "type": "number",
+                    "example": 1324123
+                  },
+                  "genres": {
+                    "type": "array",
+                    "example": [
+                      "Drum 'n' Bass"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "artist_id": {
+                    "type": "number",
+                    "example": 1234
+                  },
+                  "album_id": {
+                    "type": "number",
+                    "example": 1234
+                  },
+                  "release_date": {
+                    "type": "string",
+                    "example": "1990-08-12"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "album title"
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": "e.g. soundcloud"
+                  }
+                },
+                "required": [
+                  "id",
+                  "cover",
+                  "description",
+                  "duration",
+                  "genres",
+                  "artist_id",
+                  "album_id",
+                  "release_date",
+                  "title",
+                  "source"
+                ]
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Playlist not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "playlist": {
+                      "type": "string",
+                      "example": "err-not-found"
+                    }
+                  },
+                  "required": [
+                    "playlist"
+                  ]
+                }
+              },
+              "required": [
+                "errors"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "server": {
+                      "type": "string",
+                      "example": "err-internal"
+                    }
+                  },
+                  "required": [
+                    "server"
+                  ]
+                }
+              },
+              "required": [
+                "errors"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tracks/{trackId}": {
+      "get": {
+        "tags": [
+          "Tracks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "trackId",
+            "in": "path",
+            "required": true,
+            "type": "number",
+            "description": "The track id",
+            "schema": {
+              "type": "number",
+              "example": 123456
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 123
+                },
+                "cover": {
+                  "type": "string",
+                  "example": "http://url-to-cover.com"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Great Track!"
+                },
+                "duration": {
+                  "type": "number",
+                  "example": 1324123
+                },
+                "genres": {
+                  "type": "array",
+                  "example": [
+                    "Drum 'n' Bass"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "artist_id": {
+                  "type": "number",
+                  "example": 1234
+                },
+                "album_id": {
+                  "type": "number",
+                  "example": 1234
+                },
+                "release_date": {
+                  "type": "string",
+                  "example": "1990-08-12"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "album title"
+                },
+                "source": {
+                  "type": "string",
+                  "example": "e.g. soundcloud"
+                }
+              },
+              "required": [
+                "id",
+                "cover",
+                "description",
+                "duration",
+                "genres",
+                "artist_id",
+                "album_id",
+                "release_date",
+                "title",
+                "source"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Track not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "album": {
+                      "type": "string",
+                      "example": "err-not-found"
+                    }
+                  },
+                  "required": [
+                    "album"
+                  ]
+                }
+              },
+              "required": [
+                "errors"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "server": {
+                      "type": "string",
+                      "example": "err-internal"
+                    }
+                  },
+                  "required": [
+                    "server"
+                  ]
+                }
+              },
+              "required": [
+                "errors"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tracks/{trackId}/stream": {
+      "get": {
+        "tags": [
+          "Tracks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "trackId",
+            "in": "path",
+            "required": true,
+            "type": "number",
+            "description": "The track id",
+            "schema": {
+              "type": "number",
+              "example": 123456
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "example": "http://stream-url.com/track.mp3"
+                }
+              },
+              "required": [
+                "url"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Track not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "album": {
+                      "type": "string",
+                      "example": "err-not-found"
+                    }
+                  },
+                  "required": [
+                    "album"
+                  ]
+                }
+              },
+              "required": [
+                "errors"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "server": {
+                      "type": "string",
+                      "example": "err-internal"
+                    }
+                  },
+                  "required": [
+                    "server"
+                  ]
+                }
+              },
+              "required": [
+                "errors"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
       }
     },
     "/search/artists/{q}": {
