@@ -24,4 +24,4 @@ class SearchService {
   }
 }
 
-module.exports = new SearchService();
+module.exports = SearchService;

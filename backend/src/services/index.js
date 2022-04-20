@@ -1,15 +1,15 @@
-const searchService = require("./search.service");
-const artistService = require("./artist.service");
-const albumService = require("./album.service");
-const trackService = require("./track.service");
-const playlistService = require("./playlist.service");
-const authService = require("./auth.service");
+const SearchService = require("./search.service");
+const ArtistService = require("./artist.service");
+const AlbumService = require("./album.service");
+const TrackService = require("./track.service");
+const PlaylistService = require("./playlist.service");
+const AuthService = require("./auth.service");
 
 module.exports = {
-  searchService,
-  artistService,
-  albumService,
-  trackService,
-  playlistService,
-  authService,
+  SearchService,
+  ArtistService,
+  AlbumService,
+  TrackService,
+  PlaylistService,
+  AuthService,
 };
