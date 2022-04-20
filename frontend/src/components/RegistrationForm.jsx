@@ -49,7 +49,9 @@ export default function RegistrationForm() {
       axios
         .post(registerEndpoint, userRegisterData)
         .then((response) => {
+          console.log(response);
           setStatus(response.status);
+          localStorage.setItem("userToken", response.data.token);
         })
         .catch((error) => {
           setStatus(error.response.status);
