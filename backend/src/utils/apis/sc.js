@@ -13,6 +13,7 @@ class SoundCloud {
         name: artist.username,
         avatar: artist.avatar_url,
         description: artist.description,
+        source: "soundcloud",
       };
     });
 
@@ -31,6 +32,7 @@ class SoundCloud {
         release_date: album.release_date,
         artist_id: album.user_id,
         title: album.title,
+        source: "soundcloud",
       };
     });
 
@@ -48,6 +50,7 @@ class SoundCloud {
         genres: [playlist.genre],
         user_id: playlist.user_id,
         title: playlist.title,
+        source: "soundcloud",
       };
     });
 
@@ -67,6 +70,7 @@ class SoundCloud {
         album_id: null,
         title: track.title,
         release_date: track.release_date,
+        source: "soundcloud",
       };
     });
 
@@ -94,7 +98,7 @@ class SoundCloud {
       },
     });
 
-    return { ...res.data, source: "soundcloud" };
+    return res.data;
   }
 
   async search(item, params) {
@@ -104,14 +108,14 @@ class SoundCloud {
 
   async searchArtists(q, options) {
     const res = await this.search("users", { q, ...options });
-    const data = this.formatArtistData(res.collection);
+    const data = SoundCloud.formatArtistData(res.collection);
 
     return data;
   }
 
   async searchAlbums(q, options) {
     const res = await this.search("albums", { q, ...options });
-    const data = this.formatAlbumData(res.collection);
+    const data = SoundCloud.formatAlbumData(res.collection);
 
     return data;
   }

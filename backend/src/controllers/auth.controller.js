@@ -1,4 +1,4 @@
-const { authService } = require("../services");
+const { AuthService } = require("../services");
 
 class AuthController {
   static async login(req, res) {
@@ -6,7 +6,7 @@ class AuthController {
 
     try {
       const { email, password } = req.body;
-      const token = await authService.login(email, password);
+      const token = await AuthService.login(email, password);
 
       resData = { token, success: true };
     } catch (err) {
@@ -47,8 +47,12 @@ class AuthController {
     let resData = {};
 
     try {
-      const user = await authService.register(req.body);
-      resData = { success: true, user };
+      const { email, password, username } = req.body;
+
+      const user = await AuthService.register({ email, username, password });
+      const token = await AuthService.login(email, password);
+
+      resData = { success: true, user, token };
     } catch (err) {
       switch (err.name) {
         case "DuplicationError":
