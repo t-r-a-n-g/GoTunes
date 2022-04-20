@@ -21,7 +21,7 @@ class Track {
   static async getStream(req, res) {
     let resData = {};
     try {
-      const { trackId, src } = this.getParams(req);
+      const { trackId, src } = Controller.getParams(req);
       const streamUrl = await trackService.getTrackStreamUrl(trackId, src);
 
       resData = streamUrl;

@@ -8,5 +8,11 @@
   "user-profil-playlist": "Playlists",
   "user-profil-following": "Following",
   "edit-profil-button": "Edit",
-  "login-invalid-email-message": "Invalid email address"
+  "registration-false-email-format": "The format of your E-Mail seems to be incorrect. Please check again!",
+  "registration-acc-already-exists": "Account with this E-Mail already exists!",
+  "registration-internal-server-error": "Internal server problems. Please try again later!",
+  "registration-password-not-matching": "Passwords do not match!",
+  "registration-emails-not-matching": "E-Mails do not match!",
+  "login-invalid-email-message": "Invalid email address",
+  "registration-invalid-email": "Please provide a valid E-Mail Address"
 }
