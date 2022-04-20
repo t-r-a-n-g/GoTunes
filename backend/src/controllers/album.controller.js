@@ -10,9 +10,13 @@ class AlbumController {
       const album = await AlbumService.getAlbum(albumId, src);
       resData = album;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res.status(404).json({ errors: { album: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
     return res.json(resData);
@@ -26,9 +30,13 @@ class AlbumController {
       const tracks = await AlbumService.getTracks(albumId, src);
       resData = tracks;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res.status(404).json({ errors: { album: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
     return res.json(resData);

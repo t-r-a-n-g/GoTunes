@@ -90,14 +90,14 @@ router.get("/albums/:q", (req, res) => {
           description: 'success',
           schema: [{ 
             $id: 123,
-			$cover: "http://url-to-cover.com",
-			$description: "Great Album!",
-			$duration: 1324123,
-			$genres: ["Drum 'n' Bass"],
-			$release_date: "1990-08-12",
-			$artist_id: 1234,
-			$title: "album title",
-			$source: "e.g. soundcloud"
+      			$cover: "http://url-to-cover.com",
+      			$description: "Great Album!",
+      			$duration: 1324123,
+      			$genres: ["Drum 'n' Bass"],
+      			$release_date: "1990-08-12",
+      			$artist_id: 1234,
+      			$title: "album title",
+      			$source: "e.g. soundcloud"
           }]
         }
 
@@ -147,13 +147,13 @@ router.get("/playlists/:q", (req, res) => {
           description: 'success',
           schema: [{ 
             $id: 123,
-			$cover: "http://url-to-cover.com",
-			$description: "Great Playlist!",
-			$duration: 1324123,
-			$genres: ["Drum 'n' Bass"],
-			$user_id: 1234,
-			$title: "album title",
-			$source: "e.g. soundcloud"
+      			$cover: "http://url-to-cover.com",
+      			$description: "Great Playlist!",
+      			$duration: 1324123,
+      			$genres: ["Drum 'n' Bass"],
+      			$user_id: 1234,
+      			$title: "playlist title",
+      			$source: "e.g. soundcloud"
           }]
         }
 
@@ -203,15 +203,15 @@ router.get("/tracks/:q", (req, res) => {
           description: 'success',
           schema: [{ 
             $id: 123,
-			$cover: "http://url-to-cover.com",
-			$description: "Great Track!",
-			$duration: 1324123,
-			$genres: ["Drum 'n' Bass"],
-			$artist_id: 1234,
-			$album_id: 1234,
-            $release_date: "1990-08-12",
-			$title: "album title",
-			$source: "e.g. soundcloud"
+      			$cover: "http://url-to-cover.com",
+      			$description: "Great Track!",
+      			$duration: 1324123,
+      			$genres: ["Drum 'n' Bass"],
+      			$artist_id: 1234,
+      			$album_id: 1234,
+                  $release_date: "1990-08-12",
+      			$title: "album title",
+      			$source: "e.g. soundcloud"
           }]
         }
 

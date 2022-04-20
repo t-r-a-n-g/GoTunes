@@ -10,9 +10,15 @@ class PlaylistController {
       const playlist = await playlistService.getPlaylist(playlistId, src);
       resData = playlist;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res
+            .status(404)
+            .json({ errors: { playlist: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
     return res.json(resData);
@@ -26,9 +32,15 @@ class PlaylistController {
       const tracks = await playlistService.getPlaylistTracks(playlistId, src);
       resData = tracks;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res
+            .status(404)
+            .json({ errors: { playlist: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
     return res.json(resData);
