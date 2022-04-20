@@ -23,11 +23,11 @@ const themeGlobal = createTheme({
     },
     text: {
       primary: "#fff",
-      secondary: "#fff",
+      secondary: "#000",
     },
   },
   typography: {
-    fontFamily: ["Give You Glory"].join(","),
+    fontFamily: ["Khula"].join(","),
   },
 });
 
