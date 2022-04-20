@@ -18,10 +18,10 @@ const doc = {
 const outputFile = "./swagger-output.json";
 const endpointsFiles = [
   "./src/routes/auth.js",
-  "./src/routes/artists.js",
+  // "./src/routes/artists.js",
   "./src/routes/albums.js",
-  "./src/routes/playlists.js",
-  "./src/routes/tracks.js",
+  // "./src/routes/playlists.js",
+  // "./src/routes/tracks.js",
   "./src/routes/search.js",
 ];
 
