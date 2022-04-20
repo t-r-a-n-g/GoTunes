@@ -306,66 +306,6 @@
         }
       }
     },
-    "/{artistId}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "artistId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/{artistId}/albums": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "artistId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/{artistId}/playlists": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "artistId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/{artistId}/tracks": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "artistId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/albums/{albumId}": {
       "get": {
         "tags": [
@@ -596,62 +536,6 @@
             }
           }
         }
-      }
-    },
-    "/{playlistId}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "playlistId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/{playlistId}/tracks": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "playlistId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/{trackId}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "trackId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/{trackId}/stream": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "trackId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
       }
     },
     "/search/artists/{q}": {
