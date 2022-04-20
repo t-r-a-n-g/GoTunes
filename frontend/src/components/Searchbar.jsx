@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Searchbar.css";
 import axios from "axios";
-import { useState, useEffect } from "react";
 
-function Searchbar({}) {
+function Searchbar() {
   const [searchTerm, setSearchTerm] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [searchResult, setSearchResult] = useState([]);
   function handleSearch(event) {
     setSearchTerm(event.target.value);
@@ -16,14 +16,13 @@ function Searchbar({}) {
       .get(`http://localhost:5000/api/search/artists/${searchTerm}`)
       .then((response) => {
         setSearchResult(response.data);
-        console.log(response);
       });
   }
   return (
     <div>
       <TextField
         value={searchTerm}
-        onChange={handleSearch}
+        onChange={(event) => handleSearch(event)}
         sx={{
           bgcolor: "white",
         }}
