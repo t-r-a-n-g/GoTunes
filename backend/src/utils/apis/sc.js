@@ -94,7 +94,7 @@ class SoundCloud {
       },
     });
 
-    return res.data;
+    return { ...res.data, source: "soundcloud" };
   }
 
   async search(item, params) {
