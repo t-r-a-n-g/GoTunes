@@ -10,12 +10,16 @@ class ArtistController {
       const artist = await artistService.getArtist(artistId, src);
       resData = artist;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res.status(404).json({ errors: { artist: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
-    res.json(resData);
+    return res.json(resData);
   }
 
   static async getAlbums(req, res) {
@@ -26,9 +30,13 @@ class ArtistController {
       const albums = await artistService.getAlbums(artistId, src);
       resData = albums;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res.status(404).json({ errors: { artist: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
     return res.json(resData);
@@ -42,9 +50,13 @@ class ArtistController {
       const playlists = await artistService.getPlaylists(artistId, src);
       resData = playlists;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res.status(404).json({ errors: { artist: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
     return res.json(resData);
@@ -58,9 +70,13 @@ class ArtistController {
       const tracks = await artistService.getTracks(artistId, src);
       resData = tracks;
     } catch (err) {
-      console.error(err);
-      res.status = 500;
-      resData = { error: "Internal server error" };
+      switch (err.name) {
+        case "NotFoundError":
+          return res.status(404).json({ errors: { artist: "err-not-found" } });
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
 
     return res.json(resData);

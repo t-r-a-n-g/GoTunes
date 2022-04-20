@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { NotFoundError } = require("../../exceptions");
 
 class SoundCloud {
   constructor(clientId) {
@@ -90,15 +91,24 @@ class SoundCloud {
 
     const url = `https://api-v2.soundcloud.com${type}?${urlParameters}`;
 
-    // no try - catch because we want to forward exceptions
-    const res = await axios({
-      url,
-      headers: {
-        "x-requested-with": "https://soundcloud.com",
-      },
-    });
+    let data = {};
+    try {
+      const res = await axios({
+        url,
+        headers: {
+          "x-requested-with": "https://soundcloud.com",
+        },
+      });
 
-    return res.data;
+      data = res.data;
+    } catch (err) {
+      if (err.response.status === 404)
+        throw new NotFoundError("Resource not found");
+
+      throw err;
+    }
+
+    return data;
   }
 
   async search(item, params) {
@@ -122,54 +132,58 @@ class SoundCloud {
 
   async searchPlaylists(q, options) {
     const res = await this.search("playlists", { q, ...options });
-    const data = this.formatPlaylistData(res.collection);
+    const data = SoundCloud.formatPlaylistData(res.collection);
 
     return data;
   }
 
   async searchTracks(q, options) {
     const res = await this.search("tracks", { q, ...options });
-    const data = this.formatTrackData(res.collection);
+    const data = SoundCloud.formatTrackData(res.collection);
 
     return data;
   }
 
   async getArtist(id) {
     const res = await this.get(`/users/${id}`);
-    const data = this.formatArtistData(res);
+    const data = SoundCloud.formatArtistData(res);
 
     return data;
   }
 
   async getArtistAlbums(id) {
     const res = await this.get(`/users/${id}/albums`);
-    const data = this.formatAlbumData(res.collection);
+    const data = SoundCloud.formatAlbumData(res.collection);
 
     return data;
   }
 
   async getArtistPlaylists(id) {
     const res = await this.get(`/users/${id}/playlists_without_albums`);
-    const data = this.formatPlaylistData(res.collection);
+    const data = SoundCloud.formatPlaylistData(res.collection);
 
     return data;
   }
 
   async getArtistTracks(id) {
     const res = await this.get(`/users/${id}/tracks`);
-    const data = this.formatTrackData(res.collection);
+    const data = SoundCloud.formatTrackData(res.collection);
 
     return data;
   }
 
-  async getAlbum(id) {
+  async getAlbum(id, format = true) {
     const res = await this.get(`/playlists/${id}`);
-    return res;
+    const data = format ? SoundCloud.formatAlbumData(res) : res;
+
+    return data;
   }
 
   async getAlbumTracks(id) {
-    const res = await this.getAlbum(id);
-    return res.tracks;
+    const res = await this.getAlbum(id, false);
+    const data = await SoundCloud.formatTrackData(res.tracks);
+
+    return data;
   }
 
   async getPlaylist(id) {

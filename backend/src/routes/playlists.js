@@ -4,9 +4,104 @@ const router = express.Router();
 
 const { playlist } = require("../controllers");
 
-router.get("/:playlistId", (req, res) => playlist.getPlaylist(req, res));
-router.get("/:playlistId/tracks", (req, res) =>
-  playlist.getPlaylistTracks(req, res)
-);
+router.get("/:playlistId", (req, res) => {
+  /*
+        #swagger.path = "/playlists/{playlistId}"
+        #swagger.tags = ["Playlists"]
+
+        #swagger.parameters["playlistId"] = {
+          in: 'path',
+          description: 'The playlist id',
+          required: true,
+          type: 'number',
+          schema: 123456
+        } 
+
+        #swagger.responses[200] = {
+          description: 'success',
+          schema: { 
+            $id: 123,
+      			$cover: "http://url-to-cover.com",
+      			$description: "Great Playlist!",
+      			$duration: 1324123,
+      			$genres: ["Drum 'n' Bass"],
+      			$user_id: 1234,
+      			$title: "playlist title",
+      			$source: "e.g. soundcloud"
+          }
+        }
+
+        #swagger.responses[404] = {
+          description: 'Playlist not found',
+          schema: { 
+            $errors: {
+                $playlist: "err-not-found"
+            } 
+          }
+        }
+        
+        #swagger.responses[500] = {
+          description: 'Internal error',
+          schema: { 
+            $errors: {
+                $server: "err-internal"
+            } 
+          }
+        } 
+    */
+
+  playlist.getPlaylist(req, res);
+});
+
+router.get("/:playlistId/tracks", (req, res) => {
+  /*
+        #swagger.path = "/playlists/{playlistId}"
+        #swagger.tags = ["Playlists"]
+
+        #swagger.parameters["playlistId"] = {
+          in: 'path',
+          description: 'The playlist id',
+          required: true,
+          type: 'number',
+          schema: 123456
+        } 
+
+        #swagger.responses[200] = {
+          description: 'success',
+          schema: [{ 
+            $id: 123,
+      			$cover: "http://url-to-cover.com",
+      			$description: "Great Track!",
+      			$duration: 1324123,
+      			$genres: ["Drum 'n' Bass"],
+      			$artist_id: 1234,
+      			$album_id: 1234,
+                  $release_date: "1990-08-12",
+      			$title: "album title",
+      			$source: "e.g. soundcloud"
+          }]
+        }
+
+        #swagger.responses[404] = {
+          description: 'Playlist not found',
+          schema: { 
+            $errors: {
+                $playlist: "err-not-found"
+            } 
+          }
+        }
+        
+        #swagger.responses[500] = {
+          description: 'Internal error',
+          schema: { 
+            $errors: {
+                $server: "err-internal"
+            } 
+          }
+        } 
+    */
+
+  playlist.getPlaylistTracks(req, res);
+});
 
 module.exports = router;

@@ -32,6 +32,15 @@ router.get("/:albumId", (req, res) => {
           }
         }
 
+        #swagger.responses[404] = {
+          description: 'Album not found',
+          schema: { 
+            $errors: {
+                $album: "err-not-found"
+            } 
+          }
+        } 
+
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
@@ -62,18 +71,27 @@ router.get("/:albumId/tracks", (req, res) => {
           description: 'success',
           schema: [{ 
             $id: 123,
-			$cover: "http://url-to-cover.com",
-			$description: "Great Track!",
-			$duration: 1324123,
-			$genres: ["Drum 'n' Bass"],
-			$artist_id: 1234,
-			$album_id: 1234,
-            $release_date: "1990-08-12",
-			$title: "album title",
-			$source: "e.g. soundcloud"
+      			$cover: "http://url-to-cover.com",
+      			$description: "Great Track!",
+      			$duration: 1324123,
+      			$genres: ["Drum 'n' Bass"],
+      			$artist_id: 1234,
+      			$album_id: 1234,
+                  $release_date: "1990-08-12",
+      			$title: "album title",
+      			$source: "e.g. soundcloud"
           }]
         }
 
+        #swagger.responses[404] = {
+          description: 'Album not found',
+          schema: { 
+            $errors: {
+                $album: "err-not-found"
+            } 
+          }
+        }
+        
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
