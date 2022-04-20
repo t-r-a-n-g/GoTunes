@@ -61,7 +61,7 @@ class AuthController {
             success: false,
             errors: err.fields.map((field) => {
               return {
-                field: `err-${field}-already-exists`,
+                [field]: `err-${field}-already-exists`,
               };
             }),
           };
