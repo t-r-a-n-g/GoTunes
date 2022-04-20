@@ -15,9 +15,6 @@ const User = sequelize.define(
       type: DataTypes.STRING(100),
       allowNull: false,
       unique: true,
-      validate: {
-        len: [10],
-      },
     },
 
     username: {
