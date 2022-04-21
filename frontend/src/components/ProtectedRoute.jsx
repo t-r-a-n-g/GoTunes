@@ -15,7 +15,7 @@ function ProtectedRoute({ children }) {
 
 ProtectedRoute.propTypes = {
   /* user: PropTypes.bool, */
-  children: PropTypes.shape,
+  children: PropTypes.shape(),
 };
 ProtectedRoute.defaultProps = {
   /*  user: true, */

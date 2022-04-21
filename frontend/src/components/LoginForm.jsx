@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import "./LoginForm.css";
 import axios from "axios";
 import validator from "validator";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginEndpoint } from "./API";
 
 function LoginForm() {
@@ -98,7 +98,7 @@ function LoginForm() {
       ) : null}
       <p>
         {t("login-no-account-text")}{" "}
-        <a href="/registration">{t("sign-up-button")}</a>
+        <Link to="/registration">{t("sign-up-button")}</Link>
       </p>
     </form>
   );
