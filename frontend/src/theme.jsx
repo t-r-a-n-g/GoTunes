@@ -3,12 +3,6 @@ import "@fontsource/khula";
 import "@fontsource/montserrat";
 import "@fontsource/give-you-glory";
 
-/* const themeGlobal = createTheme({
-  typography: {
-    fontFamily: ["Montserrat"].join(","),
-  },
-}); */
-
 const themeGlobal = createTheme({
   palette: {
     primary: {

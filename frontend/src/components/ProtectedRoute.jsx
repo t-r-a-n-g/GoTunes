@@ -1,21 +1,24 @@
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import React from "react";
 
-// eslint-disable-next-line react/prop-types
-function ProtectedRoute({ user, children }) {
-  if (!user) {
+function ProtectedRoute({ children }) {
+  // eslint-disable-next-line no-unused-vars
+  const [userLoggedIn, setUserLoggedIn] = React.useState(
+    localStorage.getItem("userToken")
+  );
+  if (!userLoggedIn) {
     return <Navigate to="/login" replace />;
   }
-
   return children;
 }
 
 ProtectedRoute.propTypes = {
-  user: PropTypes.bool,
-  children: PropTypes.elementType,
+  /* user: PropTypes.bool, */
+  children: PropTypes.shape(),
 };
 ProtectedRoute.defaultProps = {
-  user: true,
+  /*  user: true, */
   children: "",
 };
 
