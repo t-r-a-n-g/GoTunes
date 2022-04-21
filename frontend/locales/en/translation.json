@@ -18,5 +18,8 @@
   "registration-emails-not-matching": "E-Mails do not match!",
   "login-invalid-email-message": "Invalid email address",
   "registration-invalid-email": "Please provide a valid E-Mail Address",
-  "email-and-password-not-match": "E-Mail and Password do not match"
+  "email-and-password-not-match": "E-Mail and Password do not match",
+  "textfield-form-confirmemail-label": "Confirm E-Mail",
+  "textfield-form-username-label": "Username",
+  "textfield-form-confirmpassword-label": "Confirm Password"
 }

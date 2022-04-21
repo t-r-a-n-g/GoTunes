@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import validator from "validator";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registerEndpoint } from "./API";
 import "./RegistrationForm.css";
 
@@ -12,7 +12,7 @@ import "./RegistrationForm.css";
 
 export default function RegistrationForm() {
   const { t } = useTranslation();
-  /* const navigate = useNavigate(); */
+  const navigate = useNavigate();
 
   // Storing user input in variables using React state
   const [email, setEmail] = useState("");
@@ -62,7 +62,11 @@ export default function RegistrationForm() {
         .then((response) => {
           /*  console.log(response); */
           setStatus(response.status);
-          localStorage.setItem("userToken", response.data.token);
+          localStorage.setItem(
+            "userToken",
+            JSON.stringify(response.data.token)
+          );
+          navigate("/profile");
         })
         .catch((error) => {
           setStatus(error.response.status);
@@ -91,7 +95,7 @@ export default function RegistrationForm() {
       <form id="registration-form" onSubmit={handleSignUp}>
         <TextField
           id="registration-email"
-          label="E-Mail"
+          label={t("textfield-form-email-label")}
           variant="standard"
           /* type="email" */
           required
@@ -105,7 +109,7 @@ export default function RegistrationForm() {
 
         <TextField
           id="registration-confirm-email"
-          label="Confirm E-Mail"
+          label={t("textfield-form-confirmemail-label")}
           variant="standard"
           /* type="email" */
           required
@@ -120,7 +124,7 @@ export default function RegistrationForm() {
         {status === 400 ? <p>{t("registration-false-email-format")}</p> : ""}
         <TextField
           id="registration-username"
-          label="Choose Your User Name"
+          label={t("textfield-form-username-label")}
           variant="standard"
           required
           onBlur={(e) => setUsername(e.target.value)}
@@ -129,7 +133,7 @@ export default function RegistrationForm() {
         <TextField
           type="password"
           id="registration-password"
-          label="Password"
+          label={t("textfield-form-password-label")}
           variant="standard"
           required
           onBlur={(e) => setPassword(e.target.value)}
@@ -137,7 +141,7 @@ export default function RegistrationForm() {
         <TextField
           type="password"
           id="registration-confirm-password"
-          label="Confirm Password"
+          label={t("textfield-form-confirmpassword-label")}
           variant="standard"
           required
           error={isSamePassword() === false}
