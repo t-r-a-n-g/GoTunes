@@ -4,6 +4,8 @@
   "login-no-account-text": "Don't have an account yet?",
   "sign-up-button": "Sign up",
   "login-forgot-password": "Forgot Password?",
+  "textfield-form-email-label": "E-Mail",
+  "textfield-form-password-label": "Password",
   "registration-already-have-acc": "Already have an account?",
   "user-profil-playlist": "Playlists",
   "user-profil-following": "Following",
@@ -14,5 +16,6 @@
   "registration-password-not-matching": "Passwords do not match!",
   "registration-emails-not-matching": "E-Mails do not match!",
   "login-invalid-email-message": "Invalid email address",
-  "registration-invalid-email": "Please provide a valid E-Mail Address"
+  "registration-invalid-email": "Please provide a valid E-Mail Address",
+  "email-and-password-not-match": "E-Mail and Password do not match"
 }

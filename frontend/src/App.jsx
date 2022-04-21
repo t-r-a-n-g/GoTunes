@@ -11,8 +11,6 @@ import Home from "./pages/Home";
 import themeGlobal from "./theme";
 
 function App() {
-  // add function to check if user is auth, and return a boolean into "user"
-  const user = true;
   return (
     <Router>
       <Suspense fallback="loading">
@@ -21,16 +19,15 @@ function App() {
 
           <div className="App">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route
+                path="/"
+                element={<ProtectedRoute children={<Home />} />}
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
               <Route
                 path="/profile"
-                element={
-                  <ProtectedRoute user={user}>
-                    <UserProfil />
-                  </ProtectedRoute>
-                }
+                element={<ProtectedRoute children={<UserProfil />} />}
               />
             </Routes>
           </div>
