@@ -21,13 +21,22 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<ProtectedRoute children={<Home />} />}
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
               />
-              <Route path="/login" element={<Login />} />
-              <Route path="/registration" element={<Registration />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route excat path="/registration" element={<Registration />} />
               <Route
+                excat
                 path="/profile"
-                element={<ProtectedRoute children={<UserProfil />} />}
+                element={
+                  <ProtectedRoute>
+                    <UserProfil />
+                  </ProtectedRoute>
+                }
               />
             </Routes>
           </div>

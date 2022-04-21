@@ -2,10 +2,10 @@ import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 
-// eslint-disable-next-line react/prop-types
 function ProtectedRoute({ children }) {
+  // eslint-disable-next-line no-unused-vars
   const [userLoggedIn, setUserLoggedIn] = React.useState(
-    !localStorage.getItem("userToken")
+    localStorage.getItem("userToken")
   );
   if (!userLoggedIn) {
     return <Navigate to="/login" replace />;
@@ -15,7 +15,7 @@ function ProtectedRoute({ children }) {
 
 ProtectedRoute.propTypes = {
   /* user: PropTypes.bool, */
-  children: PropTypes.object,
+  children: PropTypes.shape,
 };
 ProtectedRoute.defaultProps = {
   /*  user: true, */
