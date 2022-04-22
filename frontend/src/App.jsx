@@ -6,6 +6,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import UserProfil from "./pages/UserProfil";
+import Search from "./pages/Search";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import themeGlobal from "./theme";
@@ -24,6 +25,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
+              {/* Search Route needs to be moved into Protected Route later on */}
+              <Route path="/search" element={<Search />} />
               <Route
                 path="/profile"
                 element={
