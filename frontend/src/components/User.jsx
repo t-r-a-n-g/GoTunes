@@ -12,13 +12,15 @@ function User({ avatar, playlistcount, followingcount, userName }) {
       <Avatar id="user-avatar" src={avatar} />
       <br />
       <h1 id="user-userName">{userName}</h1>
-      <Button variant="contained">{t("edit-profil-button")}</Button>
+      <Button sx={{ px: 8, py: 1 }} variant="contained">
+        {t("edit-profil-button")}
+      </Button>
       <div id="user-button-container">
-        <div>
+        <div id="user-playlistcount-container">
           <p id="user-playlistcount">{playlistcount}</p>
           <Button variant="text">{t("user-profil-playlist")}</Button>
         </div>
-        <div>
+        <div id="user-followingcount-container">
           <p id="user-followingcount">{followingcount}</p>
           <Button variant="text">{t("user-profil-following")}</Button>
         </div>

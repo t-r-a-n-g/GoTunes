@@ -96,6 +96,7 @@ export default function RegistrationForm() {
         <TextField
           id="registration-email"
           label={t("textfield-form-email-label")}
+          sx={{ width: 3 / 4 }}
           variant="standard"
           /* type="email" */
           required
@@ -110,6 +111,7 @@ export default function RegistrationForm() {
         <TextField
           id="registration-confirm-email"
           label={t("textfield-form-confirmemail-label")}
+          sx={{ width: 3 / 4 }}
           variant="standard"
           /* type="email" */
           required
@@ -125,6 +127,7 @@ export default function RegistrationForm() {
         <TextField
           id="registration-username"
           label={t("textfield-form-username-label")}
+          sx={{ width: 3 / 4 }}
           variant="standard"
           required
           onBlur={(e) => setUsername(e.target.value)}
@@ -134,6 +137,7 @@ export default function RegistrationForm() {
           type="password"
           id="registration-password"
           label={t("textfield-form-password-label")}
+          sx={{ width: 3 / 4 }}
           variant="standard"
           required
           onBlur={(e) => setPassword(e.target.value)}
@@ -142,6 +146,7 @@ export default function RegistrationForm() {
           type="password"
           id="registration-confirm-password"
           label={t("textfield-form-confirmpassword-label")}
+          sx={{ width: 3 / 4 }}
           variant="standard"
           required
           error={isSamePassword() === false}
@@ -151,10 +156,14 @@ export default function RegistrationForm() {
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
         {status === 500 ? <p>{t("registration-internal-server-error")}</p> : ""}
-        <Button variant="contained" type="submit">
+        <Button
+          sx={{ px: 8, py: 1, marginTop: "2rem" }}
+          variant="contained"
+          type="submit"
+        >
           {t("sign-up-button")}
         </Button>
-        <p>
+        <p id="got-account">
           {t("registration-already-have-acc")}{" "}
           <Link to="/login">{t("login-button")}</Link>
         </p>

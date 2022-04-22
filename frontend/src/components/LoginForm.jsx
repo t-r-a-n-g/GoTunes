@@ -71,6 +71,7 @@ function LoginForm() {
             : null
         }
         id="login-email"
+        sx={{ width: 3 / 4 }}
         label={t("textfield-form-email-label")}
         variant="standard"
         type="email"
@@ -81,6 +82,7 @@ function LoginForm() {
         error={status === 403}
         helperText={status === 403 ? t("email-and-password-not-match") : null}
         id="login-password"
+        sx={{ width: 3 / 4 }}
         label={t("textfield-form-password-label")}
         variant="standard"
         type="password"
@@ -88,15 +90,22 @@ function LoginForm() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <p>
-        <a href="/">{t("login-forgot-password")}</a>
+        <a id="forgott-password-button" href="/">
+          {t("login-forgot-password")}
+        </a>
       </p>
-      <Button variant="contained" id="login-button" type="submit">
+      <Button
+        variant="contained"
+        id="login-button"
+        type="submit"
+        sx={{ px: 8, py: 1 }}
+      >
         {t("login-button")}
       </Button>
       {status === 500 ? (
         <p>Internal server error arrived, please try again later?</p>
       ) : null}
-      <p>
+      <p id="no-account">
         {t("login-no-account-text")}{" "}
         <Link to="/registration">{t("sign-up-button")}</Link>
       </p>
