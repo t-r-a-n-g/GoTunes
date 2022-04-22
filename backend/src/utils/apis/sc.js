@@ -58,22 +58,27 @@ class SoundCloud {
     return Array.isArray(playlists) ? data : data[0];
   }
 
-  static formatTrackData(tracks) {
+  async formatTrackData(tracks) {
     const trackData = Array.isArray(tracks) ? tracks : [tracks];
-    const data = trackData.map((track) => {
-      return {
-        id: track.id,
-        cover: track.artwork_url,
-        description: track.description,
-        duration: track.duration,
-        genres: [track.genre],
-        artist_id: track.user_id,
-        album_id: null,
-        title: track.title,
-        release_date: track.release_date,
-        source: "soundcloud",
-      };
-    });
+
+    const data = await Promise.all(
+      trackData.map(async (track) => {
+        const streamUrl = await this.getTrackStreamUrl(track);
+        return {
+          id: track.id,
+          cover: track.artwork_url,
+          description: track.description,
+          duration: track.duration,
+          genres: [track.genre],
+          artist_id: track.user_id,
+          album_id: null,
+          title: track.title,
+          release_date: track.release_date,
+          stream_url: streamUrl,
+          source: "soundcloud",
+        };
+      })
+    );
 
     return Array.isArray(tracks) ? data : data[0];
   }
@@ -139,7 +144,7 @@ class SoundCloud {
 
   async searchTracks(q, options) {
     const res = await this.search("tracks", { q, ...options });
-    const data = SoundCloud.formatTrackData(res.collection);
+    const data = this.formatTrackData(res.collection);
 
     return data;
   }
@@ -167,7 +172,7 @@ class SoundCloud {
 
   async getArtistTracks(id) {
     const res = await this.get(`/users/${id}/tracks`);
-    const data = SoundCloud.formatTrackData(res.collection);
+    const data = await this.formatTrackData(res.collection);
 
     return data;
   }
@@ -181,7 +186,7 @@ class SoundCloud {
 
   async getAlbumTracks(id) {
     const res = await this.getAlbum(id, false);
-    const data = await SoundCloud.formatTrackData(res.tracks);
+    const data = await this.formatTrackData(res.tracks);
 
     return data;
   }
@@ -199,8 +204,7 @@ class SoundCloud {
     return res;
   }
 
-  async getTrackStreamUrl(id) {
-    const track = await this.getTrack(id);
+  async getTrackStreamUrl(track) {
     const streamUrl = `${track.media?.transcodings[1]?.url}?client_id=${this.clientId}`;
 
     const res = await axios({
@@ -211,7 +215,7 @@ class SoundCloud {
     });
 
     const mp3File = res.data.url;
-    return { url: mp3File };
+    return mp3File;
   }
 }
 

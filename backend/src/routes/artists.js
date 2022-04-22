@@ -173,8 +173,9 @@ router.get("/:artistId/tracks", (req, res) => {
   			$artist_id: 1234,
   			$album_id: 1234,
               $release_date: "1990-08-12",
-  			$title: "album title",
-  			$source: "e.g. soundcloud"
+  			$title: "track title",
+  			$stream_url: "http://stream-url.com/track.mp3",
+              $source: "e.g. soundcloud"
           }]
         }
         
