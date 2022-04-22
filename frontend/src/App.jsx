@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
 import SearchResultGenre from "./pages/SearchResultGenre";
+import SearchGenre from "./pages/SearchGenre";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import UserProfil from "./pages/UserProfil";
@@ -68,7 +69,7 @@ function App() {
                 path="/search-genre"
                 element={
                   <ProtectedRoute user={user}>
-                    <SearchResultGenre />
+                    <SearchGenre />
                   </ProtectedRoute>
                 }
               />

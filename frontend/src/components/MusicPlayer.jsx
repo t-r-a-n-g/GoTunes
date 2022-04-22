@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 function MusicPlayer(props) {
   return (
     <>
+      {/* eslint-disable-next-line */}
       <ReactJkMusicPlayer {...props.playerOptions} />
 
       {/*     FURTHER BUTTONS 
@@ -17,7 +18,7 @@ function MusicPlayer(props) {
   );
 }
 MusicPlayer.propTypes = {
-  playerOptions: PropTypes.object,
+  playerOptions: PropTypes.shape(),
 };
 MusicPlayer.defaultProps = {
   playerOptions: null,

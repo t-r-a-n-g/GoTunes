@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import Searchbar from "../components/Searchbar";
 import SearchResults from "../components/SearchResults";
 import SearchNavbar from "../components/SearchNavbar";
@@ -83,3 +84,9 @@ export default function Search(props) {
     </div>
   );
 }
+Search.propTypes = {
+  setSongQueue: PropTypes.shape(),
+};
+Search.defaultProps = {
+  setSongQueue: null,
+};

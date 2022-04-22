@@ -37,9 +37,11 @@ SearchResults.propTypes = {
   // eslint-disable-next-line
   searchResult: PropTypes.array,
   responseStatus: PropTypes.number,
+  setSongQueue: PropTypes.shape(),
 };
 
 SearchResults.defaultProps = {
   searchResult: "",
   responseStatus: 404,
+  setSongQueue: null,
 };
