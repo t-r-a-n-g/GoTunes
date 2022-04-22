@@ -4,7 +4,12 @@ import RegistrationForm from "@components/RegistrationForm";
 export default function Login() {
   return (
     <div>
-      <h1>Logo Placeholder</h1>
+      <img
+        src="https://i.imgur.com/46Jg1Gw.png"
+        style={{ marginTop: "5vh" }}
+        alt="logo"
+      />
+      <h1 style={{ marginTop: 0 }}>Go Tunes</h1>
       <RegistrationForm />
     </div>
   );

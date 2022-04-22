@@ -8,7 +8,19 @@
   gap: 1ch;
 }
 
-.error-message {
+/* .error-message {
   font-size: 0.75rem;
   color: red;
+} */
+
+@media only screen and (max-width: 600px) {
+  #got-account {
+    margin-top: 9rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #got-account {
+    margin-top: 6rem;
+  }
 }

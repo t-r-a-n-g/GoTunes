@@ -58,9 +58,20 @@ function App() {
                 element={<MusicPlayerTestPage />}
               />
               <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route exact path="/login" element={<Login />} />
+              <Route excat path="/registration" element={<Registration />} />
+              <Route
+                excat
                 path="/profile"
                 element={
-                  <ProtectedRoute user={user}>
+                  <ProtectedRoute>
                     <UserProfil />
                   </ProtectedRoute>
                 }

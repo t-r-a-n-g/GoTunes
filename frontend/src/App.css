@@ -60,3 +60,7 @@ button {
   display: none;
   visibility: hidden;
 }
+
+a {
+  color: #949494;
+}
