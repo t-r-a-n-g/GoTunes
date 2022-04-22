@@ -7,7 +7,8 @@ export default function Login() {
       <img
         src="https://i.imgur.com/46Jg1Gw.png"
         style={{ marginTop: "5vh" }}
-      ></img>
+        alt="logo"
+      />
       <h1 style={{ marginTop: 0 }}>Go Tunes</h1>
       <RegistrationForm />
     </div>
