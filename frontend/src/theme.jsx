@@ -20,6 +20,7 @@ const themeGlobal = createTheme({
     },
     background: {
       default: "#510A32",
+      button: "#fff",
     },
     text: {
       primary: "#fff",
