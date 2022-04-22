@@ -8,6 +8,7 @@ import Registration from "./pages/Registration";
 import UserProfil from "./pages/UserProfil";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
+import MusicPlayerTestPage from "./pages/MusicPlayerTestPage";
 import themeGlobal from "./theme";
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
+              <Route
+                path="/MusicPlayerTestPage"
+                element={<MusicPlayerTestPage />}
+              />
               <Route
                 path="/profile"
                 element={
