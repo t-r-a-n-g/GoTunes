@@ -211,6 +211,7 @@ router.get("/tracks/:q", (req, res) => {
       			$album_id: 1234,
                   $release_date: "1990-08-12",
       			$title: "album title",
+                $stream_url: "http://stream-url.com/track.mp3",
       			$source: "e.g. soundcloud"
           }]
         }
