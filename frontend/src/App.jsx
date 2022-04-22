@@ -22,7 +22,7 @@ function App() {
   // state for songQueue
   const [songQueue, setSongQueue] = useState([]);
 
-  // This will become a variable for the player.. To connect the player with buttons (our own controls),
+  // This creates a variable representing the audio element. To connect the player with buttons (our own controls),
   // we can then call its methods, such as audioInstance.pause().
   const [audioInstance, setAudioInstance] = useState(null);
 
@@ -44,10 +44,6 @@ function App() {
           <CssBaseline />
 
           <div className="App">
-            <MusicPlayer
-              playerOptions={playerOptions}
-              audioInstance={audioInstance}
-            />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -86,6 +82,21 @@ function App() {
                 }
               />
             </Routes>
+
+            <div id="playerContainer">
+              <div id="playerHeartPiece">
+                <MusicPlayer playerOptions={playerOptions} />
+              </div>
+              <button type="button" onClick={() => audioInstance.playPrev()}>
+                Previous track
+              </button>
+              <button type="button" onClick={() => audioInstance.togglePlay()}>
+                Play / Pause
+              </button>
+              <button type="button" onClick={() => audioInstance.playNext()}>
+                Next track
+              </button>
+            </div>
           </div>
         </ThemeProvider>
       </Suspense>
