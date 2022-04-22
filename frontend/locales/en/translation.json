@@ -15,5 +15,7 @@
   "registration-password-not-matching": "Passwords do not match!",
   "registration-emails-not-matching": "E-Mails do not match!",
   "login-invalid-email-message": "Invalid email address",
-  "registration-invalid-email": "Please provide a valid E-Mail Address"
+  "registration-invalid-email": "Please provide a valid E-Mail Address",
+  "serch-page-headline": "Search",
+  "search-button-text": "Artist, Song or Album"
 }
