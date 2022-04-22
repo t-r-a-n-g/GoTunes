@@ -3,23 +3,10 @@ import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
 import PropTypes from "prop-types";
 
-function MusicPlayer(playerOptions, audioInstance) {
+function MusicPlayer(props) {
   return (
     <>
-      {/* eslint-disable-next-line */}
-      <ReactJkMusicPlayer {...playerOptions} />
-      {/* eslint-disable-next-line */}
-      <button type="button" onClick={() => audioInstance.playPrev()}>
-        Previous track
-      </button>
-      {/* eslint-disable-next-line */}
-      <button type="button" onClick={() => audioInstance.togglePlay()}>
-        Play / Pause
-      </button>
-      {/* eslint-disable-next-line */}
-      <button type="button" onClick={() => audioInstance.playNext()}>
-        Next track
-      </button>
+      <ReactJkMusicPlayer {...props.playerOptions} />
 
       {/*     FURTHER BUTTONS 
             <button onClick={() => audioInstance.play()}>play</button>
@@ -30,9 +17,9 @@ function MusicPlayer(playerOptions, audioInstance) {
   );
 }
 MusicPlayer.propTypes = {
-  playlist: PropTypes.arrayOf,
+  playerOptions: PropTypes.object,
 };
 MusicPlayer.defaultProps = {
-  playlist: null,
+  playerOptions: null,
 };
 export default MusicPlayer;

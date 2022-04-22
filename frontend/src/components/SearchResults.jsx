@@ -3,12 +3,23 @@ import PropTypes from "prop-types";
 import Card from "./Card";
 
 export default function SearchResults(props) {
-  const { searchResult, responseStatus } = props;
+  const { searchResult, responseStatus, setSongQueue } = props;
+
   return (
     <div>
       {responseStatus === 200
         ? searchResult.map((element) => (
             <Card
+              onClick={() =>
+                setSongQueue([
+                  {
+                    name: element.title,
+                    singer: "",
+                    cover: element.cover,
+                    musicSrc: element.stream_url,
+                  },
+                ])
+              }
               key={element.id}
               cover={element.cover}
               title={element.title}

@@ -3,9 +3,9 @@ import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
 import "./Card.css";
 
-function Card({ cover, title }) {
+function Card({ cover, title, onClick }) {
   return (
-    <div>
+    <div onClick={onClick}>
       <div id="card-container">
         <img id="card-cover-image" src={cover} alt="cover" />
         <h3 id="card-heading">{title}</h3>

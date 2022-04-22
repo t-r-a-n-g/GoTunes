@@ -54,3 +54,9 @@ code {
 button {
   font-size: calc(10px + 2vmin);
 }
+
+#playerHeartPiece {
+  /* both of these don't work! */
+  display: none;
+  visibility: hidden;
+}
