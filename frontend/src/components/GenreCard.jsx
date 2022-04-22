@@ -8,12 +8,11 @@ import { Link } from "react-router-dom";
 
 export default function GenreCard() {
   return (
-    <Link to="/search-result" style={{ textDecoration: "none" }}>
+    <Link to="/search-result-genre" style={{ textDecoration: "none" }}>
       <div id="genreCardContainer">
         <Card
           sx={{
             display: "flex",
-            maxWidth: 250,
             justifyContent: "space-between",
             backgroundColor: "purple",
           }}

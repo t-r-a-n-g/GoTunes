@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
 import SearchGenre from "@pages/SearchGenre";
-import SearchResult from "@pages/SearchResult";
+import SearchResultGenre from "@pages/SearchResultGenre";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import UserProfil from "./pages/UserProfil";
@@ -28,7 +28,14 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
               {/* Search Route needs to be moved into Protected Route later on */}
-              <Route path="/search" element={<Search />} />
+              <Route
+                path="/search"
+                element={
+                  <ProtectedRoute user={user}>
+                    <Search />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/profile"
                 element={
@@ -38,18 +45,18 @@ function App() {
                 }
               />
               <Route
-                path="/search-result"
-                element={
-                  <ProtectedRoute user={user}>
-                    <SearchResult />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
                 path="/search-genre"
                 element={
                   <ProtectedRoute user={user}>
                     <SearchGenre />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/search-result-genre"
+                element={
+                  <ProtectedRoute user={user}>
+                    <SearchResultGenre />
                   </ProtectedRoute>
                 }
               />

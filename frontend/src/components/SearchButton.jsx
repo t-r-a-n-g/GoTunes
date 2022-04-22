@@ -8,16 +8,36 @@ import { useTranslation } from "react-i18next";
 export default function SearchButton() {
   const { t } = useTranslation();
   return (
-    <Link to="/search-result" sx={{ textDecoration: "none" }}>
-      <Stack direction="row" spacing={2}>
-        <Button
-          variant="contained"
-          startIcon={<SearchIcon sx={{ color: "text.secondary" }} />}
-          sx={{ bgcolor: "background.button", color: "text.secondary" }}
-        >
-          {t("search-button-text")}
-        </Button>
-      </Stack>
-    </Link>
+    <div>
+      <Link
+        to="/search"
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        <Stack sx={{ width: "100%" }}>
+          <Button
+            variant="text"
+            startIcon={<SearchIcon sx={{ color: "text.secondary" }} />}
+            sx={{
+              ":hover": {
+                bgcolor: "#ffffff",
+                color: "text.secondary",
+              },
+              justifyContent: "flex-start",
+              bgcolor: "#ffffff",
+              color: "text.secondary",
+              textTransform: "unset",
+              textDecoration: "none",
+            }}
+          >
+            {t("search-button-text")}
+          </Button>
+        </Stack>
+      </Link>
+    </div>
   );
 }

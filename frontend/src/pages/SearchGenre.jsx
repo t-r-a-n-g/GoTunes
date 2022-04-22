@@ -10,44 +10,50 @@ export default function SearchGenre() {
 
   return (
     <div id="searchPage">
-      <h1>{t("serch-page-headline")}</h1>
-      <SearchButton />
       <Container>
-        <Grid container gap={4} sx={{ justifyContent: "space-evenly" }}>
-          <Grid item xs={5} md={3} lg={2.5}>
+        <Grid container gap={2} sx={{ justifyContent: "space-between" }}>
+          <Grid item xs={12} md={12} lg={12}>
+            <h2 style={{ margin: 0, marginTop: "4vh", textAlign: "left" }}>
+              {t("serch-page-headline")}
+            </h2>
+          </Grid>
+          <Grid item xs={12} md={12} lg={12}>
+            <SearchButton />
+          </Grid>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
-          <Grid item xs={5} md={3} lg={2.5}>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <GenreCard />
           </Grid>
         </Grid>
