@@ -3,6 +3,65 @@ const express = require("express");
 const router = express.Router();
 
 const { playlist } = require("../controllers");
+const { verifyToken } = require("../middleware/auth");
+
+router.post("/", verifyToken, (req, res) => {
+  /*
+        #swagger.path = "/playlists"
+        #swagger.tags = ["Playlists"]
+
+        #swagger.parameters["title"] = {
+          in: 'body',
+          description: 'The playlist title',
+          required: true,
+          type: 'string',
+          schema: "My beautiful playlist"
+        } 
+                
+        #swagger.responses[200] = {
+          description: 'success',
+          schema: { 
+            $id: 123,
+      			$cover: "http://url-to-cover.com",
+      			$description: "Great Playlist!",
+      			$duration: 1324123,
+      			$genres: ["Drum 'n' Bass"],
+      			$user_id: 1234,
+      			$title: "playlist title",
+      			$source: "e.g. soundcloud"
+          }
+        }
+
+        #swagger.responses[403] = {
+          description: 'Not authorized',
+          schema: { 
+            $errors: {
+                $auth: "err-auth-not-authorized"
+            } 
+          }
+        }
+        
+        #swagger.responses[403] = {
+          description: 'No auth token provided',
+          schema: { 
+            $errors: {
+                $auth: "err-auth-no-token"
+            } 
+          }
+        }
+        
+        #swagger.responses[500] = {
+          description: 'Internal error',
+          schema: { 
+            $errors: {
+                $server: "err-internal"
+            } 
+          }
+        } 
+    */
+
+  playlist.createPlaylist(req, res);
+});
 
 router.get("/:playlistId", (req, res) => {
   /*

@@ -39,6 +39,7 @@ async function checkDB() {
 
 async function syncDB(force = false) {
   try {
+    db.createRelations();
     await db.sequelize.sync({ force });
 
     // eslint-disable-next-line no-restricted-syntax

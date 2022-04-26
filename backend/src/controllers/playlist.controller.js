@@ -1,13 +1,42 @@
 const Controller = require("./controller");
-const { playlistService } = require("../services");
+const { PlaylistService } = require("../services");
 
 class PlaylistController {
+  static async createPlaylist(req, res) {
+    const { title } = Controller.getParams(req);
+    let resData = {};
+
+    try {
+      const playlist = await PlaylistService.createPlaylist(title, req.user);
+      resData = playlist;
+    } catch (err) {
+      switch (err.name) {
+        case "ValidationError":
+          res.status(400);
+          resData = {
+            errors: {
+              validation: "Validation error",
+            },
+          };
+          break;
+        default:
+          console.error(err);
+          res.status(500);
+          resData = {
+            errors: { server: "err-internal" },
+          };
+      }
+    }
+
+    return res.json(resData);
+  }
+
   static async getPlaylist(req, res) {
     const { playlistId, src } = Controller.getParams(req);
     let resData = {};
 
     try {
-      const playlist = await playlistService.getPlaylist(playlistId, src);
+      const playlist = await PlaylistService.getPlaylist(playlistId, src);
       resData = playlist;
     } catch (err) {
       switch (err.name) {
@@ -29,7 +58,7 @@ class PlaylistController {
     let resData = {};
 
     try {
-      const tracks = await playlistService.getPlaylistTracks(playlistId, src);
+      const tracks = await PlaylistService.getPlaylistTracks(playlistId, src);
       resData = tracks;
     } catch (err) {
       switch (err.name) {
