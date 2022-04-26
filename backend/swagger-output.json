@@ -7,22 +7,13 @@
   },
   "host": "localhost:5000",
   "basePath": "/api",
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -61,10 +52,7 @@
                   "example": "user token"
                 }
               },
-              "required": [
-                "success",
-                "token"
-              ],
+              "required": ["success", "token"],
               "xml": {
                 "name": "main"
               }
@@ -84,10 +72,7 @@
                   "properties": {}
                 }
               },
-              "required": [
-                "success",
-                "errors"
-              ],
+              "required": ["success", "errors"],
               "xml": {
                 "name": "main"
               }
@@ -116,10 +101,7 @@
                   }
                 }
               },
-              "required": [
-                "success",
-                "errors"
-              ],
+              "required": ["success", "errors"],
               "xml": {
                 "name": "main"
               }
@@ -142,15 +124,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "success",
-                "errors"
-              ],
+              "required": ["success", "errors"],
               "xml": {
                 "name": "main"
               }
@@ -161,9 +138,7 @@
     },
     "/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -212,10 +187,7 @@
                   "example": "user token"
                 }
               },
-              "required": [
-                "success",
-                "token"
-              ],
+              "required": ["success", "token"],
               "xml": {
                 "name": "main"
               }
@@ -235,10 +207,7 @@
                   "properties": {}
                 }
               },
-              "required": [
-                "success",
-                "errors"
-              ],
+              "required": ["success", "errors"],
               "xml": {
                 "name": "main"
               }
@@ -263,10 +232,7 @@
                   }
                 }
               },
-              "required": [
-                "success",
-                "errors"
-              ],
+              "required": ["success", "errors"],
               "xml": {
                 "name": "main"
               }
@@ -289,15 +255,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "success",
-                "errors"
-              ],
+              "required": ["success", "errors"],
               "xml": {
                 "name": "main"
               }
@@ -308,9 +269,7 @@
     },
     "/artist/{artistId}": {
       "get": {
-        "tags": [
-          "Artist"
-        ],
+        "tags": ["Artist"],
         "description": "",
         "parameters": [
           {
@@ -352,13 +311,7 @@
                   "example": "e.g. soundcloud"
                 }
               },
-              "required": [
-                "id",
-                "name",
-                "avatar",
-                "description",
-                "source"
-              ],
+              "required": ["id", "name", "avatar", "description", "source"],
               "xml": {
                 "name": "main"
               }
@@ -377,14 +330,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "artist"
-                  ]
+                  "required": ["artist"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -403,14 +352,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -421,9 +366,7 @@
     },
     "/artist/{artistId}/albums": {
       "get": {
-        "tags": [
-          "Artist"
-        ],
+        "tags": ["Artist"],
         "description": "",
         "parameters": [
           {
@@ -462,9 +405,7 @@
                 },
                 "genres": {
                   "type": "array",
-                  "example": [
-                    "Drum 'n' Bass"
-                  ],
+                  "example": ["Drum 'n' Bass"],
                   "items": {
                     "type": "string"
                   }
@@ -515,14 +456,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "artist"
-                  ]
+                  "required": ["artist"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -541,14 +478,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -559,9 +492,7 @@
     },
     "/artist/{artistId}/playlists": {
       "get": {
-        "tags": [
-          "Artist"
-        ],
+        "tags": ["Artist"],
         "description": "",
         "parameters": [
           {
@@ -602,9 +533,7 @@
                   },
                   "genres": {
                     "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
+                    "example": ["Drum 'n' Bass"],
                     "items": {
                       "type": "string"
                     }
@@ -651,14 +580,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "artist"
-                  ]
+                  "required": ["artist"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -677,14 +602,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -695,9 +616,7 @@
     },
     "/artist/{artistId}/tracks": {
       "get": {
-        "tags": [
-          "Artist"
-        ],
+        "tags": ["Artist"],
         "description": "",
         "parameters": [
           {
@@ -738,9 +657,7 @@
                   },
                   "genres": {
                     "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
+                    "example": ["Drum 'n' Bass"],
                     "items": {
                       "type": "string"
                     }
@@ -802,14 +719,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "artist"
-                  ]
+                  "required": ["artist"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -828,14 +741,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -846,9 +755,7 @@
     },
     "/albums/{albumId}": {
       "get": {
-        "tags": [
-          "Albums"
-        ],
+        "tags": ["Albums"],
         "description": "",
         "parameters": [
           {
@@ -887,9 +794,7 @@
                 },
                 "genres": {
                   "type": "array",
-                  "example": [
-                    "Drum 'n' Bass"
-                  ],
+                  "example": ["Drum 'n' Bass"],
                   "items": {
                     "type": "string"
                   }
@@ -940,14 +845,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "album"
-                  ]
+                  "required": ["album"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -966,14 +867,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -984,9 +881,7 @@
     },
     "/albums/{albumId}/tracks": {
       "get": {
-        "tags": [
-          "Albums"
-        ],
+        "tags": ["Albums"],
         "description": "",
         "parameters": [
           {
@@ -1027,9 +922,7 @@
                   },
                   "genres": {
                     "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
+                    "example": ["Drum 'n' Bass"],
                     "items": {
                       "type": "string"
                     }
@@ -1091,14 +984,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "album"
-                  ]
+                  "required": ["album"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1117,14 +1006,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1135,9 +1020,7 @@
     },
     "/playlists": {
       "post": {
-        "tags": [
-          "Playlists"
-        ],
+        "tags": ["Playlists"],
         "description": "",
         "parameters": [
           {
@@ -1180,9 +1063,7 @@
                 },
                 "genres": {
                   "type": "array",
-                  "example": [
-                    "Drum 'n' Bass"
-                  ],
+                  "example": ["Drum 'n' Bass"],
                   "items": {
                     "type": "string"
                   }
@@ -1228,14 +1109,10 @@
                       "example": "err-auth-no-token"
                     }
                   },
-                  "required": [
-                    "auth"
-                  ]
+                  "required": ["auth"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1254,14 +1131,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1272,9 +1145,7 @@
     },
     "/playlists/{playlistId}": {
       "get": {
-        "tags": [
-          "Playlists"
-        ],
+        "tags": ["Playlists"],
         "description": "",
         "parameters": [
           {
@@ -1313,9 +1184,7 @@
                 },
                 "genres": {
                   "type": "array",
-                  "example": [
-                    "Drum 'n' Bass"
-                  ],
+                  "example": ["Drum 'n' Bass"],
                   "items": {
                     "type": "string"
                   }
@@ -1361,14 +1230,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "playlist"
-                  ]
+                  "required": ["playlist"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1387,14 +1252,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1405,9 +1266,7 @@
     },
     "/playlists/{playlistId}/tracks": {
       "get": {
-        "tags": [
-          "Playlists"
-        ],
+        "tags": ["Playlists"],
         "description": "",
         "parameters": [
           {
@@ -1448,9 +1307,7 @@
                   },
                   "genres": {
                     "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
+                    "example": ["Drum 'n' Bass"],
                     "items": {
                       "type": "string"
                     }
@@ -1512,14 +1369,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "playlist"
-                  ]
+                  "required": ["playlist"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1538,14 +1391,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1556,9 +1405,7 @@
     },
     "/tracks/{trackId}": {
       "get": {
-        "tags": [
-          "Tracks"
-        ],
+        "tags": ["Tracks"],
         "description": "",
         "parameters": [
           {
@@ -1597,9 +1444,7 @@
                 },
                 "genres": {
                   "type": "array",
-                  "example": [
-                    "Drum 'n' Bass"
-                  ],
+                  "example": ["Drum 'n' Bass"],
                   "items": {
                     "type": "string"
                   }
@@ -1660,14 +1505,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "album"
-                  ]
+                  "required": ["album"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1686,14 +1527,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1704,9 +1541,7 @@
     },
     "/tracks/{trackId}/stream": {
       "get": {
-        "tags": [
-          "Tracks"
-        ],
+        "tags": ["Tracks"],
         "description": "",
         "parameters": [
           {
@@ -1732,9 +1567,7 @@
                   "example": "http://stream-url.com/track.mp3"
                 }
               },
-              "required": [
-                "url"
-              ],
+              "required": ["url"],
               "xml": {
                 "name": "main"
               }
@@ -1753,14 +1586,10 @@
                       "example": "err-not-found"
                     }
                   },
-                  "required": [
-                    "album"
-                  ]
+                  "required": ["album"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1779,14 +1608,83 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/{q}": {
+      "get": {
+        "tags": ["Search"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The search query",
+            "schema": {
+              "type": "string",
+              "example": "drum and bass"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max search results to retrieve",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "number",
+              "example": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip the first X results",
+            "required": false,
+            "type": "integer",
+            "schema": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "example": [],
+              "items": {},
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "server": {
+                      "type": "string",
+                      "example": "err-internal"
+                    }
+                  },
+                  "required": ["server"]
+                }
+              },
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1797,9 +1695,7 @@
     },
     "/search/artists/{q}": {
       "get": {
-        "tags": [
-          "Search"
-        ],
+        "tags": ["Search"],
         "description": "",
         "parameters": [
           {
@@ -1857,6 +1753,10 @@
                     "type": "string",
                     "example": "artist description"
                   },
+                  "kind": {
+                    "type": "string",
+                    "example": "artist"
+                  },
                   "source": {
                     "type": "string",
                     "example": "e.g. soundcloud"
@@ -1867,6 +1767,7 @@
                   "name",
                   "avatar",
                   "description",
+                  "kind",
                   "source"
                 ]
               },
@@ -1888,14 +1789,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -1906,9 +1803,7 @@
     },
     "/search/albums/{q}": {
       "get": {
-        "tags": [
-          "Search"
-        ],
+        "tags": ["Search"],
         "description": "",
         "parameters": [
           {
@@ -1968,9 +1863,7 @@
                   },
                   "genres": {
                     "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
+                    "example": ["Drum 'n' Bass"],
                     "items": {
                       "type": "string"
                     }
@@ -1987,6 +1880,10 @@
                     "type": "string",
                     "example": "album title"
                   },
+                  "kind": {
+                    "type": "string",
+                    "example": "album"
+                  },
                   "source": {
                     "type": "string",
                     "example": "e.g. soundcloud"
@@ -2001,6 +1898,7 @@
                   "release_date",
                   "artist_id",
                   "title",
+                  "kind",
                   "source"
                 ]
               },
@@ -2022,14 +1920,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -2040,9 +1934,7 @@
     },
     "/search/playlists/{q}": {
       "get": {
-        "tags": [
-          "Search"
-        ],
+        "tags": ["Search"],
         "description": "",
         "parameters": [
           {
@@ -2102,9 +1994,7 @@
                   },
                   "genres": {
                     "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
+                    "example": ["Drum 'n' Bass"],
                     "items": {
                       "type": "string"
                     }
@@ -2116,6 +2006,10 @@
                   "title": {
                     "type": "string",
                     "example": "playlist title"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "example": "playlist"
                   },
                   "source": {
                     "type": "string",
@@ -2130,6 +2024,7 @@
                   "genres",
                   "user_id",
                   "title",
+                  "kind",
                   "source"
                 ]
               },
@@ -2151,14 +2046,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }
@@ -2169,9 +2060,7 @@
     },
     "/search/tracks/{q}": {
       "get": {
-        "tags": [
-          "Search"
-        ],
+        "tags": ["Search"],
         "description": "",
         "parameters": [
           {
@@ -2231,9 +2120,7 @@
                   },
                   "genres": {
                     "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
+                    "example": ["Drum 'n' Bass"],
                     "items": {
                       "type": "string"
                     }
@@ -2258,6 +2145,10 @@
                     "type": "string",
                     "example": "http://stream-url.com/track.mp3"
                   },
+                  "kind": {
+                    "type": "string",
+                    "example": "track"
+                  },
                   "source": {
                     "type": "string",
                     "example": "e.g. soundcloud"
@@ -2274,6 +2165,7 @@
                   "release_date",
                   "title",
                   "stream_url",
+                  "kind",
                   "source"
                 ]
               },
@@ -2295,14 +2187,10 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": [
-                    "server"
-                  ]
+                  "required": ["server"]
                 }
               },
-              "required": [
-                "errors"
-              ],
+              "required": ["errors"],
               "xml": {
                 "name": "main"
               }

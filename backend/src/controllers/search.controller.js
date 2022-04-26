@@ -1,6 +1,29 @@
 const { SearchService } = require("../services");
+const Controller = require("./controller");
 
 class SearchController {
+  static async all(req, res) {
+    const { q, limit, offset, src } = Controller.getParams(req);
+    let resData = {};
+
+    try {
+      resData = await SearchService.searchAll(q, limit, offset, src);
+    } catch (err) {
+      switch (err) {
+        default:
+          console.error(err);
+          res.status(500);
+          resData = {
+            errors: {
+              server: "err-internal",
+            },
+          };
+      }
+    }
+
+    return res.json(resData);
+  }
+
   static async artists(req, res) {
     const { q } = req.params;
     const { limit, offset } = req.query;
