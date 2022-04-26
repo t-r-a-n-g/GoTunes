@@ -1,16 +1,22 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import { useNavigate } from "react-router-dom";
 import "./SearchNavbar.css";
+import {
+  searchArtistsEndpoint,
+  searchTracksEndpoint,
+  searchAlbumsEndpoint,
+  searchPlaylistsEndpoint,
+} from "./API";
 
 /* TO DO: 
-(1) Modify onClick method. It should not navigate to another page. 
-    It should execute a new api search request 
-(2) For later: Make Chip a separate component so it can be reused for Library Search */
+- add Chip for "All"
+- add css: make visible which chip is clicked on
+- For later: Make Chip a separate component so it can be reused for Library Search */
 
-export default function SearchNavbar() {
-  const navigate = useNavigate();
+export default function SearchNavbar(props) {
+  const { setSearchEndpoint } = props;
 
   return (
     <Stack direction="row" spacing={4}>
@@ -19,26 +25,33 @@ export default function SearchNavbar() {
         className="nav-chip"
         label="Artists"
         variant="outlined"
-        onClick={() => navigate("/login")}
+        onClick={() => setSearchEndpoint(searchArtistsEndpoint)}
       />
       <Chip
         className="nav-chip"
         label="Tracks"
         variant="outlined"
-        onClick={() => navigate("/login")}
+        onClick={() => setSearchEndpoint(searchTracksEndpoint)}
       />
       <Chip
         className="nav-chip"
         label="Albums"
         variant="outlined"
-        onClick={() => navigate("/login")}
+        onClick={() => setSearchEndpoint(searchAlbumsEndpoint)}
       />
       <Chip
         className="nav-chip"
         label="Playlists"
         variant="outlined"
-        onClick={() => navigate("/login")}
+        onClick={() => setSearchEndpoint(searchPlaylistsEndpoint)}
       />
     </Stack>
   );
 }
+
+SearchNavbar.propTypes = {
+  setSearchEndpoint: PropTypes.string,
+};
+SearchNavbar.defaultProps = {
+  setSearchEndpoint: null,
+};

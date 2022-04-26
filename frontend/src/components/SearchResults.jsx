@@ -10,14 +10,16 @@ export default function SearchResults(props) {
       {responseStatus === 200
         ? searchResult.map((element) => (
             <Card
+              /* To Do: how to push new track at beginning of queue? */
               onClick={() =>
-                setSongQueue([
+                setSongQueue((oldArray) => [
                   {
                     name: element.title,
                     singer: "",
                     cover: element.cover,
                     musicSrc: element.stream_url,
                   },
+                  ...oldArray,
                 ])
               }
               key={element.id}
