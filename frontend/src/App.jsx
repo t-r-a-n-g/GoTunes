@@ -11,7 +11,6 @@ import UserProfil from "./pages/UserProfil";
 import Search from "./pages/Search";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
-
 import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
 
@@ -24,7 +23,10 @@ function App() {
 
   // This creates a variable representing the audio element. To connect the player with buttons (our own controls),
   // we can then call its methods, such as audioInstance.pause().
-  /*  const [audioInstance, setAudioInstance] = useState(null); */
+  // const [audioInstance, setAudioInstance] = useState(null);
+
+  // state for changing responsive mode
+  const [responsiveToggle, setResponsiveToggle] = useState(false);
 
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
@@ -32,6 +34,21 @@ function App() {
     mode: "full",
     showDownload: false,
     theme: "dark",
+    showThemeSwitch: false,
+    showReload: false,
+    responsive: responsiveToggle,
+    defaultPlayMode: "shufflePlay",
+    toggleMode: false,
+    glassBg: false,
+    autoHiddenCover: false,
+    onCoverClick() {
+      console.warn(`responsive: ${responsiveToggle}`);
+      setResponsiveToggle(!responsiveToggle);
+    },
+
+    // getAudioInstance(instance) {
+    //   setAudioInstance(instance);
+    // },
   };
 
   return (
@@ -45,12 +62,14 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
-              {/* Search Route needs to be moved into Protected Route later on */}
               <Route
                 path="/search"
-                element={<Search setSongQueue={setSongQueue} />}
+                element={
+                  <ProtectedRoute>
+                    <Search setSongQueue={setSongQueue} />
+                  </ProtectedRoute>
+                }
               />
-
               <Route
                 path="/"
                 element={
@@ -87,7 +106,11 @@ function App() {
                 }
               />
             </Routes>
-            <MusicPlayer playerOptions={playerOptions} />
+            <div id="playerContainer">
+              <div id="playerHeartPiece">
+                <MusicPlayer playerOptions={playerOptions} />
+              </div>
+            </div>
           </div>
         </ThemeProvider>
       </Suspense>
