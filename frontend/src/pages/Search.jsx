@@ -40,8 +40,28 @@ export default function Search(props) {
 
   /* console.log(searchTerm); */
 
-  // temporary queue for testing. can be deleted when music is passed from search results to songQueue
-  /* const audioList1 = [
+  return (
+    <div>
+      {/* eslint-disable-next-line */}
+      <Searchbar searchTerm={searchTerm} handleSearch={handleSearch} />
+      <SearchNavbar />
+      <SearchResults
+        searchResult={searchResult}
+        responseStatus={responseStatus}
+        setSongQueue={setSongQueue}
+      />
+    </div>
+  );
+}
+Search.propTypes = {
+  setSongQueue: PropTypes.shape(),
+};
+Search.defaultProps = {
+  setSongQueue: null,
+};
+
+// Playlist for testing. can be deleted when music is passed from search results to songQueue
+/* const audioList1 = [
     {
       name: "Despacito",
       singer: "Luis Fonsi",
@@ -63,30 +83,3 @@ export default function Search(props) {
         "https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3",
     },
   ]; */
-
-  return (
-    <div>
-      {/* eslint-disable-next-line */}
-      <Searchbar searchTerm={searchTerm} handleSearch={handleSearch} />
-      <SearchNavbar />
-      <SearchResults
-        searchResult={searchResult}
-        responseStatus={responseStatus}
-        setSongQueue={setSongQueue}
-      />
-      {/* <div>
-        <br />
-        <br /> <br /> <br />
-        <button type="button" onClick={() => setSongQueue(audioList1)}>
-          Play test track
-        </button>
-      </div> */}
-    </div>
-  );
-}
-Search.propTypes = {
-  setSongQueue: PropTypes.shape(),
-};
-Search.defaultProps = {
-  setSongQueue: null,
-};
