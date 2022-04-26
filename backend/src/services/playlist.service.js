@@ -1,5 +1,6 @@
 const getApi = require("../utils/apis");
 const { Playlist } = require("../models");
+const { NotFoundError, AuthorizationError } = require("../exceptions");
 
 class PlaylistService {
   static async getPlaylist(playlistId, src) {
@@ -30,6 +31,17 @@ class PlaylistService {
     });
 
     return playlist;
+  }
+
+  static async deletePlaylist(id, user) {
+    const playlist = await Playlist.findOne({ where: { id } });
+    if (!playlist) throw new NotFoundError();
+
+    const users = await playlist.getUsers({ where: { id: user.id } });
+    if (!users || users.length < 1) throw new AuthorizationError();
+
+    await Playlist.destroy({ where: { id } });
+    return id;
   }
 }
 

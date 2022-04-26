@@ -5,6 +5,66 @@ const router = express.Router();
 const { playlist } = require("../controllers");
 const { verifyToken } = require("../middleware/auth");
 
+router.delete("/:playlistId", verifyToken, (req, res) => {
+  /*
+        #swagger.path = "/playlists/{playlistId}"
+        #swagger.tags = ["Playlists"]
+
+        #swagger.parameters["playlistId"] = {
+          in: 'path',
+          description: 'The playlist id',
+          required: true,
+          type: 'number',
+          schema: 123456
+        } 
+                
+        #swagger.responses[200] = {
+          description: 'success',
+          schema: { 
+            $id: 123,
+          }
+        }
+
+        #swagger.responses[403] = {
+          description: 'Not authorized',
+          schema: { 
+            $errors: {
+                $auth: "err-auth-not-authorized"
+            } 
+          }
+        }
+        
+        #swagger.responses[403] = {
+          description: 'No auth token provided',
+          schema: { 
+            $errors: {
+                $auth: "err-auth-no-token"
+            } 
+          }
+        }
+        
+        #swagger.responses[404] = {
+          description: "Playlist not found",
+          schema: {
+            $errors: {
+              $playlist: "err-not-found"
+            }
+          }
+        }
+        
+        #swagger.responses[500] = {
+          description: 'Internal error',
+          schema: { 
+            $errors: {
+                $server: "err-internal"
+            } 
+          }
+        } 
+    */
+
+  playlist.deletePlaylist(req, res);
+});
+
 router.post("/", verifyToken, (req, res) => {
   /*
         #swagger.path = "/playlists"

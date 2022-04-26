@@ -31,6 +31,50 @@ class PlaylistController {
     return res.json(resData);
   }
 
+  static async deletePlaylist(req, res) {
+    const { playlistId } = Controller.getParams(req);
+    let resData = {};
+
+    try {
+      const deletedId = await PlaylistService.deletePlaylist(
+        playlistId,
+        req.user
+      );
+
+      resData = {
+        id: deletedId,
+      };
+    } catch (err) {
+      switch (err.name) {
+        case "AuthorizationError":
+          res.status(403);
+          resData = {
+            errors: {
+              auth: "err-not-authorized",
+            },
+          };
+          break;
+        case "NotFoundError":
+          res.status(404);
+          resData = {
+            errors: {
+              playlist: "err-not-found",
+            },
+          };
+          break;
+
+        default:
+          console.error(err);
+          res.status(500);
+          resData = {
+            errors: { server: "err-internal" },
+          };
+      }
+    }
+
+    return res.json(resData);
+  }
+
   static async getPlaylist(req, res) {
     const { playlistId, src } = Controller.getParams(req);
     let resData = {};
