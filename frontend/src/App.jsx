@@ -41,6 +41,11 @@ function App() {
     toggleMode: false,
     glassBg: false,
     autoHiddenCover: false,
+
+    /* preload: true, */
+    /* quietUpdate: true, */
+    clearPriorAudioLists: true,
+
     onCoverClick() {
       console.warn(`responsive: ${responsiveToggle}`);
       setResponsiveToggle(!responsiveToggle);

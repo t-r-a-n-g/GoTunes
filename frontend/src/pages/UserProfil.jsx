@@ -1,6 +1,6 @@
 import React from "react";
 import User from "@components/User";
-import Card from "@components/Card";
+import CardTracks from "@components/CardTracks";
 import LogoutButton from "@components/Logout";
 
 export default function UserProfil() {
@@ -9,7 +9,7 @@ export default function UserProfil() {
       <LogoutButton />
       <User /* avatar="/" playlistcount="/" followingcount="/" userName="/" */
       />
-      <Card /* cover="/" name="/" details="/" */ />
+      <CardTracks /* cover="/" name="/" details="/" */ />
     </div>
   );
 }

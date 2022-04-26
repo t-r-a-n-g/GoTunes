@@ -20,22 +20,25 @@ export default function Search(props) {
   /* useEffect: everytime the component rerenders (everytime searchTerm gets updated), 
     an API get request is sent with updated URL */
   /* with setTimeout API request only is sent after 0.5s of not typing to avoid requests 
-    for every character the user is typing, time can be adjusted (now: 500 millisecs) */
+    for every character the user is typing, time can be adjusted (now: 300 millisecs) */
 
   // setting state for API search Endpoint. State is updated by clicking on component in SearchNavbar
   const [searchEndpoint, setSearchEndpoint] = useState(searchTracksEndpoint);
 
+  // setting state for which category to search for
+  const [searchFilter, setSearchFilter] = useState("All");
+
   useEffect(() => {
     const timeOut = setTimeout(() => {
       axios
-        .get(`${searchEndpoint}${searchTerm}?limit=20`)
+        .get(`${searchEndpoint}${searchTerm}?limit=30`)
         .then((response) => {
           setResponseStatus(response.status);
           /* console.log(response); */
           setSearchResult(response.data);
         })
         .catch((error) => setResponseStatus(error.response.status));
-    }, 500);
+    }, 300);
     return function cleanUp() {
       clearTimeout(timeOut);
     };
@@ -43,14 +46,22 @@ export default function Search(props) {
 
   return (
     <div>
-      {/* eslint-disable-next-line */}
-      <Searchbar searchTerm={searchTerm} handleSearch={handleSearch} />
-      <SearchNavbar setSearchEndpoint={setSearchEndpoint} />
+      <Searchbar
+        searchTerm={searchTerm}
+        // eslint-disable-next-line
+        handleSearch={handleSearch}
+      />
+      <SearchNavbar
+        setSearchEndpoint={setSearchEndpoint}
+        searchFilter={searchFilter}
+        setSearchFilter={setSearchFilter}
+      />
       <SearchResults
         searchResult={searchResult}
         responseStatus={responseStatus}
         songQueue={songQueue}
         setSongQueue={setSongQueue}
+        searchFilter={searchFilter}
       />
     </div>
   );
