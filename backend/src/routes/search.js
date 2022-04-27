@@ -84,11 +84,11 @@ router.get("/artists/:q", (req, res) => {
           description: 'success',
           schema: [{ 
             $id: 0,
-        	$name: 'artist name',
-        	$avatar: 'artist avatar url',
-        	$description: 'artist description',
-          $kind: 'artist',
-        	$source: 'e.g. soundcloud',
+        	  $name: 'artist name',
+        	  $avatar: 'artist avatar url',
+        	  $description: 'artist description',
+            $kind: 'artist',
+        	  $source: 'e.g. soundcloud',
           }]
         }
 
@@ -145,6 +145,9 @@ router.get("/albums/:q", (req, res) => {
       			$release_date: "1990-08-12",
       			$artist_id: 1234,
       			$title: "album title",
+            $artist: {
+              
+            }
             $kind: "album",
       			$source: "e.g. soundcloud"
           }]
@@ -202,6 +205,7 @@ router.get("/playlists/:q", (req, res) => {
       			$genres: ["Drum 'n' Bass"],
       			$user_id: 1234,
       			$title: "playlist title",
+            $user: {},
             $kind: "playlist",
       			$source: "e.g. soundcloud"
           }]
