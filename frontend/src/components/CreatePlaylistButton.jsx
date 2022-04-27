@@ -1,6 +1,5 @@
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import BasicModal from "./CreatePlaylistModal";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -54,7 +53,7 @@ export default function CreatePlaylist() {
           bottom: "10px",
         }}
         onClick={handleOpen}
-      ></Button>
+      />
 
       <Typography component="div" variant="h5">
         Create Playlist
@@ -78,7 +77,7 @@ export default function CreatePlaylist() {
               top: "10px",
               bottom: "0",
             }}
-          ></CloseIcon>
+          />
 
           <h2 id="parent-modal-title">
             {t("modal-form-createnewplaylist-heading")}
