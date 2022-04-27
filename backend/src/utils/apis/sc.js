@@ -14,6 +14,7 @@ class SoundCloud {
         name: artist.username,
         avatar: artist.avatar_url,
         description: artist.description,
+        kind: "artist",
         source: "soundcloud",
       };
     });
@@ -33,6 +34,7 @@ class SoundCloud {
         release_date: album.release_date,
         artist_id: album.user_id,
         title: album.title,
+        kind: "album",
         source: "soundcloud",
       };
     });
@@ -51,6 +53,7 @@ class SoundCloud {
         genres: [playlist.genre],
         user_id: playlist.user_id,
         title: playlist.title,
+        kind: "playlist",
         source: "soundcloud",
       };
     });
@@ -75,6 +78,7 @@ class SoundCloud {
           title: track.title,
           release_date: track.release_date,
           stream_url: streamUrl,
+          kind: "track",
           source: "soundcloud",
         };
       })
@@ -85,10 +89,10 @@ class SoundCloud {
 
   async get(type, params) {
     const defaultParams = {
-      limit: 50,
-      offset: 0,
+      limit: params.limit || 20,
+      offset: params.offset || 0,
+      q: params.q,
       client_id: this.clientId,
-      ...params,
     };
     const urlParameters = Object.entries(defaultParams)
       .map((e) => e.join("="))
@@ -117,8 +121,34 @@ class SoundCloud {
   }
 
   async search(item, params) {
-    const res = await this.get(`/search/${item}`, params);
+    const url = item ? `/search/${item}` : "/search";
+    const res = await this.get(url, params);
+
     return res;
+  }
+
+  async searchAll(q, options) {
+    const res = await this.search(null, { q, ...options });
+    const data = Promise.all(
+      res.collection.map(async (item) => {
+        switch (item.kind) {
+          case "user":
+            return SoundCloud.formatArtistData(item);
+
+          case "playlist":
+            if (item.is_album) return SoundCloud.formatAlbumData(item);
+            return SoundCloud.formatPlaylistData(item);
+
+          case "track":
+            return this.formatTrackData(item);
+
+          default:
+            return {};
+        }
+      })
+    );
+
+    return data;
   }
 
   async searchArtists(q, options) {
