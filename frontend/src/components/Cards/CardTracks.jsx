@@ -3,7 +3,8 @@ import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
 import "./CardTracks.css";
 
-function CardTracks({ cover, title, artist, onClick }) {
+function CardTracks(props) {
+  const { cover, title, artist, onClick } = props;
   return (
     <div onClick={onClick} aria-hidden="true">
       <div id="card-container">
@@ -25,8 +26,8 @@ CardTracks.propTypes = {
 
 CardTracks.defaultProps = {
   cover: "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png",
-  title: "Some Track",
-  artist: "Some Artist",
+  title: "Loading...",
+  artist: "Loading...",
   onClick: () => {},
 };
 export default CardTracks;

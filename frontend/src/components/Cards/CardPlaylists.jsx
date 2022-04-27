@@ -1,7 +1,7 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
-import "./CardsPlaylists.css";
+import "./CardPlaylists.css";
 
 function CardPlaylists({ cover, title, onClick }) {
   return (
@@ -24,7 +24,7 @@ CardPlaylists.propTypes = {
 
 CardPlaylists.defaultProps = {
   cover: "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png",
-  title: "Some Playlist",
+  title: "Loading...",
   onClick: () => {},
 };
 export default CardPlaylists;

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CardTracks from "../Cards/CardTracks";
 import CardArtists from "../Cards/CardArtists";
-import CardPlaylists from "../Cards/CardsPlaylists";
+import CardPlaylists from "../Cards/CardPlaylists";
 
 // TO DO: think about changing cards to make them more distincive? Add description "Track", "Album" etc.?
 export default function SearchResults(props) {
@@ -36,7 +36,7 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
-                artist={element.artist.name}
+                artist={`Track |  ${element.artist?.name ?? "Loading..."}`}
               />
             ) : element.kind === "artist" ? (
               <CardArtists
@@ -45,6 +45,7 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.avatar}
                 name={element.name}
+                description="Artist"
               />
             ) : element.kind === "album" ? (
               <CardTracks
@@ -53,7 +54,7 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
-                artist={element.artist.name}
+                artist={`Album |  ${element.artist?.name ?? "Loading..."}`}
               />
             ) : element.kind === "playlist" ? (
               <CardPlaylists
@@ -61,7 +62,7 @@ export default function SearchResults(props) {
 
                 key={element.id}
                 cover={element.cover}
-                title={element.title}
+                title={`Playlist |  ${element.title}`}
               />
             ) : (
               ""
@@ -87,7 +88,7 @@ export default function SearchResults(props) {
               key={element.id}
               cover={element.cover}
               title={element.title}
-              artist={element.artist.name}
+              artist={element.artist?.name ?? "Loading..."}
             />
           ))
         : ""}
@@ -112,7 +113,7 @@ export default function SearchResults(props) {
               key={element.id}
               cover={element.cover}
               title={element.title}
-              artist={element.artist.name}
+              artist={element.artist?.name ?? "Loading..."}
             />
           ))
         : ""}
