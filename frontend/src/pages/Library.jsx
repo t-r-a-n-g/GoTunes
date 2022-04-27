@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import Searchbar from "../components/Searchbar";
-import SearchResults from "../components/SearchResults";
-import SearchNavbar from "../components/SearchNavbar";
-import {
-  // eslint-disable-next-line
-  loginEndpoint,
-  // eslint-disable-next-line
-  registerEndpoint,
-  // eslint-disable-next-line
-  searchArtistsEndpoint,
-  // eslint-disable-next-line
-  searchTracksEndpoint,
-  // eslint-disable-next-line
-  searchPlaylistsEndpoint,
-  // eslint-disable-next-line
-  searchAlbumsEndpoint,
-} from "../components/API";
+import Searchbar from "../components/Search/Searchbar";
+import SearchResults from "../components/Search/SearchResults";
+import SearchNavbar from "../components/Search/SearchNavbar";
+import { searchAllEndpoint } from "../components/API";
 
-export default function Search(props) {
+export default function Library(props) {
   const { songQueue, setSongQueue } = props;
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -36,7 +23,8 @@ export default function Search(props) {
     for every character the user is typing, time can be adjusted (now: 300 millisecs) */
 
   // setting state for API search Endpoint. State is updated by clicking on component in SearchNavbar
-  const [searchEndpoint, setSearchEndpoint] = useState(searchTracksEndpoint);
+  // by default initial search is to search for all kinds
+  const [searchEndpoint, setSearchEndpoint] = useState(searchAllEndpoint);
 
   // setting state for which category to search for
   const [searchFilter, setSearchFilter] = useState("All");
@@ -50,7 +38,9 @@ export default function Search(props) {
           /* console.log(response); */
           setSearchResult(response.data);
         })
-        .catch((error) => setResponseStatus(error.response.status));
+        .catch((error) => {
+          setResponseStatus(error.response.status);
+        });
     }, 300);
     return function cleanUp() {
       clearTimeout(timeOut);
@@ -79,11 +69,11 @@ export default function Search(props) {
     </div>
   );
 }
-Search.propTypes = {
+Library.propTypes = {
   setSongQueue: PropTypes.shape(),
   songQueue: PropTypes.shape(),
 };
-Search.defaultProps = {
+Library.defaultProps = {
   setSongQueue: null,
   songQueue: null,
 };

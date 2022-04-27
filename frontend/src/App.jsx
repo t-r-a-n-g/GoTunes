@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
+import Library from "./pages/Library";
 
 function App() {
   // add function to check if user is auth, and return a boolean into "user"
@@ -107,6 +108,14 @@ function App() {
                 element={
                   <ProtectedRoute user={user}>
                     <SearchResultGenre />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/library"
+                element={
+                  <ProtectedRoute user={user}>
+                    <Library />
                   </ProtectedRoute>
                 }
               />
