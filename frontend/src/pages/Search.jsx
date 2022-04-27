@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Searchbar from "../components/Search/Searchbar";
 import SearchResults from "../components/Search/SearchResults";
 import SearchNavbar from "../components/Search/SearchNavbar";
-import { searchTracksEndpoint } from "../components/API";
+import { searchAllEndpoint } from "../components/API";
 
 export default function Search(props) {
   const { songQueue, setSongQueue } = props;
@@ -23,7 +23,8 @@ export default function Search(props) {
     for every character the user is typing, time can be adjusted (now: 300 millisecs) */
 
   // setting state for API search Endpoint. State is updated by clicking on component in SearchNavbar
-  const [searchEndpoint, setSearchEndpoint] = useState(searchTracksEndpoint);
+  // by default initial search is to search for all kinds
+  const [searchEndpoint, setSearchEndpoint] = useState(searchAllEndpoint);
 
   // setting state for which category to search for
   const [searchFilter, setSearchFilter] = useState("All");

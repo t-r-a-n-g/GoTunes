@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import CardTracks from "../Cards/CardTracks";
 import CardArtists from "../Cards/CardArtists";
+import CardPlaylists from "../Cards/CardsPlaylists";
 
+// TO DO: think about changing cards to make them more distincive? Add description "Track", "Album" etc.?
 export default function SearchResults(props) {
   const {
     searchResult,
@@ -14,6 +16,8 @@ export default function SearchResults(props) {
 
   return (
     <div>
+      {/* RENDERING ALL RESULTS */}
+
       {/* RENDERING TRACK RESULTS */}
       {responseStatus === 200 && searchFilter === "Tracks"
         ? searchResult.map((element) => (
@@ -44,6 +48,30 @@ export default function SearchResults(props) {
               key={element.id}
               cover={element.avatar}
               name={element.name}
+            />
+          ))
+        : ""}
+      {/* RENDERING ALBUMS RESULTS (maybe create an own Card but now it's the same like CardsTracks */}
+      {responseStatus === 200 && searchFilter === "Albums"
+        ? searchResult.map((element) => (
+            <CardTracks
+              /* To Do: define onClick method */
+
+              key={element.id}
+              cover={element.cover}
+              title={element.title}
+            />
+          ))
+        : ""}
+      {/* RENDERING PLAYLISTS RESULTS */}
+      {responseStatus === 200 && searchFilter === "Playlists"
+        ? searchResult.map((element) => (
+            <CardPlaylists
+              /* To Do: define onClick method */
+
+              key={element.id}
+              cover={element.cover}
+              title={element.title}
             />
           ))
         : ""}
