@@ -2148,105 +2148,7 @@
             "schema": 0
           }
         ],
-        "responses": {
-          "200": {
-            "description": "success",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number",
-                    "example": 123
-                  },
-                  "cover": {
-                    "type": "string",
-                    "example": "http://url-to-cover.com"
-                  },
-                  "description": {
-                    "type": "string",
-                    "example": "Great Album!"
-                  },
-                  "duration": {
-                    "type": "number",
-                    "example": 1324123
-                  },
-                  "genres": {
-                    "type": "array",
-                    "example": [
-                      "Drum 'n' Bass"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "release_date": {
-                    "type": "string",
-                    "example": "1990-08-12"
-                  },
-                  "artist_id": {
-                    "type": "number",
-                    "example": 1234
-                  },
-                  "title": {
-                    "type": "string",
-                    "example": "album title"
-                  },
-                  "kind": {
-                    "type": "string",
-                    "example": "album"
-                  },
-                  "source": {
-                    "type": "string",
-                    "example": "e.g. soundcloud"
-                  }
-                },
-                "required": [
-                  "id",
-                  "cover",
-                  "description",
-                  "duration",
-                  "genres",
-                  "release_date",
-                  "artist_id",
-                  "title",
-                  "kind",
-                  "source"
-                ]
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "errors": {
-                  "type": "object",
-                  "properties": {
-                    "server": {
-                      "type": "string",
-                      "example": "err-internal"
-                    }
-                  },
-                  "required": [
-                    "server"
-                  ]
-                }
-              },
-              "required": [
-                "errors"
-              ],
-              "xml": {
-                "name": "main"
-              }
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/search/playlists/{q}": {
@@ -2328,6 +2230,10 @@
                     "type": "string",
                     "example": "playlist title"
                   },
+                  "user": {
+                    "type": "object",
+                    "properties": {}
+                  },
                   "kind": {
                     "type": "string",
                     "example": "playlist"
@@ -2345,6 +2251,7 @@
                   "genres",
                   "user_id",
                   "title",
+                  "user",
                   "kind",
                   "source"
                 ]

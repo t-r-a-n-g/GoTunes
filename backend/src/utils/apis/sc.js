@@ -70,8 +70,12 @@ class SoundCloud {
     for (const track of trackData) {
       // some tracks are hidden behind a paywall, they are missing a lot of properties like duration
       if (track.duration) {
+        // eslint-disable-next-line
         const streamUrl = await this.getTrackStreamUrl(track);
-        const title = track.duration !== track.full_duration ? `PREVIEW | ${track.title}` : track.title; 
+        const title =
+          track.duration !== track.full_duration
+            ? `PREVIEW | ${track.title}`
+            : track.title;
 
         data.push({
           id: track.id,
