@@ -78,7 +78,7 @@ router.get("/:userId/playlists", (req, res) => {
     } 
   */
 
-  user.getUserPlaylists(req, res);
+  user.getPlaylists(req, res);
 });
 
 module.exports = router;

@@ -7,15 +7,17 @@ class UserController {
 
     try {
       const user = await UserService.getUser(userId);
-      res.json(user);
+      return res.json(user);
     } catch (err) {
-      switch(err.name) {
+      switch (err.name) {
         case "NotFoundError":
-          return res.status(404).json({ errors: { resource: "err-not-found" } })
-        
+          return res
+            .status(404)
+            .json({ errors: { resource: "err-not-found" } });
+
         default:
           console.error(err);
-          return res.status(500).json({ errors: { server: "err-internal" } })
+          return res.status(500).json({ errors: { server: "err-internal" } });
       }
     }
   }
@@ -29,7 +31,9 @@ class UserController {
     } catch (err) {
       switch (err.name) {
         case "NotFoundError":
-          return res.status(404).json({ errors: { resource: "err-not-found" } });
+          return res
+            .status(404)
+            .json({ errors: { resource: "err-not-found" } });
         default:
           console.error(err);
           return res.status(500).json({ errors: { server: "err-internal" } });

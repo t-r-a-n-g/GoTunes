@@ -24,7 +24,7 @@ const endpointsFiles = [
   `${__dirname}/../src/routes/playlists.js`,
   `${__dirname}/../src/routes/tracks.js`,
   `${__dirname}/../src/routes/search.js`,
-  `${__dirname}/../src/routes/user.js`,
+  `${__dirname}/../src/routes/users.js`,
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {

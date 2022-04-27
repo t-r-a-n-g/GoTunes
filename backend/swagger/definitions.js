@@ -5,7 +5,8 @@ module.exports = {
     $id: 123,
     $username: "ExampleUser",
     $avatar: "http://example.com/avatar.jpg",
-    $biography: "This is the biography of ExampleUser. He didn't archive anything meaningful in life until this point, where he became an essential part of the GoTunes API documentation. Fuck Yeah!",
+    $biography:
+      "This is the biography of ExampleUser. He didn't archive anything meaningful in life until this point, where he became an essential part of the GoTunes API documentation. Fuck Yeah!",
     $kind: "user",
   },
 
@@ -15,8 +16,8 @@ module.exports = {
     language: "de_DE",
     soundcloud_username: "example_sc-user",
     profile: {
-      $ref: "#/definitions/User"
-    }
+      $ref: "#/definitions/User",
+    },
   },
 
   Artist: {
