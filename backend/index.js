@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger-output.json");
+const swaggerFile = require("./swagger/output.json");
 
 const db = require("./src/models");
 const routes = require("./src/routes");
@@ -63,6 +63,13 @@ async function syncDB(force = false) {
     user.addPlaylist(playlist, {
       through: { can_edit: true, is_creator: true },
     });
+
+    const profile = await db.UserProfile.create({
+      avatar: "test",
+      biography: "BlaBlaBla"
+    });
+
+    user.setUserProfile(profile);
   };
 
   createDummyData("User 1", "user1@example.com", "user1password");

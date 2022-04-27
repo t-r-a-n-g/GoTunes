@@ -15,15 +15,10 @@ const UserProfile = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-
-    soundcloud_username: {
+    
+    biography: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
-
-    language: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
   },
   { tableName: "user-profile" }

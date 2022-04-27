@@ -204,7 +204,7 @@ class SoundCloud {
     return data;
   }
 
-  async getArtistPlaylists(id) {
+  async getUserPlaylists(id) {
     const res = await this.get(`/users/${id}/playlists_without_albums`);
     const data = SoundCloud.formatPlaylistData(res.collection);
 

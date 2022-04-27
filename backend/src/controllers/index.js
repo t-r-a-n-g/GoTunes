@@ -4,5 +4,6 @@ const search = require("./search.controller");
 const track = require("./track.controller");
 const playlist = require("./playlist.controller");
 const auth = require("./auth.controller");
+const user = require("./user.controller");
 
-module.exports = { album, artist, search, track, playlist, auth };
+module.exports = { album, artist, search, track, playlist, auth, user };
