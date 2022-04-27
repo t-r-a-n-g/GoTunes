@@ -36,6 +36,7 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
+                artist={element.artist.name}
               />
             ) : element.kind === "artist" ? (
               <CardArtists
@@ -52,6 +53,7 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
+                artist={element.artist.name}
               />
             ) : element.kind === "playlist" ? (
               <CardPlaylists
@@ -85,6 +87,7 @@ export default function SearchResults(props) {
               key={element.id}
               cover={element.cover}
               title={element.title}
+              artist={element.artist.name}
             />
           ))
         : ""}
@@ -109,6 +112,7 @@ export default function SearchResults(props) {
               key={element.id}
               cover={element.cover}
               title={element.title}
+              artist={element.artist.name}
             />
           ))
         : ""}
