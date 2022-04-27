@@ -4,6 +4,53 @@ const router = express.Router();
 
 const { search } = require("../controllers");
 
+router.get("/:q", (req, res) => {
+  /*
+        #swagger.path = "/search/{q}"
+        #swagger.tags = ["Search"]
+
+        #swagger.parameters["q"] = {
+          in: 'path',
+          description: 'The search query',
+          required: true,
+          type: 'string',
+          schema: 'drum and bass'
+        } 
+
+        #swagger.parameters["limit"] = {
+          in: 'query',
+          description: 'Max search results to retrieve',
+          required: false,
+          type: 'integer',
+          schema: 50
+        } 
+
+        #swagger.parameters["offset"] = {
+          in: 'query',
+          description: 'Skip the first X results',
+          required: false,
+          type: 'integer',
+          schema: 0
+        } 
+
+        #swagger.responses[200] = {
+          description: 'success',
+          schema: []
+        }
+
+        #swagger.responses[500] = {
+          description: 'Internal error',
+          schema: { 
+            $errors: {
+              $server: "err-internal"
+            } 
+          }
+        } 
+    */
+
+  search.all(req, res);
+});
+
 router.get("/artists/:q", (req, res) => {
   /*
         #swagger.path = "/search/artists/{q}"
@@ -37,10 +84,11 @@ router.get("/artists/:q", (req, res) => {
           description: 'success',
           schema: [{ 
             $id: 0,
-        	$name: 'artist name',
-        	$avatar: 'artist avatar url',
-        	$description: 'artist description',
-        	$source: 'e.g. soundcloud',
+        	  $name: 'artist name',
+        	  $avatar: 'artist avatar url',
+        	  $description: 'artist description',
+            $kind: 'artist',
+        	  $source: 'e.g. soundcloud',
           }]
         }
 
@@ -97,6 +145,10 @@ router.get("/albums/:q", (req, res) => {
       			$release_date: "1990-08-12",
       			$artist_id: 1234,
       			$title: "album title",
+            $artist: {
+              
+            }
+            $kind: "album",
       			$source: "e.g. soundcloud"
           }]
         }
@@ -153,6 +205,8 @@ router.get("/playlists/:q", (req, res) => {
       			$genres: ["Drum 'n' Bass"],
       			$user_id: 1234,
       			$title: "playlist title",
+            $user: {},
+            $kind: "playlist",
       			$source: "e.g. soundcloud"
           }]
         }
@@ -209,9 +263,10 @@ router.get("/tracks/:q", (req, res) => {
       			$genres: ["Drum 'n' Bass"],
       			$artist_id: 1234,
       			$album_id: 1234,
-                  $release_date: "1990-08-12",
+            $release_date: "1990-08-12",
       			$title: "album title",
-                $stream_url: "http://stream-url.com/track.mp3",
+            $stream_url: "http://stream-url.com/track.mp3",
+            $kind: "track",
       			$source: "e.g. soundcloud"
           }]
         }

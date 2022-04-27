@@ -1,7 +1,7 @@
 import React from "react";
-import User from "@components/User";
-import Card from "@components/Card";
-import LogoutButton from "@components/Logout";
+import User from "../components/User";
+import CardTracks from "../components/Cards/CardTracks";
+import LogoutButton from "../components/Authentification/Logout";
 
 export default function UserProfil() {
   return (
@@ -9,7 +9,7 @@ export default function UserProfil() {
       <LogoutButton />
       <User /* avatar="/" playlistcount="/" followingcount="/" userName="/" */
       />
-      <Card /* cover="/" name="/" details="/" */ />
+      <CardTracks /* cover="/" name="/" details="/" */ />
     </div>
   );
 }

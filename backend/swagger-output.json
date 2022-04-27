@@ -676,7 +676,11 @@
                   },
                   "title": {
                     "type": "string",
-                    "example": "album title"
+                    "example": "track title"
+                  },
+                  "stream_url": {
+                    "type": "string",
+                    "example": "http://stream-url.com/track.mp3"
                   },
                   "source": {
                     "type": "string",
@@ -693,6 +697,7 @@
                   "album_id",
                   "release_date",
                   "title",
+                  "stream_url",
                   "source"
                 ]
               },
@@ -936,7 +941,11 @@
                   },
                   "title": {
                     "type": "string",
-                    "example": "album title"
+                    "example": "track title"
+                  },
+                  "stream_url": {
+                    "type": "string",
+                    "example": "http://stream-url.com/track.mp3"
                   },
                   "source": {
                     "type": "string",
@@ -953,6 +962,7 @@
                   "album_id",
                   "release_date",
                   "title",
+                  "stream_url",
                   "source"
                 ]
               },
@@ -1009,6 +1019,112 @@
       }
     },
     "/playlists/{playlistId}": {
+      "delete": {
+        "tags": ["Playlists"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "playlistId",
+            "in": "path",
+            "required": true,
+            "type": "number",
+            "description": "The playlist id",
+            "schema": {
+              "type": "number",
+              "example": 123456
+            }
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 123
+                }
+              },
+              "required": ["id"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "No auth token provided",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "auth": {
+                      "type": "string",
+                      "example": "err-auth-no-token"
+                    }
+                  },
+                  "required": ["auth"]
+                }
+              },
+              "required": ["errors"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Playlist not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "playlist": {
+                      "type": "string",
+                      "example": "err-not-found"
+                    }
+                  },
+                  "required": ["playlist"]
+                }
+              },
+              "required": ["errors"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "server": {
+                      "type": "string",
+                      "example": "err-internal"
+                    }
+                  },
+                  "required": ["server"]
+                }
+              },
+              "required": ["errors"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
       "get": {
         "tags": ["Playlists"],
         "description": "",
@@ -1129,6 +1245,131 @@
         }
       }
     },
+    "/playlists": {
+      "post": {
+        "tags": ["Playlists"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "body",
+            "description": "The playlist title",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "My beautiful playlist"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 123
+                },
+                "cover": {
+                  "type": "string",
+                  "example": "http://url-to-cover.com"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Great Playlist!"
+                },
+                "duration": {
+                  "type": "number",
+                  "example": 1324123
+                },
+                "genres": {
+                  "type": "array",
+                  "example": ["Drum 'n' Bass"],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "user_id": {
+                  "type": "number",
+                  "example": 1234
+                },
+                "title": {
+                  "type": "string",
+                  "example": "playlist title"
+                },
+                "source": {
+                  "type": "string",
+                  "example": "e.g. soundcloud"
+                }
+              },
+              "required": [
+                "id",
+                "cover",
+                "description",
+                "duration",
+                "genres",
+                "user_id",
+                "title",
+                "source"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "No auth token provided",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "auth": {
+                      "type": "string",
+                      "example": "err-auth-no-token"
+                    }
+                  },
+                  "required": ["auth"]
+                }
+              },
+              "required": ["errors"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "server": {
+                      "type": "string",
+                      "example": "err-internal"
+                    }
+                  },
+                  "required": ["server"]
+                }
+              },
+              "required": ["errors"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
     "/playlists/{playlistId}/tracks": {
       "get": {
         "tags": ["Playlists"],
@@ -1191,7 +1432,11 @@
                   },
                   "title": {
                     "type": "string",
-                    "example": "album title"
+                    "example": "track title"
+                  },
+                  "stream_url": {
+                    "type": "string",
+                    "example": "http://stream-url.com/track.mp3"
                   },
                   "source": {
                     "type": "string",
@@ -1208,6 +1453,7 @@
                   "album_id",
                   "release_date",
                   "title",
+                  "stream_url",
                   "source"
                 ]
               },
@@ -1323,7 +1569,11 @@
                 },
                 "title": {
                   "type": "string",
-                  "example": "album title"
+                  "example": "track title"
+                },
+                "stream_url": {
+                  "type": "string",
+                  "example": "http://stream-url.com/track.mp3"
                 },
                 "source": {
                   "type": "string",
@@ -1340,6 +1590,7 @@
                 "album_id",
                 "release_date",
                 "title",
+                "stream_url",
                 "source"
               ],
               "xml": {
@@ -1475,6 +1726,79 @@
         }
       }
     },
+    "/search/{q}": {
+      "get": {
+        "tags": ["Search"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The search query",
+            "schema": {
+              "type": "string",
+              "example": "drum and bass"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max search results to retrieve",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "number",
+              "example": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip the first X results",
+            "required": false,
+            "type": "integer",
+            "schema": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "example": [],
+              "items": {},
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "server": {
+                      "type": "string",
+                      "example": "err-internal"
+                    }
+                  },
+                  "required": ["server"]
+                }
+              },
+              "required": ["errors"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
     "/search/artists/{q}": {
       "get": {
         "tags": ["Search"],
@@ -1535,12 +1859,23 @@
                     "type": "string",
                     "example": "artist description"
                   },
+                  "kind": {
+                    "type": "string",
+                    "example": "artist"
+                  },
                   "source": {
                     "type": "string",
                     "example": "e.g. soundcloud"
                   }
                 },
-                "required": ["id", "name", "avatar", "description", "source"]
+                "required": [
+                  "id",
+                  "name",
+                  "avatar",
+                  "description",
+                  "kind",
+                  "source"
+                ]
               },
               "xml": {
                 "name": "main"
@@ -1608,94 +1943,7 @@
             "schema": 0
           }
         ],
-        "responses": {
-          "200": {
-            "description": "success",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number",
-                    "example": 123
-                  },
-                  "cover": {
-                    "type": "string",
-                    "example": "http://url-to-cover.com"
-                  },
-                  "description": {
-                    "type": "string",
-                    "example": "Great Album!"
-                  },
-                  "duration": {
-                    "type": "number",
-                    "example": 1324123
-                  },
-                  "genres": {
-                    "type": "array",
-                    "example": ["Drum 'n' Bass"],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "release_date": {
-                    "type": "string",
-                    "example": "1990-08-12"
-                  },
-                  "artist_id": {
-                    "type": "number",
-                    "example": 1234
-                  },
-                  "title": {
-                    "type": "string",
-                    "example": "album title"
-                  },
-                  "source": {
-                    "type": "string",
-                    "example": "e.g. soundcloud"
-                  }
-                },
-                "required": [
-                  "id",
-                  "cover",
-                  "description",
-                  "duration",
-                  "genres",
-                  "release_date",
-                  "artist_id",
-                  "title",
-                  "source"
-                ]
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "errors": {
-                  "type": "object",
-                  "properties": {
-                    "server": {
-                      "type": "string",
-                      "example": "err-internal"
-                    }
-                  },
-                  "required": ["server"]
-                }
-              },
-              "required": ["errors"],
-              "xml": {
-                "name": "main"
-              }
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/search/playlists/{q}": {
@@ -1773,6 +2021,14 @@
                     "type": "string",
                     "example": "playlist title"
                   },
+                  "user": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "kind": {
+                    "type": "string",
+                    "example": "playlist"
+                  },
                   "source": {
                     "type": "string",
                     "example": "e.g. soundcloud"
@@ -1786,6 +2042,8 @@
                   "genres",
                   "user_id",
                   "title",
+                  "user",
+                  "kind",
                   "source"
                 ]
               },
@@ -1902,6 +2160,14 @@
                     "type": "string",
                     "example": "album title"
                   },
+                  "stream_url": {
+                    "type": "string",
+                    "example": "http://stream-url.com/track.mp3"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "example": "track"
+                  },
                   "source": {
                     "type": "string",
                     "example": "e.g. soundcloud"
@@ -1917,6 +2183,8 @@
                   "album_id",
                   "release_date",
                   "title",
+                  "stream_url",
+                  "kind",
                   "source"
                 ]
               },

@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/db");
 
-const UserPlaylist = sequelize.define(
-  "UserPlaylist",
+const PlaylistUser = sequelize.define(
+  "playlistUser",
   {
     // Sequelize generates the id columns
     // user_id: {
@@ -31,7 +31,7 @@ const UserPlaylist = sequelize.define(
       defaultValue: false,
     },
   },
-  { tableName: "user_playlists", timestamps: false }
+  { tableName: "playlist_users", timestamps: false }
 );
 
-module.exports = UserPlaylist;
+module.exports = PlaylistUser;

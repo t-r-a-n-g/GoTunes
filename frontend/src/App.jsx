@@ -45,7 +45,7 @@ function App() {
     mobileMediaQuery:
       "(max-width: 1000000px) and (orientation: landscape), (max-width: 1000000px) and (orientation: portrait)",
     showMediaSession: true,
-    clearPriorAudioLists: false,
+    clearPriorAudioLists: true,
     extendsContent: (
       <MusicPlayerExtendedButtons
         playModeOrder={playModeOrder}

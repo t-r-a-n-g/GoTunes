@@ -29,7 +29,8 @@ class AuthService {
       throw new AuthentificationError("passwords do not match", ["password"]);
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: 86400, // 24 hours
+      // expiresIn: 86400, // 24 hours
+      expiresIn: 999999999,
     });
 
     return token;

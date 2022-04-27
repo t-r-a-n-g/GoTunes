@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
-import { registerEndpoint } from "./API";
+import { registerEndpoint } from "../API";
 import "./RegistrationForm.css";
 
 // TO DO: ROUTING TO ANOTHER PAGE AFTER SUCCESSFUL REGISTRATION

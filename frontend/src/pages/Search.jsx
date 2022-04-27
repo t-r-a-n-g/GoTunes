@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import Searchbar from "../components/Searchbar";
-import SearchResults from "../components/SearchResults";
-import SearchNavbar from "../components/SearchNavbar";
-import { searchTracksEndpoint } from "../components/API";
+import Searchbar from "../components/Search/Searchbar";
+import SearchResults from "../components/Search/SearchResults";
+import SearchNavbar from "../components/Search/SearchNavbar";
+import { searchAllEndpoint } from "../components/API";
 
 export default function Search(props) {
-  const { setSongQueue } = props;
+  const { songQueue, setSongQueue } = props;
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [responseStatus, setResponseStatus] = useState();
@@ -20,73 +20,60 @@ export default function Search(props) {
   /* useEffect: everytime the component rerenders (everytime searchTerm gets updated), 
     an API get request is sent with updated URL */
   /* with setTimeout API request only is sent after 0.5s of not typing to avoid requests 
-    for every character the user is typing, time can be adjusted (now: 500 millisecs) */
+    for every character the user is typing, time can be adjusted (now: 300 millisecs) */
+
+  // setting state for API search Endpoint. State is updated by clicking on component in SearchNavbar
+  // by default initial search is to search for all kinds
+  const [searchEndpoint, setSearchEndpoint] = useState(searchAllEndpoint);
+
+  // setting state for which category to search for
+  const [searchFilter, setSearchFilter] = useState("All");
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
       axios
-        .get(`${searchTracksEndpoint}${searchTerm}?limit=20`)
+        .get(`${searchEndpoint}${searchTerm}?limit=30`)
         .then((response) => {
           setResponseStatus(response.status);
           /* console.log(response); */
           setSearchResult(response.data);
         })
-        .catch((error) => setResponseStatus(error.response.status));
-    }, 500);
+        .catch((error) => {
+          setResponseStatus(error.response.status);
+        });
+    }, 300);
     return function cleanUp() {
       clearTimeout(timeOut);
     };
-  }, [searchTerm]);
-
-  /* console.log(searchTerm); */
-
-  // temporary queue for testing. can be deleted when music is passed from search results to songQueue
-  /* const audioList1 = [
-    {
-      name: "Despacito",
-      singer: "Luis Fonsi",
-      cover:
-        "http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg",
-      musicSrc:
-        "http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3",
-      // support async fetch music src. eg.
-      // musicSrc: async () => {
-      //   return await fetch('/api')
-      // },
-    },
-    {
-      name: "Dorost Nemishadm",
-      singer: "Sirvan Khosravi",
-      cover:
-        "https://res.cloudinary.com/ehsanahmadi/image/upload/v1573758778/Sirvan-Khosravi-Dorost-Nemisham_glicks.jpg",
-      musicSrc:
-        "https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3",
-    },
-  ]; */
+  }, [searchTerm, searchEndpoint]);
 
   return (
     <div>
-      {/* eslint-disable-next-line */}
-      <Searchbar searchTerm={searchTerm} handleSearch={handleSearch} />
-      <SearchNavbar />
+      <Searchbar
+        searchTerm={searchTerm}
+        // eslint-disable-next-line
+        handleSearch={handleSearch}
+      />
+      <SearchNavbar
+        setSearchEndpoint={setSearchEndpoint}
+        searchFilter={searchFilter}
+        setSearchFilter={setSearchFilter}
+      />
       <SearchResults
         searchResult={searchResult}
         responseStatus={responseStatus}
+        songQueue={songQueue}
         setSongQueue={setSongQueue}
+        searchFilter={searchFilter}
       />
-      {/* <div>
-        <br />
-        <br /> <br /> <br />
-        <button type="button" onClick={() => setSongQueue(audioList1)}>
-          Play test track
-        </button>
-      </div> */}
     </div>
   );
 }
 Search.propTypes = {
   setSongQueue: PropTypes.shape(),
+  songQueue: PropTypes.shape(),
 };
 Search.defaultProps = {
   setSongQueue: null,
+  songQueue: null,
 };
