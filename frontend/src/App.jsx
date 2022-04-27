@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
+import MusicPlayerExtendedButtons from "@components/MusicPlayerExtendetButtons";
 import SearchResultGenre from "./pages/SearchResultGenre";
 import SearchGenre from "./pages/SearchGenre";
 import Login from "./pages/Login";
@@ -15,9 +16,6 @@ import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
 
 function App() {
-  // add function to check if user is auth, and return a boolean into "user"
-  const user = true;
-
   // state for songQueue
   const [songQueue, setSongQueue] = useState([]);
 
@@ -28,6 +26,9 @@ function App() {
   // state for changing responsive mode
   const [responsiveToggle, setResponsiveToggle] = useState(false);
 
+  // state for custom shuffle button
+  const [playModeOrder, setPlayModeOrder] = useState("order");
+
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
     audioLists: songQueue,
@@ -37,15 +38,26 @@ function App() {
     showThemeSwitch: false,
     showReload: false,
     responsive: responsiveToggle,
-    defaultPlayMode: "shufflePlay",
+    playMode: playModeOrder,
     toggleMode: false,
     glassBg: false,
     autoHiddenCover: false,
+    mobileMediaQuery:
+      "(max-width: 1000000px) and (orientation: landscape), (max-width: 1000000px) and (orientation: portrait)",
+    showMediaSession: true,
+    clearPriorAudioLists: false,
+    extendsContent: (
+      <MusicPlayerExtendedButtons
+        playModeOrder={playModeOrder}
+        setPlayModeOrder={setPlayModeOrder}
+      />
+    ),
+
     onCoverClick() {
       console.warn(`responsive: ${responsiveToggle}`);
       setResponsiveToggle(!responsiveToggle);
     },
-
+    // TO DO: CHECK IF LINES BELOW ARE NECCESSARY OR COULD BE DELETED
     // getAudioInstance(instance) {
     //   setAudioInstance(instance);
     // },
@@ -92,7 +104,7 @@ function App() {
               <Route
                 path="/search-genre"
                 element={
-                  <ProtectedRoute user={user}>
+                  <ProtectedRoute>
                     <SearchGenre />
                   </ProtectedRoute>
                 }
@@ -100,7 +112,7 @@ function App() {
               <Route
                 path="/search-result-genre"
                 element={
-                  <ProtectedRoute user={user}>
+                  <ProtectedRoute>
                     <SearchResultGenre />
                   </ProtectedRoute>
                 }

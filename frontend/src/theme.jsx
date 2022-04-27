@@ -23,6 +23,9 @@ const themeGlobal = createTheme({
       secondary: "#949494",
       third: "#0000",
     },
+    button: {
+      main: "#fff",
+    },
   },
   typography: {
     fontFamily: ["Khula"].join(","),
