@@ -38,7 +38,9 @@ export default function Search(props) {
           /* console.log(response); */
           setSearchResult(response.data);
         })
-        .catch((error) => setResponseStatus(error.response.status));
+        .catch((error) => {
+          setResponseStatus(error.response.status);
+        });
     }, 300);
     return function cleanUp() {
       clearTimeout(timeOut);

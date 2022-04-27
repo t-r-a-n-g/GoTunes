@@ -8,6 +8,7 @@ import {
   searchTracksEndpoint,
   searchAlbumsEndpoint,
   searchPlaylistsEndpoint,
+  searchAllEndpoint,
 } from "../API";
 
 export default function SearchNavbar(props) {
@@ -22,7 +23,7 @@ export default function SearchNavbar(props) {
         variant={searchFilter === "All" ? "filled" : "outlined"}
         // To do: modify onClick for "All"
         onClick={() => {
-          setSearchEndpoint(searchTracksEndpoint);
+          setSearchEndpoint(searchAllEndpoint);
           setSearchFilter("All");
         }}
       />

@@ -16,8 +16,57 @@ export default function SearchResults(props) {
 
   return (
     <div>
+      {/* eslint-disable */}
+      {/* ignoring eslint because of no-nested-ternary rule here until we have a better solution */}
       {/* RENDERING ALL RESULTS */}
+      {responseStatus === 200 && searchFilter === "All"
+        ? searchResult.map((element) => {
+            return element.kind === "track" ? (
+              <CardTracks
+                onClick={() => {
+                  setSongQueue([
+                    {
+                      name: element.title,
+                      singer: "",
+                      cover: element.cover,
+                      musicSrc: element.stream_url,
+                    },
+                  ]);
+                }}
+                key={element.id}
+                cover={element.cover}
+                title={element.title}
+              />
+            ) : element.kind === "artist" ? (
+              <CardArtists
+                /* To Do: define onClick method */
 
+                key={element.id}
+                cover={element.avatar}
+                name={element.name}
+              />
+            ) : element.kind === "album" ? (
+              <CardTracks
+                /* To Do: define onClick method */
+
+                key={element.id}
+                cover={element.cover}
+                title={element.title}
+              />
+            ) : element.kind === "playlist" ? (
+              <CardPlaylists
+                /* To Do: define onClick method */
+
+                key={element.id}
+                cover={element.cover}
+                title={element.title}
+              />
+            ) : (
+              ""
+            );
+          })
+        : ""}
+      {/* eslint-enable */}
       {/* RENDERING TRACK RESULTS */}
       {responseStatus === 200 && searchFilter === "Tracks"
         ? searchResult.map((element) => (
