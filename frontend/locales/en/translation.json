@@ -23,5 +23,7 @@
   "email-and-password-not-match": "E-Mail and Password do not match",
   "textfield-form-confirmemail-label": "Confirm E-Mail",
   "textfield-form-username-label": "Username",
-  "textfield-form-confirmpassword-label": "Confirm Password"
+  "textfield-form-confirmpassword-label": "Confirm Password",
+  "modal-form-createnewplaylist-heading": "Create new Playlist",
+  "modal-form-createnewplaylist-button": "Create Playlist"
 }
