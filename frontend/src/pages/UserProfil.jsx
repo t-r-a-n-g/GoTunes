@@ -1,7 +1,7 @@
 import React from "react";
-import User from "@components/User";
-import CardTracks from "@components/CardTracks";
-import LogoutButton from "@components/Logout";
+import User from "../components/User";
+import CardTracks from "../components/Cards/CardTracks";
+import LogoutButton from "../components/Authentification/Logout";
 
 export default function UserProfil() {
   return (

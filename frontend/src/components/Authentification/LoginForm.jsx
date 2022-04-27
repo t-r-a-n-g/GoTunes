@@ -6,7 +6,7 @@ import "./LoginForm.css";
 import axios from "axios";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
-import { loginEndpoint } from "./API";
+import { loginEndpoint } from "../API";
 
 function LoginForm() {
   const navigate = useNavigate();

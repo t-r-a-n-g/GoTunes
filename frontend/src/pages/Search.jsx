@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import Searchbar from "../components/Searchbar";
-import SearchResults from "../components/SearchResults";
-import SearchNavbar from "../components/SearchNavbar";
+import Searchbar from "../components/Search/Searchbar";
+import SearchResults from "../components/Search/SearchResults";
+import SearchNavbar from "../components/Search/SearchNavbar";
 import { searchTracksEndpoint } from "../components/API";
 
 export default function Search(props) {

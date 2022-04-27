@@ -8,7 +8,7 @@ import {
   searchTracksEndpoint,
   searchAlbumsEndpoint,
   searchPlaylistsEndpoint,
-} from "./API";
+} from "../API";
 
 export default function SearchNavbar(props) {
   const { setSearchEndpoint, searchFilter, setSearchFilter } = props;

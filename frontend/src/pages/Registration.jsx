@@ -1,5 +1,5 @@
 import React from "react";
-import RegistrationForm from "@components/RegistrationForm";
+import RegistrationForm from "../components/Authentification/RegistrationForm";
 
 export default function Login() {
   return (

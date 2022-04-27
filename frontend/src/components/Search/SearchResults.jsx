@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CardTracks from "./CardTracks";
-import CardArtists from "./CardArtists";
+import CardTracks from "../Cards/CardTracks";
+import CardArtists from "../Cards/CardArtists";
 
 export default function SearchResults(props) {
   const {

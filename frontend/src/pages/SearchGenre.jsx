@@ -2,8 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import GenreCard from "@components/GenreCard";
-import SearchButton from "@components/SearchButton";
+import GenreCard from "../components/Cards/GenreCard";
+import SearchButton from "../components/Search/SearchButton";
 
 export default function SearchGenre() {
   const { t } = useTranslation();
