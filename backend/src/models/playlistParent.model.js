@@ -6,8 +6,8 @@ const sequelize = require("../utils/db");
 // without importing the foreign playlist. This way the foreign playlist
 // stays up to date with its source
 
-const ParentPlaylist = sequelize.define(
-  "ParentPlaylist",
+const PlaylistParent = sequelize.define(
+  "playlistParent",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,7 +28,7 @@ const ParentPlaylist = sequelize.define(
       allowNull: false,
     },
   },
-  { tableName: "parent_playlists" }
+  { tableName: "playlist_parents" }
 );
 
-module.exports = ParentPlaylist;
+module.exports = PlaylistParent;

@@ -6,6 +6,7 @@ const searchArtistsEndpoint = `${baseUrl}/api/search/artists/`;
 const searchTracksEndpoint = `${baseUrl}/api/search/tracks/`;
 const searchPlaylistsEndpoint = `${baseUrl}/api/search/playlists/`;
 const searchAlbumsEndpoint = `${baseUrl}/api/search/albums/`;
+const searchAllEndpoint = `${baseUrl}/api/search/`;
 
 export {
   loginEndpoint,
@@ -14,4 +15,5 @@ export {
   searchTracksEndpoint,
   searchPlaylistsEndpoint,
   searchAlbumsEndpoint,
+  searchAllEndpoint,
 };
