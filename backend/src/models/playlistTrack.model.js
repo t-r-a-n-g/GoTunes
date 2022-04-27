@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/db");
 
 const PlaylistTrack = sequelize.define(
-  "PlaylistTrack",
+  "playlistTrack",
   {
     // Sequelize generates the id columns
     // user_id: {

@@ -3,6 +3,13 @@ const getApi = require("../utils/apis");
 const SC = getApi("soundcloud");
 
 class SearchService {
+  static async searchAll(q, limit, offset, src) {
+    const api = getApi(src);
+    const results = api.searchAll(q, { limit, offset });
+
+    return results;
+  }
+
   static async searchArtists(q, limit, offset) {
     const artists = await SC.searchArtists(q, { limit, offset });
     return artists;

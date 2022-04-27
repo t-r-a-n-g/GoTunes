@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger-output.json");
+const swaggerFile = require("./swagger/output.json");
 
 const db = require("./src/models");
 const routes = require("./src/routes");
@@ -39,6 +39,7 @@ async function checkDB() {
 
 async function syncDB(force = false) {
   try {
+    db.createRelations();
     await db.sequelize.sync({ force });
 
     // eslint-disable-next-line no-restricted-syntax
@@ -48,23 +49,32 @@ async function syncDB(force = false) {
     throw err;
   }
 
-  await db.User.create({
-    username: "User 1",
-    email: "user1@example.com",
-    password: await bcrypt.hash("user1password", 10),
-  });
+  const createDummyData = async (username, email, password) => {
+    const user = await db.User.create({
+      username,
+      email,
+      password: await bcrypt.hash(password, 10),
+    });
 
-  await db.User.create({
-    username: "User 2",
-    email: "user2@example.com",
-    password: await bcrypt.hash("user2password", 10),
-  });
+    const playlist = await db.Playlist.create({
+      title: `${username} playlist`,
+    });
 
-  await db.User.create({
-    username: "User 3",
-    email: "user3@example.com",
-    password: await bcrypt.hash("user3password", 10),
-  });
+    user.addPlaylist(playlist, {
+      through: { can_edit: true, is_creator: true },
+    });
+
+    const profile = await db.UserProfile.create({
+      avatar: "test",
+      biography: "BlaBlaBla"
+    });
+
+    user.setUserProfile(profile);
+  };
+
+  createDummyData("User 1", "user1@example.com", "user1password");
+  createDummyData("User 2", "user2@example.com", "user2password");
+  createDummyData("User 3", "user3@example.com", "user3password");
 }
 
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));

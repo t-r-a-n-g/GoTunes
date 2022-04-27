@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/db");
 
 const User = sequelize.define(
-  "User",
+  "user",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -27,6 +27,16 @@ const User = sequelize.define(
       type: DataTypes.STRING(60),
       allowNull: false,
     },
+    
+    language: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    
+    soundcloud_username: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   },
   { tableName: "users" }
 );
