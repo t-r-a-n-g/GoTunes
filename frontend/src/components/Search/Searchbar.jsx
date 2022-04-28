@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -8,6 +9,7 @@ import PropTypes from "prop-types";
 /* import Card from "./Card"; */
 
 function Searchbar(props) {
+  const { t } = useTranslation();
   const { searchTerm, handleSearch } = props;
 
   return (
@@ -20,7 +22,7 @@ function Searchbar(props) {
         }}
         fullWidth
         id="searchbar"
-        label="Search for a track ..."
+        label={t("searchbar-label")}
         variant="outlined"
         InputProps={{
           endAdornment: (
