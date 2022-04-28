@@ -19,7 +19,6 @@ class UserController {
           return res.status(500).json({ errors: { server: "err-internal" } });
       }
     }
-    return null;
   }
 
   static async getPlaylists(req, res) {
