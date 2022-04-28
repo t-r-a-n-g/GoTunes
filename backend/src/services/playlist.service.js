@@ -30,7 +30,16 @@ class PlaylistService {
       },
     });
 
-    return playlist;
+    return {
+      can_edit: true,
+      is_creator: true,
+      playlist,
+      user: {
+        id: user.id,
+        username: user.username,
+        userProfile: user.userProfile.get({ plain: true }), // convert model to plain object
+      },
+    };
   }
 
   static async deletePlaylist(id, user) {

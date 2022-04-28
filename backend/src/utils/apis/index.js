@@ -8,10 +8,7 @@ module.exports = function getApi(src) {
 
     case "gotunes":
     case "internal":
-      return GT;
-
-    case "all":
     default:
-      return [SC, GT];
+      return GT;
   }
 };

@@ -488,6 +488,7 @@
     "/playlists/{playlistId}": {
       "delete": {
         "tags": ["Playlists"],
+        "summary": "internal",
         "description": "",
         "parameters": [
           {
@@ -541,6 +542,7 @@
       },
       "get": {
         "tags": ["Playlists"],
+        "summary": "internal | soundcloud",
         "description": "",
         "parameters": [
           {
@@ -559,7 +561,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/Playlist"
+              "$ref": "#/definitions/UserPlaylist"
             }
           },
           "404": {
@@ -580,6 +582,7 @@
     "/playlists": {
       "post": {
         "tags": ["Playlists"],
+        "summary": "internal",
         "description": "",
         "parameters": [
           {
@@ -597,7 +600,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/Playlist"
+              "$ref": "#/definitions/UserPlaylist"
             }
           },
           "403": {
@@ -618,6 +621,7 @@
     "/playlists/{playlistId}/tracks": {
       "get": {
         "tags": ["Playlists"],
+        "summary": "soundcloud",
         "description": "",
         "parameters": [
           {
@@ -949,7 +953,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Playlist"
+                "$ref": "#/definitions/UserPlaylist"
               },
               "xml": {
                 "name": "main"
@@ -1026,6 +1030,7 @@
     "/users/{userId}": {
       "get": {
         "tags": ["Users"],
+        "summary": "internal",
         "description": "",
         "parameters": [
           {
@@ -1065,6 +1070,7 @@
     "/users/{userId}/playlists": {
       "get": {
         "tags": ["Users"],
+        "summary": "internal | soundcloud",
         "description": "",
         "parameters": [
           {
@@ -1120,6 +1126,31 @@
           "type": "string",
           "example": "ExampleUser"
         },
+        "userProfile": {
+          "$ref": "#/definitions/UserProfile"
+        },
+        "kind": {
+          "type": "string",
+          "example": "user"
+        },
+        "source": {
+          "type": "string",
+          "example": "soundcloud|internal"
+        }
+      },
+      "required": ["id", "username", "userProfile", "kind", "source"]
+    },
+    "UserProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 123
+        },
+        "userId": {
+          "type": "number",
+          "example": 123
+        },
         "avatar": {
           "type": "string",
           "example": "http://example.com/avatar.jpg"
@@ -1127,13 +1158,9 @@
         "biography": {
           "type": "string",
           "example": "This is the biography of ExampleUser. He didn't archive anything meaningful in life until this point, where he became an essential part of the GoTunes API documentation. Fuck Yeah!"
-        },
-        "kind": {
-          "type": "string",
-          "example": "user"
         }
       },
-      "required": ["id", "username", "avatar", "biography", "kind"]
+      "required": ["avatar", "biography"]
     },
     "Me": {
       "type": "object",
@@ -1280,16 +1307,9 @@
             "type": "string"
           }
         },
-        "user_id": {
-          "type": "number",
-          "example": 1234
-        },
         "title": {
           "type": "string",
-          "example": "Exmaple Playlist"
-        },
-        "user": {
-          "$ref": "#/definitions/Artist"
+          "example": "Example Playlist"
         },
         "kind": {
           "type": "string",
@@ -1306,12 +1326,30 @@
         "description",
         "duration",
         "genres",
-        "user_id",
         "title",
-        "user",
         "kind",
         "source"
       ]
+    },
+    "UserPlaylist": {
+      "type": "object",
+      "properties": {
+        "can_edit": {
+          "type": "boolean",
+          "example": true
+        },
+        "is_creator": {
+          "type": "boolean",
+          "example": true
+        },
+        "playlist": {
+          "$ref": "#/definitions/Playlist"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": ["can_edit", "is_creator", "playlist", "user"]
     },
     "Track": {
       "type": "object",

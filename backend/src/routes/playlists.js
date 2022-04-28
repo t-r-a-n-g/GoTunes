@@ -9,7 +9,8 @@ router.delete("/:playlistId", verifyToken, (req, res) => {
   /*
         #swagger.path = "/playlists/{playlistId}"
         #swagger.tags = ["Playlists"]
-
+        #swagger.summary = "internal"
+  
         #swagger.parameters["playlistId"] = {
           in: 'path',
           description: 'The playlist id',
@@ -68,6 +69,7 @@ router.post("/", verifyToken, (req, res) => {
   /*
         #swagger.path = "/playlists"
         #swagger.tags = ["Playlists"]
+        #swagger.summary = "internal"
 
         #swagger.parameters["title"] = {
           in: 'body',
@@ -80,7 +82,7 @@ router.post("/", verifyToken, (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: { 
-            $ref: '#/definitions/Playlist'
+            $ref: '#/definitions/UserPlaylist'
           }
         }
         
@@ -120,6 +122,7 @@ router.get("/:playlistId", (req, res) => {
   /*
         #swagger.path = "/playlists/{playlistId}"
         #swagger.tags = ["Playlists"]
+        #swagger.summary = "internal | soundcloud"
 
         #swagger.parameters["playlistId"] = {
           in: 'path',
@@ -132,7 +135,7 @@ router.get("/:playlistId", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: { 
-            $ref: '#/definitions/Playlist'
+            $ref: '#/definitions/UserPlaylist'
           }
         }
 
@@ -158,6 +161,7 @@ router.get("/:playlistId/tracks", (req, res) => {
   /*
         #swagger.path = "/playlists/{playlistId}/tracks"
         #swagger.tags = ["Playlists"]
+        #swagger.summary = "soundcloud"
 
         #swagger.parameters["playlistId"] = {
           in: 'path',
