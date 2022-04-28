@@ -41,14 +41,21 @@ const Track = sequelize.define(
       allowNull: false,
     },
 
-    source: {
+    foreign_id: {
       type: DataTypes.STRING,
       allowNull: true,
     },
 
-    foreign_id: {
+    kind: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
+      defaultValue: "artist",
+    },
+
+    source: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "internal",
     },
   },
   { tableName: "tracks" }

@@ -6,7 +6,7 @@ class UserController {
     const { userId } = Controller.getParams(req);
     try {
       const user = await UserService.getUser(userId);
-      res.json(user);
+      return res.json(user);
     } catch (err) {
       switch (err.name) {
         case "NotFoundError":

@@ -4,10 +4,19 @@ module.exports = {
   User: {
     $id: 123,
     $username: "ExampleUser",
+    $userProfile: {
+      $ref: "#/definitions/UserProfile",
+    },
+    $kind: "user",
+    $source: source,
+  },
+
+  UserProfile: {
+    id: 123,
+    userId: 123,
     $avatar: "http://example.com/avatar.jpg",
     $biography:
       "This is the biography of ExampleUser. He didn't archive anything meaningful in life until this point, where he became an essential part of the GoTunes API documentation. Fuck Yeah!",
-    $kind: "user",
   },
 
   Me: {
@@ -51,13 +60,20 @@ module.exports = {
     $description: "This is an example playlist",
     $duration: 12345678,
     $genres: ["Drum 'n' Bass"],
-    $user_id: 1234,
-    $title: "Exmaple Playlist",
-    $user: {
-      $ref: "#/definitions/Artist",
-    },
+    $title: "Example Playlist",
     $kind: "playlist",
     $source: source,
+  },
+
+  UserPlaylist: {
+    $can_edit: true,
+    $is_creator: true,
+    $playlist: {
+      $ref: "#/definitions/Playlist",
+    },
+    $user: {
+      $ref: "#/definitions/User",
+    },
   },
 
   Track: {

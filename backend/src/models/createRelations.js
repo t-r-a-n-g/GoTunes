@@ -14,6 +14,10 @@ module.exports = function createRelations() {
   // Playlists
   User.belongsToMany(Playlist, { through: PlaylistUser });
   Playlist.belongsToMany(User, { through: PlaylistUser });
+  User.hasMany(PlaylistUser);
+  PlaylistUser.belongsTo(User);
+  Playlist.hasMany(PlaylistUser);
+  PlaylistUser.belongsTo(Playlist);
 
   Playlist.belongsTo(PlaylistParent);
   PlaylistParent.hasMany(Playlist);

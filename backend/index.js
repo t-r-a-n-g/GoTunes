@@ -37,6 +37,7 @@ async function checkDB() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 async function syncDB(force = false) {
   try {
     db.createRelations();
@@ -66,7 +67,7 @@ async function syncDB(force = false) {
 
     const profile = await db.UserProfile.create({
       avatar: "test",
-      biography: "BlaBlaBla",
+      biography: `I am ${username} and this is my profile.`,
     });
 
     user.setUserProfile(profile);
@@ -81,4 +82,4 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 startServer();
 checkDB();
-syncDB(true);
+// syncDB(true);

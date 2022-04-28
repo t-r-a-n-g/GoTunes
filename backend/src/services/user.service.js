@@ -1,5 +1,5 @@
 const getApi = require("../utils/apis");
-const { User, UserProfile /* , Playlist */ } = require("../models");
+const { User, UserProfile /* Playlist */ } = require("../models");
 const { NotFoundError } = require("../exceptions");
 
 class UserService {

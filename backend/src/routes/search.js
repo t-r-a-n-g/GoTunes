@@ -175,7 +175,7 @@ router.get("/playlists/:q", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: [{
-            $ref: '#/definitions/Playlist'
+            $ref: '#/definitions/UserPlaylist'
           }]
         }
 

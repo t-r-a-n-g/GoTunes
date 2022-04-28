@@ -9,6 +9,7 @@ router.get("/:userId", (req, res) => {
   /*
     #swagger.path = "/users/{userId}"
     #swagger.tags = ["Users"]
+    #swagger.summary = "internal"
 
     #swagger.parameters["userId"] = {
       in: 'path',
@@ -47,6 +48,7 @@ router.get("/:userId/playlists", (req, res) => {
   /*
     #swagger.path = "/users/{userId}/playlists"
     #swagger.tags = ["Users"]
+    #swagger.summary = "internal | soundcloud"
 
     #swagger.parameters["userId"] = {
       in: 'path',
@@ -78,7 +80,7 @@ router.get("/:userId/playlists", (req, res) => {
     } 
   */
 
-  user.getUserPlaylists(req, res);
+  user.getPlaylists(req, res);
 });
 
 module.exports = router;
