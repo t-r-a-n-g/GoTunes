@@ -14,7 +14,10 @@ async function verifyToken(req, res, next) {
       const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
 
       const userId = decodedToken.id;
-      const user = await User.findOne({ where: { id: userId }, include: UserProfile });
+      const user = await User.findOne({
+        where: { id: userId },
+        include: UserProfile,
+      });
 
       if (!user) errors.auth = "err-auth-invalid-user";
       else {

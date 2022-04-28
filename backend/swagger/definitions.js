@@ -5,12 +5,12 @@ module.exports = {
     $id: 123,
     $username: "ExampleUser",
     $userProfile: {
-      $ref: "#/definitions/UserProfile"
+      $ref: "#/definitions/UserProfile",
     },
     $kind: "user",
     $source: source,
   },
-  
+
   UserProfile: {
     id: 123,
     userId: 123,
@@ -69,11 +69,11 @@ module.exports = {
     $can_edit: true,
     $is_creator: true,
     $playlist: {
-      $ref: "#/definitions/Playlist"
+      $ref: "#/definitions/Playlist",
     },
     $user: {
-      $ref: "#/definitions/User"
-    }
+      $ref: "#/definitions/User",
+    },
   },
 
   Track: {

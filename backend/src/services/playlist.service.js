@@ -29,7 +29,7 @@ class PlaylistService {
         is_creator: true,
       },
     });
-  
+
     return {
       can_edit: true,
       is_creator: true,
@@ -37,9 +37,9 @@ class PlaylistService {
       user: {
         id: user.id,
         username: user.username,
-        userProfile: user.userProfile.get({ plain: true }) // convert model to plain object
-      }
-    }
+        userProfile: user.userProfile.get({ plain: true }), // convert model to plain object
+      },
+    };
   }
 
   static async deletePlaylist(id, user) {

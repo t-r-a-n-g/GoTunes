@@ -41,14 +41,14 @@ const User = sequelize.define(
     kind: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "user"
+      defaultValue: "user",
     },
 
     source: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "internal"
-    }
+      defaultValue: "internal",
+    },
   },
   { tableName: "users" }
 );

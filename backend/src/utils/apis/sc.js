@@ -5,11 +5,10 @@ class SoundCloud {
   constructor(clientId) {
     this.clientId = clientId;
   }
-  
+
   static formatUserData(users) {
     const userData = Array.isArray(users) ? users : [users];
     const data = userData.map((user) => {
-      console.log(user);
       return {
         id: user.id,
         username: user.username,
@@ -18,9 +17,9 @@ class SoundCloud {
           biography: user.description || null,
         },
         kind: "user",
-        source: "soundcloud"
-      }
-    })
+        source: "soundcloud",
+      };
+    });
 
     return data;
   }

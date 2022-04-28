@@ -30,18 +30,18 @@ const Playlist = sequelize.define(
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: true,
     },
-    
+
     kind: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "artist"
+      defaultValue: "artist",
     },
 
     source: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "internal"
-    }
+      defaultValue: "internal",
+    },
   },
   { tableName: "playlists" }
 );
