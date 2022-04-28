@@ -7,13 +7,22 @@
   },
   "host": "localhost:5000",
   "basePath": "/api",
-  "schemes": ["http", "https"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -52,7 +61,10 @@
                   "example": "user token"
                 }
               },
-              "required": ["success", "token"],
+              "required": [
+                "success",
+                "token"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -72,7 +84,10 @@
                   "properties": {}
                 }
               },
-              "required": ["success", "errors"],
+              "required": [
+                "success",
+                "errors"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -101,7 +116,10 @@
                   }
                 }
               },
-              "required": ["success", "errors"],
+              "required": [
+                "success",
+                "errors"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -124,10 +142,15 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": ["server"]
+                  "required": [
+                    "server"
+                  ]
                 }
               },
-              "required": ["success", "errors"],
+              "required": [
+                "success",
+                "errors"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -138,7 +161,9 @@
     },
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -187,7 +212,10 @@
                   "example": "user token"
                 }
               },
-              "required": ["success", "token"],
+              "required": [
+                "success",
+                "token"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -207,7 +235,10 @@
                   "properties": {}
                 }
               },
-              "required": ["success", "errors"],
+              "required": [
+                "success",
+                "errors"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -232,7 +263,10 @@
                   }
                 }
               },
-              "required": ["success", "errors"],
+              "required": [
+                "success",
+                "errors"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -255,10 +289,15 @@
                       "example": "err-internal"
                     }
                   },
-                  "required": ["server"]
+                  "required": [
+                    "server"
+                  ]
                 }
               },
-              "required": ["success", "errors"],
+              "required": [
+                "success",
+                "errors"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -269,7 +308,9 @@
     },
     "/artist/{artistId}": {
       "get": {
-        "tags": ["Artist"],
+        "tags": [
+          "Artist"
+        ],
         "description": "",
         "parameters": [
           {
@@ -306,7 +347,9 @@
     },
     "/artist/{artistId}/albums": {
       "get": {
-        "tags": ["Artist"],
+        "tags": [
+          "Artist"
+        ],
         "description": "",
         "parameters": [
           {
@@ -342,7 +385,9 @@
     },
     "/artist/{artistId}/playlists": {
       "get": {
-        "tags": ["Artist"],
+        "tags": [
+          "Artist"
+        ],
         "description": "",
         "parameters": [
           {
@@ -378,7 +423,9 @@
     },
     "/artist/{artistId}/tracks": {
       "get": {
-        "tags": ["Artist"],
+        "tags": [
+          "Artist"
+        ],
         "description": "",
         "parameters": [
           {
@@ -414,7 +461,9 @@
     },
     "/albums/{albumId}": {
       "get": {
-        "tags": ["Albums"],
+        "tags": [
+          "Albums"
+        ],
         "description": "",
         "parameters": [
           {
@@ -451,7 +500,9 @@
     },
     "/albums/{albumId}/tracks": {
       "get": {
-        "tags": ["Albums"],
+        "tags": [
+          "Albums"
+        ],
         "description": "",
         "parameters": [
           {
@@ -487,7 +538,9 @@
     },
     "/playlists/{playlistId}": {
       "delete": {
-        "tags": ["Playlists"],
+        "tags": [
+          "Playlists"
+        ],
         "description": "",
         "parameters": [
           {
@@ -513,7 +566,9 @@
                   "example": 123
                 }
               },
-              "required": ["id"],
+              "required": [
+                "id"
+              ],
               "xml": {
                 "name": "main"
               }
@@ -540,7 +595,9 @@
         }
       },
       "get": {
-        "tags": ["Playlists"],
+        "tags": [
+          "Playlists"
+        ],
         "description": "",
         "parameters": [
           {
@@ -559,7 +616,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/Playlist"
+              "$ref": "#/definitions/UserPlaylist"
             }
           },
           "404": {
@@ -579,7 +636,9 @@
     },
     "/playlists": {
       "post": {
-        "tags": ["Playlists"],
+        "tags": [
+          "Playlists"
+        ],
         "description": "",
         "parameters": [
           {
@@ -597,7 +656,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/Playlist"
+              "$ref": "#/definitions/UserPlaylist"
             }
           },
           "403": {
@@ -617,7 +676,9 @@
     },
     "/playlists/{playlistId}/tracks": {
       "get": {
-        "tags": ["Playlists"],
+        "tags": [
+          "Playlists"
+        ],
         "description": "",
         "parameters": [
           {
@@ -662,7 +723,9 @@
     },
     "/tracks/{trackId}": {
       "get": {
-        "tags": ["Tracks"],
+        "tags": [
+          "Tracks"
+        ],
         "description": "",
         "parameters": [
           {
@@ -699,7 +762,9 @@
     },
     "/tracks/{trackId}/stream": {
       "get": {
-        "tags": ["Tracks"],
+        "tags": [
+          "Tracks"
+        ],
         "description": "",
         "parameters": [
           {
@@ -736,7 +801,9 @@
     },
     "/search/{q}": {
       "get": {
-        "tags": ["Search"],
+        "tags": [
+          "Search"
+        ],
         "description": "",
         "parameters": [
           {
@@ -793,7 +860,9 @@
     },
     "/search/artists/{q}": {
       "get": {
-        "tags": ["Search"],
+        "tags": [
+          "Search"
+        ],
         "description": "",
         "parameters": [
           {
@@ -851,7 +920,9 @@
     },
     "/search/albums/{q}": {
       "get": {
-        "tags": ["Search"],
+        "tags": [
+          "Search"
+        ],
         "description": "",
         "parameters": [
           {
@@ -909,7 +980,9 @@
     },
     "/search/playlists/{q}": {
       "get": {
-        "tags": ["Search"],
+        "tags": [
+          "Search"
+        ],
         "description": "",
         "parameters": [
           {
@@ -949,7 +1022,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Playlist"
+                "$ref": "#/definitions/UserPlaylist"
               },
               "xml": {
                 "name": "main"
@@ -967,7 +1040,9 @@
     },
     "/search/tracks/{q}": {
       "get": {
-        "tags": ["Search"],
+        "tags": [
+          "Search"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1025,7 +1100,9 @@
     },
     "/users/{userId}": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1064,7 +1141,9 @@
     },
     "/users/{userId}/playlists": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1120,6 +1199,37 @@
           "type": "string",
           "example": "ExampleUser"
         },
+        "userProfile": {
+          "$ref": "#/definitions/UserProfile"
+        },
+        "kind": {
+          "type": "string",
+          "example": "user"
+        },
+        "source": {
+          "type": "string",
+          "example": "soundcloud|internal"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "userProfile",
+        "kind",
+        "source"
+      ]
+    },
+    "UserProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 123
+        },
+        "userId": {
+          "type": "number",
+          "example": 123
+        },
         "avatar": {
           "type": "string",
           "example": "http://example.com/avatar.jpg"
@@ -1127,13 +1237,12 @@
         "biography": {
           "type": "string",
           "example": "This is the biography of ExampleUser. He didn't archive anything meaningful in life until this point, where he became an essential part of the GoTunes API documentation. Fuck Yeah!"
-        },
-        "kind": {
-          "type": "string",
-          "example": "user"
         }
       },
-      "required": ["id", "username", "avatar", "biography", "kind"]
+      "required": [
+        "avatar",
+        "biography"
+      ]
     },
     "Me": {
       "type": "object",
@@ -1158,7 +1267,9 @@
           "$ref": "#/definitions/User"
         }
       },
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "Artist": {
       "type": "object",
@@ -1188,7 +1299,14 @@
           "example": "soundcloud|internal"
         }
       },
-      "required": ["id", "name", "avatar", "description", "kind", "source"]
+      "required": [
+        "id",
+        "name",
+        "avatar",
+        "description",
+        "kind",
+        "source"
+      ]
     },
     "Album": {
       "type": "object",
@@ -1211,7 +1329,9 @@
         },
         "genres": {
           "type": "array",
-          "example": ["Drum 'n' Bass"],
+          "example": [
+            "Drum 'n' Bass"
+          ],
           "items": {
             "type": "string"
           }
@@ -1275,21 +1395,16 @@
         },
         "genres": {
           "type": "array",
-          "example": ["Drum 'n' Bass"],
+          "example": [
+            "Drum 'n' Bass"
+          ],
           "items": {
             "type": "string"
           }
         },
-        "user_id": {
-          "type": "number",
-          "example": 1234
-        },
         "title": {
           "type": "string",
-          "example": "Exmaple Playlist"
-        },
-        "user": {
-          "$ref": "#/definitions/Artist"
+          "example": "Example Playlist"
         },
         "kind": {
           "type": "string",
@@ -1306,11 +1421,34 @@
         "description",
         "duration",
         "genres",
-        "user_id",
         "title",
-        "user",
         "kind",
         "source"
+      ]
+    },
+    "UserPlaylist": {
+      "type": "object",
+      "properties": {
+        "can_edit": {
+          "type": "boolean",
+          "example": true
+        },
+        "is_creator": {
+          "type": "boolean",
+          "example": true
+        },
+        "playlist": {
+          "$ref": "#/definitions/Playlist"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "can_edit",
+        "is_creator",
+        "playlist",
+        "user"
       ]
     },
     "Track": {
@@ -1334,7 +1472,9 @@
         },
         "genres": {
           "type": "array",
-          "example": ["Drum 'n' Bass"],
+          "example": [
+            "Drum 'n' Bass"
+          ],
           "items": {
             "type": "string"
           }
@@ -1394,10 +1534,14 @@
               "example": "err-internal"
             }
           },
-          "required": ["server"]
+          "required": [
+            "server"
+          ]
         }
       },
-      "required": ["errors"]
+      "required": [
+        "errors"
+      ]
     },
     "ErrorNoToken": {
       "type": "object",
@@ -1410,10 +1554,14 @@
               "example": "err-auth-no-token"
             }
           },
-          "required": ["auth"]
+          "required": [
+            "auth"
+          ]
         }
       },
-      "required": ["errors"]
+      "required": [
+        "errors"
+      ]
     },
     "ErrorInvalidUser": {
       "type": "object",
@@ -1426,10 +1574,14 @@
               "example": "err-auth-invalid-user"
             }
           },
-          "required": ["auth"]
+          "required": [
+            "auth"
+          ]
         }
       },
-      "required": ["errors"]
+      "required": [
+        "errors"
+      ]
     },
     "ErrorForbidden": {
       "type": "object",
@@ -1442,10 +1594,14 @@
               "example": "err-auth-forbidden"
             }
           },
-          "required": ["auth"]
+          "required": [
+            "auth"
+          ]
         }
       },
-      "required": ["errors"]
+      "required": [
+        "errors"
+      ]
     },
     "ErrorNotFound": {
       "type": "object",
@@ -1458,10 +1614,14 @@
               "example": "err-not-found"
             }
           },
-          "required": ["resource"]
+          "required": [
+            "resource"
+          ]
         }
       },
-      "required": ["errors"]
+      "required": [
+        "errors"
+      ]
     }
   }
 }
