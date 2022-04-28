@@ -3,14 +3,14 @@ const db = require("../../models");
 
 class InternalAPI {
   async getUserPlaylists(id) {
-    const { Playlist, PlaylistUser } = db;
+    const { User, Playlist, PlaylistUser } = db;
 
     const userPlaylists = await PlaylistUser.findAll({
       where: {
         userId: id,
         is_creator: true,
       },
-      include: Playlist,
+      include: [User, Playlist],
     });
 
     // if(!userPlaylists) throw new NotFoundError();
