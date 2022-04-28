@@ -80,7 +80,7 @@ router.post("/", verifyToken, (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: { 
-            $ref: '#/definitions/Playlist'
+            $ref: '#/definitions/UserPlaylist'
           }
         }
         
@@ -132,7 +132,7 @@ router.get("/:playlistId", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: { 
-            $ref: '#/definitions/Playlist'
+            $ref: '#/definitions/UserPlaylist'
           }
         }
 

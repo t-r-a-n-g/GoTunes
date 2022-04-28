@@ -37,6 +37,18 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+
+    kind: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "user"
+    },
+
+    source: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "internal"
+    }
   },
   { tableName: "users" }
 );

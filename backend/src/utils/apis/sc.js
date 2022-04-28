@@ -5,6 +5,25 @@ class SoundCloud {
   constructor(clientId) {
     this.clientId = clientId;
   }
+  
+  static formatUserData(users) {
+    const userData = Array.isArray(users) ? users : [users];
+    const data = userData.map((user) => {
+      console.log(user);
+      return {
+        id: user.id,
+        username: user.username,
+        userProfile: {
+          avatar: user.avatar_url,
+          biography: user.description || null,
+        },
+        kind: "user",
+        source: "soundcloud"
+      }
+    })
+
+    return data;
+  }
 
   static formatArtistData(artists) {
     const artistsData = Array.isArray(artists) ? artists : [artists];
@@ -47,16 +66,20 @@ class SoundCloud {
     const playlistData = Array.isArray(playlists) ? playlists : [playlists];
     const data = playlistData.map((playlist) => {
       return {
-        id: playlist.id,
-        cover: playlist.artwork_url,
-        description: playlist.description,
-        duration: playlist.duration,
-        genres: [playlist.genre],
-        user_id: playlist.user_id,
-        title: playlist.title,
-        user: SoundCloud.formatArtistData(playlist.user),
-        kind: "playlist",
-        source: "soundcloud",
+        can_edit: false,
+        is_creator: false,
+        playlist: {
+          id: playlist.id,
+          cover: playlist.artwork_url,
+          description: playlist.description,
+          duration: playlist.duration,
+          genres: [playlist.genre],
+          user_id: playlist.user_id,
+          title: playlist.title,
+          kind: "playlist",
+          source: "soundcloud",
+        },
+        user: SoundCloud.formatUserData(playlist.user),
       };
     });
 
@@ -233,7 +256,10 @@ class SoundCloud {
   }
 
   async getPlaylist(id) {
-    return this.getAlbum(id);
+    const res = await this.getAlbum(id, false);
+    const data = SoundCloud.formatPlaylistData(res);
+
+    return data;
   }
 
   async getPlaylistTracks(id) {
