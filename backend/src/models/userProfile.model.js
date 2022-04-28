@@ -16,12 +16,7 @@ const UserProfile = sequelize.define(
       allowNull: true,
     },
 
-    soundcloud_username: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-
-    language: {
+    biography: {
       type: DataTypes.STRING,
       allowNull: true,
     },

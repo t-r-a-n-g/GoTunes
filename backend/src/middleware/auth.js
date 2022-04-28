@@ -24,7 +24,7 @@ async function verifyToken(req, res, next) {
     } catch (err) {
       console.error(err);
       // throw new AuthorizationError("Not authorized!");
-      errors.auth = "err-auth-not-authorized";
+      errors.auth = "err-auth-forbidden";
     }
   }
 

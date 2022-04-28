@@ -18,37 +18,20 @@ router.get("/:trackId", (req, res) => {
         } 
 
         #swagger.responses[200] = {
-          description: 'success',
-          schema: { 
-            $id: 123,
-  			$cover: "http://url-to-cover.com",
-  			$description: "Great Track!",
-  			$duration: 1324123,
-  			$genres: ["Drum 'n' Bass"],
-  			$artist_id: 1234,
-  			$album_id: 1234,
-            $release_date: "1990-08-12",
-  			$title: "track title",
-            $stream_url: "http://stream-url.com/track.mp3",
-  			$source: "e.g. soundcloud"
-          }
+          $ref: '#/definitions/Track'
         }
 
         #swagger.responses[404] = {
           description: 'Track not found',
           schema: { 
-            $errors: {
-                $album: "err-not-found"
-            } 
+            $ref: '#/definitions/ErrorNotFound'
           }
         }
-        
+
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -70,27 +53,20 @@ router.get("/:trackId/stream", (req, res) => {
         } 
 
         #swagger.responses[200] = {
-          description: 'success',
-          schema: { 
-            $url: "http://stream-url.com/track.mp3"
-          }
+          $stream_url: 'http://example.com/track.mp3'
         }
 
         #swagger.responses[404] = {
           description: 'Track not found',
           schema: { 
-            $errors: {
-                $album: "err-not-found"
-            } 
+            $ref: '#/definitions/ErrorNotFound'
           }
         }
-        
+
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */

@@ -34,6 +34,7 @@ class SoundCloud {
         release_date: album.release_date,
         artist_id: album.user_id,
         title: album.title,
+        artist: SoundCloud.formatArtistData(album.user),
         kind: "album",
         source: "soundcloud",
       };
@@ -53,6 +54,7 @@ class SoundCloud {
         genres: [playlist.genre],
         user_id: playlist.user_id,
         title: playlist.title,
+        user: SoundCloud.formatArtistData(playlist.user),
         kind: "playlist",
         source: "soundcloud",
       };
@@ -63,11 +65,19 @@ class SoundCloud {
 
   async formatTrackData(tracks) {
     const trackData = Array.isArray(tracks) ? tracks : [tracks];
+    const data = [];
 
-    const data = await Promise.all(
-      trackData.map(async (track) => {
+    for (const track of trackData) {
+      // some tracks are hidden behind a paywall, they are missing a lot of properties like duration
+      if (track.duration) {
+        // eslint-disable-next-line
         const streamUrl = await this.getTrackStreamUrl(track);
-        return {
+        const title =
+          track.duration !== track.full_duration
+            ? `PREVIEW | ${track.title}`
+            : track.title;
+
+        data.push({
           id: track.id,
           cover: track.artwork_url,
           description: track.description,
@@ -75,19 +85,20 @@ class SoundCloud {
           genres: [track.genre],
           artist_id: track.user_id,
           album_id: null,
-          title: track.title,
+          title,
           release_date: track.release_date,
           stream_url: streamUrl,
+          artist: SoundCloud.formatArtistData(track.user),
           kind: "track",
           source: "soundcloud",
-        };
-      })
-    );
+        });
+      }
+    }
 
     return Array.isArray(tracks) ? data : data[0];
   }
 
-  async get(type, params) {
+  async get(type, params = {}) {
     const defaultParams = {
       limit: params.limit || 20,
       offset: params.offset || 0,
@@ -193,7 +204,7 @@ class SoundCloud {
     return data;
   }
 
-  async getArtistPlaylists(id) {
+  async getUserPlaylists(id) {
     const res = await this.get(`/users/${id}/playlists_without_albums`);
     const data = SoundCloud.formatPlaylistData(res.collection);
 

@@ -13,12 +13,6 @@ class ArtistsService {
     return albums;
   }
 
-  static async getPlaylists(id, src) {
-    const api = getApi(src);
-    const playlists = await api.getArtistPlaylists(id);
-    return playlists;
-  }
-
   static async getTracks(id, src) {
     const api = getApi(src);
     const tracks = await api.getArtistTracks(id);

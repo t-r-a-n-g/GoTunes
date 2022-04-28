@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger-output.json");
+const swaggerFile = require("./swagger/output.json");
 
 const db = require("./src/models");
 const routes = require("./src/routes");
@@ -37,6 +37,7 @@ async function checkDB() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 async function syncDB(force = false) {
   try {
     db.createRelations();
@@ -63,6 +64,13 @@ async function syncDB(force = false) {
     user.addPlaylist(playlist, {
       through: { can_edit: true, is_creator: true },
     });
+
+    const profile = await db.UserProfile.create({
+      avatar: "test",
+      biography: `I am ${username} and this is my profile.`,
+    });
+
+    user.setUserProfile(profile);
   };
 
   createDummyData("User 1", "user1@example.com", "user1password");
@@ -74,4 +82,4 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 startServer();
 checkDB();
-syncDB(true);
+// syncDB(true);
