@@ -15,10 +15,10 @@ const UserProfile = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    
+
     biography: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
   },
   { tableName: "user-profile" }

@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
+import Library from "@pages/Library";
 import SearchResultGenre from "./pages/SearchResultGenre";
 import SearchGenre from "./pages/SearchGenre";
 import Login from "./pages/Login";
@@ -105,7 +106,16 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/library"
+                element={
+                  <ProtectedRoute user={user}>
+                    <Library />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
+
             <div id="playerContainer">
               <div id="playerHeartPiece">
                 <MusicPlayer playerOptions={playerOptions} />

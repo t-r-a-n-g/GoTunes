@@ -27,16 +27,16 @@ const User = sequelize.define(
       type: DataTypes.STRING(60),
       allowNull: false,
     },
-    
+
     language: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
-    
+
     soundcloud_username: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+    },
   },
   { tableName: "users" }
 );

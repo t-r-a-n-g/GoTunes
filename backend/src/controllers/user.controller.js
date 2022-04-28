@@ -4,20 +4,22 @@ const { UserService } = require("../services");
 class UserController {
   static async getUser(req, res) {
     const { userId } = Controller.getParams(req);
-
     try {
       const user = await UserService.getUser(userId);
       res.json(user);
     } catch (err) {
-      switch(err.name) {
+      switch (err.name) {
         case "NotFoundError":
-          return res.status(404).json({ errors: { resource: "err-not-found" } })
-        
+          return res
+            .status(404)
+            .json({ errors: { resource: "err-not-found" } });
+
         default:
           console.error(err);
-          return res.status(500).json({ errors: { server: "err-internal" } })
+          return res.status(500).json({ errors: { server: "err-internal" } });
       }
     }
+    return null;
   }
 
   static async getPlaylists(req, res) {
@@ -29,7 +31,9 @@ class UserController {
     } catch (err) {
       switch (err.name) {
         case "NotFoundError":
-          return res.status(404).json({ errors: { resource: "err-not-found" } });
+          return res
+            .status(404)
+            .json({ errors: { resource: "err-not-found" } });
         default:
           console.error(err);
           return res.status(500).json({ errors: { server: "err-internal" } });

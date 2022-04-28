@@ -38,7 +38,8 @@ class PlaylistService {
     if (!playlist) throw new NotFoundError();
 
     const users = await playlist.getUsers({ where: { id: user.id } });
-    if (!users || users.length < 1 || !users[0].playlistUser.is_creator) throw new AuthorizationError();
+    if (!users || users.length < 1 || !users[0].playlistUser.is_creator)
+      throw new AuthorizationError();
 
     await Playlist.destroy({ where: { id } });
     return id;

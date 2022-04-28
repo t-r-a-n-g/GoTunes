@@ -66,7 +66,7 @@ async function syncDB(force = false) {
 
     const profile = await db.UserProfile.create({
       avatar: "test",
-      biography: "BlaBlaBla"
+      biography: "BlaBlaBla",
     });
 
     user.setUserProfile(profile);

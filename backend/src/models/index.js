@@ -1,7 +1,7 @@
 const createRelations = require("./createRelations");
 
 const User = require("./user.model");
-const UserProfile = require("./userProfile.model")
+const UserProfile = require("./userProfile.model");
 
 const Playlist = require("./playlist.model");
 const PlaylistParent = require("./playlistParent.model");
