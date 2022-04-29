@@ -1,4 +1,5 @@
 import React from "react";
+
 import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
 import "./CardArtists.css";
@@ -25,7 +26,7 @@ CardArtists.propTypes = {
 
 CardArtists.defaultProps = {
   cover: "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png",
-  name: "Loading...",
+  name: "",
   description: "",
   onClick: () => {},
 };

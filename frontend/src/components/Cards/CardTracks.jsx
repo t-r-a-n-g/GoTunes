@@ -26,8 +26,8 @@ CardTracks.propTypes = {
 
 CardTracks.defaultProps = {
   cover: "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png",
-  title: "Loading...",
-  artist: "Loading...",
+  title: "",
+  artist: "",
   onClick: () => {},
 };
 export default CardTracks;

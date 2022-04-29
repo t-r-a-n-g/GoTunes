@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 import CardTracks from "../Cards/CardTracks";
 import CardArtists from "../Cards/CardArtists";
 import CardPlaylists from "../Cards/CardPlaylists";
 
 // TO DO: think about changing cards to make them more distincive? Add description "Track", "Album" etc.?
 export default function SearchResults(props) {
+  const { t } = useTranslation();
   const {
     searchResult,
     responseStatus,
@@ -27,7 +29,7 @@ export default function SearchResults(props) {
                   setSongQueue([
                     {
                       name: element.title,
-                      singer: "",
+                      singer: element.artist.name,
                       cover: element.cover,
                       musicSrc: element.stream_url,
                     },
@@ -36,7 +38,9 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
-                artist={`Track |  ${element.artist?.name ?? "Loading..."}`}
+                artist={`${t("track")} |  ${
+                  element.artist?.name ?? t("waiting-for-loading")
+                }`}
               />
             ) : element.kind === "artist" ? (
               <CardArtists
@@ -45,7 +49,7 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.avatar}
                 name={element.name}
-                description="Artist"
+                description={t("artist")}
               />
             ) : element.kind === "album" ? (
               <CardTracks
@@ -54,7 +58,9 @@ export default function SearchResults(props) {
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
-                artist={`Album |  ${element.artist?.name ?? "Loading..."}`}
+                artist={`${t("album")} |  ${
+                  element.artist?.name ?? t("waiting-for-loading")
+                }`}
               />
             ) : element.kind === "playlist" ? (
               <CardPlaylists
@@ -62,7 +68,8 @@ export default function SearchResults(props) {
 
                 key={element.id}
                 cover={element.cover}
-                title={`Playlist |  ${element.title}`}
+                title={element.title}
+                description={t("playlist")}
               />
             ) : (
               ""
@@ -79,7 +86,7 @@ export default function SearchResults(props) {
                 setSongQueue([
                   {
                     name: element.title,
-                    singer: "",
+                    singer: element.artist.name,
                     cover: element.cover,
                     musicSrc: element.stream_url,
                   },
@@ -88,7 +95,7 @@ export default function SearchResults(props) {
               key={element.id}
               cover={element.cover}
               title={element.title}
-              artist={element.artist?.name ?? "Loading..."}
+              artist={element.artist?.name ?? t("waiting-for-loading")}
             />
           ))
         : ""}
@@ -113,7 +120,7 @@ export default function SearchResults(props) {
               key={element.id}
               cover={element.cover}
               title={element.title}
-              artist={element.artist?.name ?? "Loading..."}
+              artist={element.artist?.name ?? t("waiting-for-loading")}
             />
           ))
         : ""}
@@ -131,7 +138,7 @@ export default function SearchResults(props) {
         : ""}
 
       {responseStatus === 404 || responseStatus === 500
-        ? "No results found"
+        ? t("search-no-results")
         : ""}
     </div>
   );

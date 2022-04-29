@@ -23,5 +23,17 @@
   "email-and-password-not-match": "E-Mail and Password do not match",
   "textfield-form-confirmemail-label": "Confirm E-Mail",
   "textfield-form-username-label": "Username",
-  "textfield-form-confirmpassword-label": "Confirm Password"
+  "textfield-form-confirmpassword-label": "Confirm Password",
+  "searchbar-label": "Search for ...",
+  "waiting-for-loading": "Loading...",
+  "artist": "Artist",
+  "artists": "Artists",
+  "track": "Track",
+  "tracks": "Tracks",
+  "search-all": "All",
+  "album": "Album",
+  "albums": "Albums",
+  "playlist": "Playlist",
+  "playlists": "Playlists",
+  "search-no-results": "No results found"
 }
