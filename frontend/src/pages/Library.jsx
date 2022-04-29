@@ -3,9 +3,8 @@ import CreatePlaylist from "@components/CreatePlaylistButton";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Searchbar from "@components/Searchbar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 import axios from "axios";
 
 /* Library Page
@@ -36,14 +35,9 @@ Song Title, Artist(s), 3dots for settings */
 
 export default function Library(/* props */) {
   const { t } = useTranslation();
-  const [playlist, setPlayList] = useState(null);
+  const [playlist, setPlayList] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
   const userID = "1";
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setPlayList([...playlist]);
-  };
 
   /* USEEFFECT TO  GET PLAYLISTS FROM DB AND UPDATE STATE */
 
@@ -53,7 +47,7 @@ export default function Library(/* props */) {
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
       )
       .then((res) => {
-        console.log(res);
+        /*         console.log(res); */
         setPlayList(res.data);
         setDataLoaded(true);
       });
@@ -87,11 +81,11 @@ export default function Library(/* props */) {
 
       {/* QUERY DB FOR PLAYLISTS AND RENDER A BIG CARD FOR ALL
        */}
-      {/*       {dataLoaded
+      {dataLoaded
         ? playlist.map((pl) => {
             return <BigCard cover={pl.cover} title={pl.title} />;
           })
-        : null} */}
+        : null}
     </div>
   );
 }

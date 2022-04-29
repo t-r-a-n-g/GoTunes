@@ -32,8 +32,8 @@ export default function CreatePlaylist() {
   const savePlaylist = (playlistTitle) => {
     axios
       .post("http://localhost:5000/api/playlists", playlistTitle)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        /*         console.log(res); */
       });
   };
   return (
