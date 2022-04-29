@@ -12,7 +12,7 @@ export default function UserProfil() {
       <User /* avatar="/" playlistcount="/" followingcount="/" userName="/" */
       />
       <Card /* cover="/" name="/" details="/" */ />
-      <BigCard />
+      <BigCard /* cover="/" title="/" */ />
       <CreatePlaylist />
     </div>
   );
