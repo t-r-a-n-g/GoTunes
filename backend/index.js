@@ -36,7 +36,7 @@ async function checkDB() {
     throw err;
   }
 }
-
+db.createRelations();
 // eslint-disable-next-line no-unused-vars
 async function syncDB(force = false) {
   try {

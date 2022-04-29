@@ -47,7 +47,7 @@ export default function Library(/* props */) {
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
       )
       .then((res) => {
-        /*         console.log(res); */
+        console.log(res);
         setPlayList(res.data);
         setDataLoaded(true);
       });
@@ -83,7 +83,9 @@ export default function Library(/* props */) {
        */}
       {dataLoaded
         ? playlist.map((pl) => {
-            return <BigCard cover={pl.cover} title={pl.title} />;
+            return (
+              <BigCard cover={pl.playlist.cover} title={pl.playlist.title} />
+            );
           })
         : null}
     </div>

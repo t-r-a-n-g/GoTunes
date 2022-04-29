@@ -11,6 +11,7 @@ import axios from "axios";
 
 export default function CreatePlaylist() {
   const [open, setOpen] = React.useState(false);
+  const [playlistTitle, setPlaylistTitle] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { t } = useTranslation();
@@ -29,11 +30,19 @@ export default function CreatePlaylist() {
     p: 4,
   };
 
-  const savePlaylist = (playlistTitle) => {
+  // token an http request hängen bei post statement ( an header )
+  const token = localStorage.getItem("userToken");
+
+  const config = {
+    headers: { "x-access-token": token },
+  };
+
+  const savePlaylist = () => {
+    console.log(playlistTitle);
     axios
-      .post("http://localhost:5000/api/playlists", playlistTitle)
-      .then(() => {
-        /*         console.log(res); */
+      .post("http://localhost:5000/api/playlists", playlistTitle, config)
+      .then((res) => {
+        console.log(res);
       });
   };
   return (
@@ -99,6 +108,10 @@ export default function CreatePlaylist() {
                 label="Playlist Name"
                 id="fullWidth"
                 sx={{ mb: "2px" }}
+                value={playlistTitle}
+                onChange={(event) => {
+                  setPlaylistTitle(event.target.value);
+                }}
               />
 
               <Button
