@@ -41,6 +41,7 @@ function App() {
     defaultPlayMode: "shufflePlay",
     toggleMode: false,
     glassBg: false,
+    showMediaSession: true,
     autoHiddenCover: false,
     onCoverClick() {
       console.warn(`responsive: ${responsiveToggle}`);

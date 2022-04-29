@@ -7,14 +7,16 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
 
 export default function CreatePlaylist() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { t } = useTranslation();
+
   /* SAVE PLAYLIST TO DB */
-  const savePlaylist = () => {};
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -25,6 +27,14 @@ export default function CreatePlaylist() {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
+  };
+
+  const savePlaylist = (playlistTitle) => {
+    axios
+      .post("http://localhost:5000/api/playlists", playlistTitle)
+      .then((res) => {
+        console.log(res);
+      });
   };
   return (
     <div>
