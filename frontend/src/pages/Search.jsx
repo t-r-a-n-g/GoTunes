@@ -54,7 +54,7 @@ export default function Search(props) {
   );
 }
 Search.propTypes = {
-  setSongQueue: PropTypes.shape(),
+  setSongQueue: PropTypes.func,
 };
 Search.defaultProps = {
   setSongQueue: null,

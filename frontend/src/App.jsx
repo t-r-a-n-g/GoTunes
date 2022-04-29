@@ -3,7 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
-import Library from "@pages/LibraryDraft";
+import Library from "@pages/Library";
 import SearchResultGenre from "./pages/SearchResultGenre";
 import SearchGenre from "./pages/SearchGenre";
 import Login from "./pages/Login";
@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
+import Playlist from "./pages/Playlist";
 
 function App() {
   // add function to check if user is auth, and return a boolean into "user"
@@ -21,6 +22,10 @@ function App() {
 
   // state for songQueue
   const [songQueue, setSongQueue] = useState([]);
+
+  // state for choosing between Soundcloud and internal playlists source
+  // eslint-disable-next-line
+  const [playlistSource, setPlaylistSource] = useState("soundcloud");
 
   // This creates a variable representing the audio element. To connect the player with buttons (our own controls),
   // we can then call its methods, such as audioInstance.pause().
@@ -106,7 +111,25 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/library" element={<Library />} />
+              <Route
+                path="/library"
+                element={
+                  <ProtectedRoute user={user}>
+                    <Library />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/playlists/:playlistId"
+                element={
+                  <ProtectedRoute user={user}>
+                    <Playlist
+                      playlistSource={playlistSource}
+                      setSongQueue={setSongQueue}
+                    />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
             <div id="playerContainer">
               <div id="playerHeartPiece">
