@@ -47,7 +47,7 @@ export default function Library(/* props */) {
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
       )
       .then((res) => {
-        console.log(res);
+        /*         console.log(res); */
         setPlayList(res.data);
         setDataLoaded(true);
       });

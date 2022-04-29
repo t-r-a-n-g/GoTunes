@@ -38,11 +38,11 @@ export default function CreatePlaylist() {
   };
 
   const savePlaylist = () => {
-    console.log(playlistTitle);
+    /*     console.log(playlistTitle); */
     axios
       .post("http://localhost:5000/api/playlists", playlistTitle, config)
-      .then((res) => {
-        console.log(res);
+      .then((/* res */) => {
+        /*         console.log(res); */
       });
   };
   return (
