@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -12,13 +13,14 @@ import {
 } from "../API";
 
 export default function SearchNavbar(props) {
+  const { t } = useTranslation();
   const { setSearchEndpoint, searchFilter, setSearchFilter } = props;
 
   return (
     <Stack direction="row" spacing={4}>
       <Chip
         className="nav-chip"
-        label="All"
+        label={t("search-all")}
         color={searchFilter === "All" ? "secondary" : "default"}
         variant={searchFilter === "All" ? "filled" : "outlined"}
         // To do: modify onClick for "All"
@@ -40,7 +42,7 @@ export default function SearchNavbar(props) {
       <Chip
         id="chipArtist"
         className="nav-chip"
-        label="Artists"
+        label={t("artists")}
         color={searchFilter === "Artists" ? "secondary" : "default"}
         variant={searchFilter === "Artists" ? "filled" : "outlined"}
         onClick={() => {
@@ -50,7 +52,7 @@ export default function SearchNavbar(props) {
       />
       <Chip
         className="nav-chip"
-        label="Albums"
+        label={t("albums")}
         color={searchFilter === "Albums" ? "secondary" : "default"}
         variant={searchFilter === "Albums" ? "filled" : "outlined"}
         onClick={() => {
@@ -60,7 +62,7 @@ export default function SearchNavbar(props) {
       />
       <Chip
         className="nav-chip"
-        label="Playlists"
+        label={t("playlists")}
         color={searchFilter === "Playlists" ? "secondary" : "default"}
         variant={searchFilter === "Playlists" ? "filled" : "outlined"}
         onClick={() => {
