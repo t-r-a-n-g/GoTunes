@@ -1,10 +1,41 @@
 /* eslint-disable class-methods-use-this */
+const { Op } = require("sequelize");
+
 const db = require("../../models");
 const { NotFoundError } = require("../../exceptions");
 
 class InternalAPI {
   constructor() {
     this.userAttributes = ["id", "username", "kind", "source"];
+  }
+
+  async searchUsers(q, options) {
+    const { User, UserProfile } = db;
+    const opts = {
+      limit: options.limit || 20,
+      offset: options.offset || 0,
+    };
+
+    const users = await User.findAll({
+      where: { username: { [Op.like]: `%${q}%` } },
+      ...opts,
+      include: UserProfile,
+      attributes: this.userAttributes,
+    });
+    return users;
+  }
+
+  async getUser(id) {
+    const { User, UserProfile } = db;
+
+    const user = User.findOne({
+      where: { id },
+      include: UserProfile,
+      attributes: this.userAttributes,
+    });
+    if (!user) throw new NotFoundError();
+
+    return user;
   }
 
   async getPlaylist(id) {
