@@ -18,7 +18,10 @@ router.get("/:artistId", (req, res) => {
         } 
 
         #swagger.responses[200] = {
-          $ref: '#/definitions/Artist'
+          description: "Success",
+          schema: {
+            $ref: '#/definitions/Artist'
+          }
         }
 
         #swagger.responses[404] = {
@@ -52,9 +55,12 @@ router.get("/:artistId/albums", (req, res) => {
           schema: 123456
         } 
 
-        #swagger.responses[200] = [{
-          $ref: '#/definitions/Album'
-        }]
+        #swagger.responses[200] = {
+          description: "Success",
+          schema: [{
+            $ref: '#/definitions/Album'
+          }]
+        }
 
         #swagger.responses[404] = {
           description: 'Artist not found',
@@ -87,9 +93,12 @@ router.get("/:artistId/playlists", (req, res) => {
           schema: 123456
         } 
 
-        #swagger.responses[200] = [{
-          $ref: '#/definitions/Playlist'
-        }]
+        #swagger.responses[200] = {
+          description: "Success",
+          schema: [{
+            $ref: '#/definitions/Playlist'
+          }]
+        }
 
         #swagger.responses[404] = {
           description: 'Artist not found',
@@ -122,9 +131,12 @@ router.get("/:artistId/tracks", (req, res) => {
           schema: 123456
         } 
 
-        #swagger.responses[200] = [{
-          $ref: '#/definitions/Track'
-        }]
+        #swagger.responses[200] = {
+          description: "Success",
+          schema: [{
+            $ref: '#/definitions/Track'
+          }]
+        }
 
         #swagger.responses[404] = {
           description: 'Artist not found',
