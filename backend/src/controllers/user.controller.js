@@ -6,7 +6,7 @@ class UserController {
     const { userId, src } = Controller.getParams(req);
 
     try {
-      const users = UserService.getUsers(userId, src);
+      const users = await UserService.getUser(userId, src);
       return res.json(users);
     } catch (err) {
       switch (err.name) {

@@ -21,6 +21,8 @@ class InternalAPI {
       ...opts,
       include: UserProfile,
       attributes: this.userAttributes,
+      raw: true,
+      nest: true,
     });
     return users;
   }
@@ -32,36 +34,18 @@ class InternalAPI {
       where: { id },
       include: UserProfile,
       attributes: this.userAttributes,
+      raw: true,
+      nest: true,
     });
     if (!user) throw new NotFoundError();
 
     return user;
   }
 
-  async getPlaylist(id) {
+  async getPlaylist(id, currentUser, asModel = false) {
     const { User, UserProfile, Playlist, PlaylistUser } = db;
 
-    /* const playlist = await Playlist.findOne({ 
-      where: { id },  
-      include: [
-        {
-          model: User,
-          attributes: this.userAttributes,
-          include: UserProfile
-        },
-        {
-          model: PlaylistUser,
-          where: { is_creator: true }
-        }
-      ]
-    })
-
-    if (!playlist) throw new NotFoundError();
-    console.log(playlist);
-    return playlist; */
-
     // ToDo: combine to single sql query
-    // ToDo: Check if current user can edit playlist / is playlist creator
 
     const playlist = await Playlist.findOne({ where: { id } });
     if (!playlist) throw new NotFoundError();
@@ -79,11 +63,31 @@ class InternalAPI {
       },
     });
 
+    let canEdit = false;
+    let isCreator = false;
+
+    if (user.userId === currentUser.id) {
+      canEdit = true;
+      isCreator = true;
+    } else {
+      const plUser = await PlaylistUser.findOne({
+        where: {
+          playlistId: id,
+          userId: currentUser.id,
+          can_edit: true,
+        },
+      });
+
+      if (plUser) {
+        canEdit = true;
+      }
+    }
+
     return {
-      can_edit: false,
-      is_creator: false,
-      user: user.user.get({ plain: true }),
-      playlist: playlist.get({ plain: true }),
+      can_edit: canEdit,
+      is_creator: isCreator,
+      user: asModel ? user.user : user.user.get({ plain: true }),
+      playlist: asModel ? playlist : playlist.get({ plain: true }),
     };
   }
 
@@ -105,12 +109,28 @@ class InternalAPI {
         },
         Playlist,
       ],
+      raw: true,
+      nest: true,
     });
 
     // if(!userPlaylists) throw new NotFoundError();
     // console.log(userPlaylists);
     // const playlists = user.getPlaylists();
     return userPlaylists;
+  }
+
+  async getPlaylistTracks(playlistId) {
+    const { Playlist, Artist } = db;
+
+    // ToDo: Add genres
+    const playlist = await Playlist.findOne({ where: { id: playlistId } });
+
+    if (!playlist) throw new NotFoundError();
+
+    return {
+      internal: await playlist.getTracks({ include: [Artist] }),
+      external: await playlist.getExternalTracks(),
+    };
   }
 }
 
