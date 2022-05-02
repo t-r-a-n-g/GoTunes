@@ -3,27 +3,37 @@ import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./Playlist.css";
 
 export default function Playlist(props) {
-  // needs these props:
+  // NEEDS THE FOLLOWING PROPS:
   // playlistSource
   // setSongQueue
+
+  // THE SETTER FOR PASSING A SONG TO THE PLAYER
   //  eslint-disable-next-line
   const setSongQueue = props.setSongQueue;
 
+  // WILL BE RETRIEVED FROM API
   const [playlistData, setPlaylistData] = React.useState();
+  const [playlistTracks, setPlaylistTracks] = React.useState();
+
+  // WHEN ALL DATA HAS LOADED, THESE CHANGE TO TRUE - THE OUTPUT IS THEN RE-RENDERED WITH ALL DATA
   const [playlistDataHasLoaded, setPlaylistDataHasLoaded] =
     React.useState(false);
-  const [playlistTracks, setPlaylistTracks] = React.useState();
   const [playlistTracksHasLoaded, setPlaylistTracksHasLoaded] =
     React.useState(false);
 
-  // We need the playlist ID from the URL
+  // FIRST, WE GET THE PLAYLIST ID from the URL
   const params = useParams();
-  // Getting all data about the playlist
+
+  /************************************************************************************************/
+
+  // GETTING ALL DATA ABOUT THE PLAYLIST  (ON FIRST RENDER ONLY)
+
   React.useEffect(() => {
+    // GET PLAYLIST'S GENERAL INFORMATION   -> STORED INTO playlistData
     axios
-      //  eslint-disable-next-line
       .get(
         `http://localhost:5000/api/playlists/${params.playlistId}?source=${props.playlistSource}`
       )
@@ -32,7 +42,7 @@ export default function Playlist(props) {
         setPlaylistDataHasLoaded(true);
       });
 
-    //   Getting all tracks of the playlist
+    // GET TRACKS FOR THE PLAYLIST            -> STORED INTO playlistTracks
     //   later: with source? .get(`http://localhost:5000/api/playlists/${props.playlistId}/tracks?source=${props.playlistSrc}`)
     axios
       .get(`http://localhost:5000/api/playlists/${params.playlistId}/tracks`)
@@ -41,16 +51,13 @@ export default function Playlist(props) {
         /* eslint-disable */ setPlaylistTracksHasLoaded(true);
       });
   }, []);
-  // A wide card component for a track
+
+  /************************************************************************************************ */
+
+  // CARD COMPONENT FOR ONE TRACK
+
   //  eslint-disable-next-line
   function TrackCard(props) {
-    let artistName = "ARTIST NAME";
-    //  eslint-disable-next-line
-    axios
-      .get(`http://localhost:5000/api/artist/${props.artist_id}`)
-      .then((res) => {
-        artistName = res.data.name;
-      });
     //  eslint-disable-next-line
     return (
       <div>
@@ -65,7 +72,7 @@ export default function Playlist(props) {
                 name: props.title,
                 //  eslint-disable-next-line
 
-                singer: artistName,
+                singer: props.artistName,
                 //  eslint-disable-next-line
 
                 cover: props.cover,
@@ -80,8 +87,7 @@ export default function Playlist(props) {
           {/*  eslint-disable-next-line */}
           <img src={props.cover} alt="cover for this song" />
           {/*  eslint-disable-next-line */}
-          {props.title}
-          ARTIST NAMES WILL APPEAR HEAR
+          {props.title} by {props.artistName}
         </div>
         <div>
           <button type="button">Options</button>
@@ -90,11 +96,14 @@ export default function Playlist(props) {
     );
   }
 
-  // Making cards for all tracks
+  /**************************************************************************************/
+
+  // MAPPING CARDS FOR ALL TRACKS TO BE DISPLAYED
+
   function mapAllTracksToCards() {
     return playlistTracks.map((trackObject) => (
       <TrackCard
-        artist_id={trackObject.artist_id}
+        artistName={trackObject.artist.name}
         cover={trackObject.cover}
         title={trackObject.title}
         key={trackObject.id}
@@ -104,27 +113,54 @@ export default function Playlist(props) {
     ));
   }
 
+  /*************************************************************************************/
+
+  // RENDER METHOD OF THE WHOLE PLAYLIST COMPONENT
+
   if (playlistDataHasLoaded && playlistTracksHasLoaded) {
     return (
       <div>
+        {/* BLACK BACKGROUND SECTION (TOP HALF) */}
         <div id="topSection">
-          <img
-            src={playlistData.playlist.cover}
-            alt="cover image of this playlist"
-          />
-          <p>PLAYLIST: {playlistData.playlist.title}</p>
-          <p>DESCRIPTION: {playlistData.playlist.description}</p>
-          <img
-            src={playlistData.user[0].userProfile.avatar}
-            alt="picture of the playlist creator"
-          />
-          <p>CREATED BY: {playlistData.user[0].username}</p>
+          <div id="outerContainerForPlaylistCover">
+            <div id="innerContainerForPlaylistCover">
+              {/* PLAYLIST COVER */}
+              <img
+                id="playlistCover"
+                src={playlistData.playlist.cover}
+                alt="cover image of this playlist"
+              />
+            </div>
+          </div>
+          <div id="containerForPlaylistInfo">
+            {/* PLAYLIST TITLE */}
+            <h1 id="playlistTitle">{playlistData.playlist.title}</h1>
+            {/* PLAYLIST DESCRIPTION */}
+            <p id="playlistDescription">{playlistData.playlist.description}</p>
+            {/* PLAYLIST CREATOR / USER */}
+            <img
+              id="playlistCreatorPicture"
+              src={playlistData.user[0].userProfile.avatar}
+              alt="picture of the playlist creator"
+            />
+            <p id="playlistCreatorName">{playlistData.user[0].username}</p>
+            {/* PLAYLIST DURATION */}
+            <p id="playlistDuration">
+              {Math.round(playlistData.playlist.duration / 60)} min
+              {/* Seems there is no React module on npmjs for converting seconds to hh:mm
+              Good plain JS modules:
+              https://www.npmjs.com/package/humanize-duration
+              https://github.com/RomainLt/convert-seconds-to-human#readme */}
+            </p>
+          </div>
         </div>
+        {/* GRAY BACKGROUND SECTION (BOTTOM HALF) */}
         <div id="bottomSection">
           BOTTOM SECTION___
           <button>Heart button</button>
           <button>Options</button>
           <button>Play</button>
+          {/* CARDS FOR ALL TRACKS    (I MOVED THE MAPPING FUNCTION UP IN THE CODE (JUST FOR BETTER READABILITY)) */}
           {mapAllTracksToCards()}
         </div>
       </div>
@@ -132,6 +168,10 @@ export default function Playlist(props) {
   }
   return "loading...";
 }
+
+/**************************************************************************** */
+
+// PROPS VALIDATION
 
 Playlist.propTypes = {
   playlistSource: PropTypes.string,
@@ -145,7 +185,10 @@ Playlist.defaultProps = {
   setSongQueue: null,
 };
 
+/*************************************************************************** */
+
 // FOR DEVELOPMENT: EXAMPLE DATA
+
 //   playlistData = {
 //     can_edit: false,
 //     is_creator: false,

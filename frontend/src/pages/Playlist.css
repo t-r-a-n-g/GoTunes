@@ -1,0 +1,49 @@
+#outerContainerForPlaylistCover {
+  background-color: #f1f1f17c;
+  background-image: linear-gradient(#ffffff00, rgb(0, 0, 0));
+  background-position: center;
+  display: flex;
+  justify-content: center;
+}
+#innerContainerForPlaylistCover {
+  width: 80vw;
+  height: 80vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#playlistCover {
+  max-width: 100%;
+  height: auto;
+}
+#containerForPlaylistInfo {
+  text-align: left;
+  margin-left: 5vw;
+}
+#playlistTitle {
+  display: block;
+  margin-top: 2vw;
+  margin-bottom: 0px;
+  font-size: 6vw;
+}
+#playlistDescription {
+  display: block;
+  font-size: 3vw;
+}
+#playlistCreatorPicture {
+  display: inline;
+
+  width: 7vw;
+  height: auto;
+}
+#playlistCreatorName {
+  display: inline;
+  font-size: 3vw;
+  font-weight: bold;
+  margin-left: 2vw;
+  position: relative;
+  bottom: 2vw;
+}
+#playlistDuration {
+  font-size: 3vw;
+}
