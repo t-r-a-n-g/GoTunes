@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/db");
 
-const Artist = sequelize.define(
-  "artist",
+const ExternalTrack = sequelize.define(
+  "externalTrack",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,15 +11,9 @@ const Artist = sequelize.define(
       allowNull: false,
     },
 
-    name: {
+    external_id: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-
-    kind: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: "artist",
     },
 
     source: {
@@ -28,7 +22,16 @@ const Artist = sequelize.define(
       defaultValue: "internal",
     },
   },
-  { tableName: "artists" }
+  {
+    tableName: "external_tracks",
+    indexes: [
+      {
+        name: "external_id",
+        fields: ["external_id", "source"],
+        unique: true,
+      },
+    ],
+  }
 );
 
-module.exports = Artist;
+module.exports = ExternalTrack;

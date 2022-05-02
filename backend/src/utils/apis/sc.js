@@ -278,7 +278,9 @@ class SoundCloud {
 
   async getTrack(id) {
     const res = await this.get(`/tracks/${id}`);
-    return res;
+    const data = this.formatTrackData(res);
+
+    return data;
   }
 
   async getTrackStreamUrl(track) {

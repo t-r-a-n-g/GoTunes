@@ -82,7 +82,9 @@ module.exports = {
     $description: "This is an example track",
     $duration: 12345678,
     $genres: ["Drum 'n' Bass"],
-    $artist_id: 1234,
+    $artist: {
+      $ref: "#/definitions/Artist",
+    },
     $album_id: 1234,
     $release_date: "1990-08-12",
     $title: "Example Track",

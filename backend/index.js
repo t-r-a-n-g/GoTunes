@@ -66,7 +66,6 @@ async function syncDB(force = false) {
     });
 
     const profile = await db.UserProfile.create({
-      avatar: "test",
       biography: `I am ${username} and this is my profile.`,
     });
 
@@ -82,4 +81,4 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 startServer();
 checkDB();
-syncDB(true);
+// syncDB(true);

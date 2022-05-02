@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/db");
 
-const Track = sequelize.define(
-  "track",
+const Artist = sequelize.define(
+  "artist",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,12 +11,12 @@ const Track = sequelize.define(
       allowNull: false,
     },
 
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    cover: {
+    avatar: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -26,25 +26,10 @@ const Track = sequelize.define(
       allowNull: true,
     },
 
-    duration: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: true,
-    },
-
-    release_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-
-    stream_url: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
     kind: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "track",
+      defaultValue: "artist",
     },
 
     source: {
@@ -53,7 +38,7 @@ const Track = sequelize.define(
       defaultValue: "internal",
     },
   },
-  { tableName: "tracks" }
+  { tableName: "artists" }
 );
 
-module.exports = Track;
+module.exports = Artist;
