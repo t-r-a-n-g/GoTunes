@@ -3,7 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
-import Library from "@pages/Library";
+import Library from "@pages/Library2";
 import SearchResultGenre from "./pages/SearchResultGenre";
 import SearchGenre from "./pages/SearchGenre";
 import Login from "./pages/Login";
