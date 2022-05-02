@@ -25,5 +25,6 @@
   "textfield-form-username-label": "Username",
   "textfield-form-confirmpassword-label": "Confirm Password",
   "modal-form-createnewplaylist-heading": "Create new Playlist",
-  "modal-form-createnewplaylist-button": "Create Playlist"
+  "modal-form-createnewplaylist-button": "Create Playlist",
+  "library-main-heading": "Music"
 }

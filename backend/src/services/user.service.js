@@ -1,22 +1,11 @@
 const getApi = require("../utils/apis");
-const { User, UserProfile /* Playlist */ } = require("../models");
-const { NotFoundError } = require("../exceptions");
 
 class UserService {
-  static async getUser(userId) {
-    const user = await User.findOne({
-      where: { id: userId },
-      include: UserProfile,
-    });
-    if (!user) throw new NotFoundError();
+  static async getUser(userId, src) {
+    const api = getApi(src);
 
-    return {
-      id: user.id,
-      username: user.username,
-      avatar: user.userProfile.avatar,
-      biography: user.userProfile.biography,
-      kind: "user",
-    };
+    const user = api.getUser(userId);
+    return user;
   }
 
   static async getPlaylists(userId, src) {

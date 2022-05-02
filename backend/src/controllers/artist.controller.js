@@ -1,4 +1,4 @@
-const { artistService } = require("../services");
+const { ArtistService } = require("../services");
 const Controller = require("./controller");
 
 class ArtistController {
@@ -7,7 +7,7 @@ class ArtistController {
     let resData = {};
 
     try {
-      const artist = await artistService.getArtist(artistId, src);
+      const artist = await ArtistService.getArtist(artistId, src);
       resData = artist;
     } catch (err) {
       switch (err.name) {
@@ -27,7 +27,7 @@ class ArtistController {
     let resData = {};
 
     try {
-      const albums = await artistService.getAlbums(artistId, src);
+      const albums = await ArtistService.getAlbums(artistId, src);
       resData = albums;
     } catch (err) {
       switch (err.name) {
@@ -47,7 +47,7 @@ class ArtistController {
     let resData = {};
 
     try {
-      const tracks = await artistService.getTracks(artistId, src);
+      const tracks = await ArtistService.getTracks(artistId, src);
       resData = tracks;
     } catch (err) {
       switch (err.name) {

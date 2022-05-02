@@ -34,7 +34,7 @@ const Playlist = sequelize.define(
     kind: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "artist",
+      defaultValue: "playlist",
     },
 
     source: {

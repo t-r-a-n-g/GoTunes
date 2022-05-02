@@ -37,10 +37,10 @@ async function checkDB() {
   }
 }
 
+db.createRelations();
 // eslint-disable-next-line no-unused-vars
 async function syncDB(force = false) {
   try {
-    db.createRelations();
     await db.sequelize.sync({ force });
 
     // eslint-disable-next-line no-restricted-syntax
@@ -82,4 +82,4 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 startServer();
 checkDB();
-// syncDB(true);
+syncDB(true);
