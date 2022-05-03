@@ -36,11 +36,11 @@ async function checkDB() {
     throw err;
   }
 }
+
 db.createRelations();
 // eslint-disable-next-line no-unused-vars
 async function syncDB(force = false) {
   try {
-    db.createRelations();
     await db.sequelize.sync({ force });
 
     // eslint-disable-next-line no-restricted-syntax
@@ -66,7 +66,6 @@ async function syncDB(force = false) {
     });
 
     const profile = await db.UserProfile.create({
-      avatar: "test",
       biography: `I am ${username} and this is my profile.`,
     });
 

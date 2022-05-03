@@ -25,11 +25,10 @@ class SearchController {
   }
 
   static async artists(req, res) {
-    const { q } = req.params;
-    const { limit, offset } = req.query;
+    const { q, limit, offset, src } = Controller.getParams(req);
 
     try {
-      const artists = await SearchService.searchArtists(q, limit, offset);
+      const artists = await SearchService.searchArtists(q, limit, offset, src);
       res.json(artists);
     } catch (err) {
       console.error(err);
@@ -38,11 +37,10 @@ class SearchController {
   }
 
   static async albums(req, res) {
-    const { q } = req.params;
-    const { limit, offset } = req.query;
+    const { q, limit, offset, src } = Controller.getParams(req);
 
     try {
-      const albums = await SearchService.searchAlbums(q, limit, offset);
+      const albums = await SearchService.searchAlbums(q, limit, offset, src);
       res.json(albums);
     } catch (err) {
       console.error(err);
@@ -51,11 +49,15 @@ class SearchController {
   }
 
   static async playlists(req, res) {
-    const { q } = req.params;
-    const { limit, offset } = req.query;
+    const { q, limit, offset, src } = Controller.getParams(req);
 
     try {
-      const playlists = await SearchService.searchPlaylists(q, limit, offset);
+      const playlists = await SearchService.searchPlaylists(
+        q,
+        limit,
+        offset,
+        src
+      );
       res.json(playlists);
     } catch (err) {
       console.error(err);
@@ -64,15 +66,29 @@ class SearchController {
   }
 
   static async tracks(req, res) {
-    const { q } = req.params;
-    const { limit, offset } = req.query;
+    const { q, limit, offset, src } = Controller.getParams(req);
 
     try {
-      const tracks = await SearchService.searchTracks(q, limit, offset);
+      const tracks = await SearchService.searchTracks(q, limit, offset, src);
       res.json(tracks);
     } catch (err) {
       console.error(err);
       res.status(500).json({ errors: { server: "err-internal" } });
+    }
+  }
+
+  static async users(req, res) {
+    const { q, limit, offset, src } = Controller.getParams(req);
+
+    try {
+      const user = await SearchService.searchUsers(q, limit, offset, src);
+      return res.json(user);
+    } catch (err) {
+      switch (err.name) {
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
     }
   }
 }

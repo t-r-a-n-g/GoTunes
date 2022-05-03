@@ -286,8 +286,10 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/definitions/Artist",
-            "description": "OK"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Artist"
+            }
           },
           "404": {
             "description": "Artist not found",
@@ -323,7 +325,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Album"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "404": {
             "description": "Artist not found",
@@ -359,7 +370,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Playlist"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "404": {
             "description": "Artist not found",
@@ -395,7 +415,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Track"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "404": {
             "description": "Artist not found",
@@ -647,6 +676,80 @@
               "xml": {
                 "name": "main"
               }
+            }
+          },
+          "404": {
+            "description": "Playlist not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorNotFound"
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorInternal"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Playlists"],
+        "summary": "internal",
+        "description": "",
+        "parameters": [
+          {
+            "name": "playlistId",
+            "in": "path",
+            "required": true,
+            "type": "number",
+            "description": "The playlist id",
+            "schema": {
+              "type": "number",
+              "example": 123456
+            }
+          },
+          {
+            "name": "track",
+            "in": "body",
+            "description": "the track to add",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 123
+                },
+                "source": {
+                  "type": "string",
+                  "example": "internal | soundcloud"
+                }
+              },
+              "required": ["id", "source"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 123
+                }
+              },
+              "required": ["id"],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid user",
+            "schema": {
+              "$ref": "#/definitions/ErrorInvalidUser"
             }
           },
           "404": {
@@ -1027,10 +1130,80 @@
         }
       }
     },
+    "/search/users/{q}": {
+      "get": {
+        "tags": ["Search"],
+        "summary": "soundcloud | internal",
+        "description": "",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The search query",
+            "schema": {
+              "type": "string",
+              "example": "drum and bass"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max search results to retrieve",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "number",
+              "example": 20
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip the first X results",
+            "required": false,
+            "type": "integer",
+            "schema": 0
+          },
+          {
+            "name": "src",
+            "in": "query",
+            "description": "Where to get the data from",
+            "required": false,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "soundcloud"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorInternal"
+            }
+          }
+        }
+      }
+    },
     "/users/{userId}": {
       "get": {
         "tags": ["Users"],
-        "summary": "internal",
+        "summary": "soundcloud | internal",
         "description": "",
         "parameters": [
           {
@@ -1042,6 +1215,17 @@
             "schema": {
               "type": "number",
               "example": 123456
+            }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Where to get the data from",
+            "required": false,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "soundcloud"
             }
           }
         ],
@@ -1377,9 +1561,8 @@
             "type": "string"
           }
         },
-        "artist_id": {
-          "type": "number",
-          "example": 1234
+        "artist": {
+          "$ref": "#/definitions/Artist"
         },
         "album_id": {
           "type": "number",
@@ -1412,7 +1595,7 @@
         "description",
         "duration",
         "genres",
-        "artist_id",
+        "artist",
         "album_id",
         "release_date",
         "title",

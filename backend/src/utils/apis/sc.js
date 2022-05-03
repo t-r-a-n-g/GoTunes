@@ -184,11 +184,18 @@ class SoundCloud {
     return data;
   }
 
-  async searchArtists(q, options) {
+  async searchArtists(q, options, format = true) {
     const res = await this.search("users", { q, ...options });
-    const data = SoundCloud.formatArtistData(res.collection);
+    const data = format
+      ? SoundCloud.formatArtistData(res.collection)
+      : res.collection;
 
     return data;
+  }
+
+  async searchUsers(q, options) {
+    const data = await this.searchArtists(q, options, false);
+    return SoundCloud.formatUserData(data);
   }
 
   async searchAlbums(q, options) {
@@ -210,6 +217,10 @@ class SoundCloud {
     const data = this.formatTrackData(res.collection);
 
     return data;
+  }
+
+  async getUser(id) {
+    return this.getArtist(id);
   }
 
   async getArtist(id) {
@@ -267,7 +278,9 @@ class SoundCloud {
 
   async getTrack(id) {
     const res = await this.get(`/tracks/${id}`);
-    return res;
+    const data = this.formatTrackData(res);
+
+    return data;
   }
 
   async getTrackStreamUrl(track) {

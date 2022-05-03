@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/db");
 
-const Playlist = sequelize.define(
-  "playlist",
+const Artist = sequelize.define(
+  "artist",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,12 +11,12 @@ const Playlist = sequelize.define(
       allowNull: false,
     },
 
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    cover: {
+    avatar: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -26,15 +26,10 @@ const Playlist = sequelize.define(
       allowNull: true,
     },
 
-    duration: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: true,
-    },
-
     kind: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "playlist",
+      defaultValue: "artist",
     },
 
     source: {
@@ -43,7 +38,7 @@ const Playlist = sequelize.define(
       defaultValue: "internal",
     },
   },
-  { tableName: "playlists" }
+  { tableName: "artists" }
 );
 
-module.exports = Playlist;
+module.exports = Artist;

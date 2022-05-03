@@ -3,20 +3,16 @@ const { UserService } = require("../services");
 
 class UserController {
   static async getUser(req, res) {
-    const { userId } = Controller.getParams(req);
+    const { userId, src } = Controller.getParams(req);
+
     try {
-      const user = await UserService.getUser(userId);
-      return res.json(user);
+      const users = await UserService.getUser(userId, src);
+      return res.json(users);
     } catch (err) {
       switch (err.name) {
-        case "NotFoundError":
-          return res
-            .status(404)
-            .json({ errors: { resource: "err-not-found" } });
-
         default:
           console.error(err);
-          return res.status(500).json({ errors: { server: "err-internal" } });
+          return res.status(500);
       }
     }
   }

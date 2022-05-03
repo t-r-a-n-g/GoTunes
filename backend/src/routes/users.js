@@ -9,7 +9,7 @@ router.get("/:userId", (req, res) => {
   /*
     #swagger.path = "/users/{userId}"
     #swagger.tags = ["Users"]
-    #swagger.summary = "internal"
+    #swagger.summary = "soundcloud | internal"
 
     #swagger.parameters["userId"] = {
       in: 'path',
@@ -19,6 +19,14 @@ router.get("/:userId", (req, res) => {
       schema: 123456
     } 
             
+    #swagger.parameters["source"] = {
+      in: "query",
+      description: "Where to get the data from",
+      required: false,
+      type: "string",
+      schema: "soundcloud"
+    }
+    
     #swagger.responses[200] = {
       description: 'success',
       schema: { 
