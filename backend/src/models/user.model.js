@@ -27,6 +27,28 @@ const User = sequelize.define(
       type: DataTypes.STRING(60),
       allowNull: false,
     },
+
+    language: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    soundcloud_username: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    kind: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "user",
+    },
+
+    source: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "internal",
+    },
   },
   { tableName: "users" }
 );

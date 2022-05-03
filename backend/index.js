@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger-output.json");
+const swaggerFile = require("./swagger/output.json");
 
 const db = require("./src/models");
 const routes = require("./src/routes");
@@ -37,10 +37,10 @@ async function checkDB() {
   }
 }
 
+db.createRelations();
 // eslint-disable-next-line no-unused-vars
 async function syncDB(force = false) {
   try {
-    db.createRelations();
     await db.sequelize.sync({ force });
 
     // eslint-disable-next-line no-restricted-syntax
@@ -64,6 +64,12 @@ async function syncDB(force = false) {
     user.addPlaylist(playlist, {
       through: { can_edit: true, is_creator: true },
     });
+
+    const profile = await db.UserProfile.create({
+      biography: `I am ${username} and this is my profile.`,
+    });
+
+    user.setUserProfile(profile);
   };
 
   createDummyData("User 1", "user1@example.com", "user1password");

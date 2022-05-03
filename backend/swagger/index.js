@@ -1,4 +1,5 @@
 const swaggerAutogen = require("swagger-autogen")();
+const definitions = require("./definitions");
 
 const doc = {
   info: {
@@ -12,20 +13,21 @@ const doc = {
   schemes: ["http", "https"],
   consumes: ["application/json"],
   produces: ["application/json"],
-  definitions: {},
+  definitions,
 };
 
-const outputFile = "./swagger-output.json";
+const outputFile = `${__dirname}/output.json`;
 const endpointsFiles = [
-  "./src/routes/auth.js",
-  "./src/routes/artists.js",
-  "./src/routes/albums.js",
-  "./src/routes/playlists.js",
-  "./src/routes/tracks.js",
-  "./src/routes/search.js",
+  `${__dirname}/../src/routes/auth.js`,
+  `${__dirname}/../src/routes/artists.js`,
+  `${__dirname}/../src/routes/albums.js`,
+  `${__dirname}/../src/routes/playlists.js`,
+  `${__dirname}/../src/routes/tracks.js`,
+  `${__dirname}/../src/routes/search.js`,
+  `${__dirname}/../src/routes/users.js`,
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
   // eslint-disable-next-line global-require
-  require("./index"); // Your project's root file
+  require("../index"); // Your project's root file
 });

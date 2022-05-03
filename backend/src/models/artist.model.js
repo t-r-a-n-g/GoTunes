@@ -15,6 +15,28 @@ const Artist = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    kind: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "artist",
+    },
+
+    source: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "internal",
+    },
   },
   { tableName: "artists" }
 );

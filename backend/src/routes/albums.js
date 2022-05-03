@@ -17,36 +17,20 @@ router.get("/:albumId", (req, res) => {
         } 
 
         #swagger.responses[200] = {
-          description: 'success',
-          schema: { 
-            $id: 123,
-			$cover: "http://url-to-cover.com",
-			$description: "Great Album!",
-			$duration: 1324123,
-			$genres: ["Drum 'n' Bass"],
-			$release_date: "1990-08-12",
-			$artist_id: 1234,
-			$title: "album title",
-			$source: "e.g. soundcloud"
-
-          }
+          $ref: '#/definitions/Album'
         }
 
         #swagger.responses[404] = {
           description: 'Album not found',
           schema: { 
-            $errors: {
-                $album: "err-not-found"
-            } 
+            $ref: '#/definitions/ErrorNotFound'
           }
-        } 
+        }
 
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -67,38 +51,21 @@ router.get("/:albumId/tracks", (req, res) => {
           schema: 123456
         } 
 
-        #swagger.responses[200] = {
-          description: 'success',
-          schema: [{ 
-            $id: 123,
-      			$cover: "http://url-to-cover.com",
-      			$description: "Great Track!",
-      			$duration: 1324123,
-      			$genres: ["Drum 'n' Bass"],
-      			$artist_id: 1234,
-      			$album_id: 1234,
-                  $release_date: "1990-08-12",
-      			$title: "track title",
-                $stream_url: "http://stream-url.com/track.mp3",
-      			$source: "e.g. soundcloud"
-          }]
-        }
+        #swagger.responses[200] = [{
+          $ref: '#/definitions/Track'
+        }]
 
         #swagger.responses[404] = {
           description: 'Album not found',
           schema: { 
-            $errors: {
-                $album: "err-not-found"
-            } 
+            $ref: '#/definitions/ErrorNotFound'
           }
         }
-        
+
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */

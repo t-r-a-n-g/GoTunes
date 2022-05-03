@@ -4,6 +4,7 @@ const search = require("./search");
 const tracks = require("./tracks");
 const playlists = require("./playlists");
 const auth = require("./auth");
+const users = require("./users");
 
 module.exports = {
   albums,
@@ -12,4 +13,5 @@ module.exports = {
   tracks,
   playlists,
   auth,
+  users,
 };

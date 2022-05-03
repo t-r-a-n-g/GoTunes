@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "swagger": "node swagger.js",
-    "dev": "nodemon --ignore 'swagger-output.json' index.js",
+    "swagger": "node swagger/index.js",
+    "dev": "nodemon index.js",
     "migrate": "node migrate.js",
     "start": "node index.js",
     "lint": "echo '----- Checking Backend...' && npx prettier --debug-check . && eslint --ext .js . && echo '----- Done!'",

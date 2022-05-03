@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
 import MusicPlayerExtendedButtons from "@components/MusicPlayerExtendetButtons";
+import Library from "@pages/Library";
 import SearchResultGenre from "./pages/SearchResultGenre";
 import SearchGenre from "./pages/SearchGenre";
 import Login from "./pages/Login";
@@ -14,11 +15,15 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
-import Library from "./pages/Library";
+import Playlist from "./pages/Playlist";
 
 function App() {
   // state for songQueue
   const [songQueue, setSongQueue] = useState([]);
+
+  // state for choosing between Soundcloud and internal playlists source
+  // eslint-disable-next-line
+  const [playlistSource, setPlaylistSource] = useState("soundcloud");
 
   // This creates a variable representing the audio element. To connect the player with buttons (our own controls),
   // we can then call its methods, such as audioInstance.pause().
@@ -48,10 +53,10 @@ function App() {
     glassBg: false,
     // TO DO: SPACEBAR-OPTION NOT WORKING PROBABLY
     spaceBar: true,
+    showMediaSession: true,
     autoHiddenCover: false,
     mobileMediaQuery:
       "(max-width: 1000000px) and (orientation: landscape), (max-width: 1000000px) and (orientation: portrait)",
-    showMediaSession: true,
     clearPriorAudioLists: audioListToggle,
     extendsContent: (
       <MusicPlayerExtendedButtons
@@ -135,7 +140,19 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/playlists/:playlistId"
+                element={
+                  <ProtectedRoute>
+                    <Playlist
+                      playlistSource={playlistSource}
+                      setSongQueue={setSongQueue}
+                    />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
+
             <div id="playerContainer">
               <div id="playerHeartPiece">
                 <MusicPlayer playerOptions={playerOptions} />

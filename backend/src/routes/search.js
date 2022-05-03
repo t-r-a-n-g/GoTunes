@@ -22,7 +22,7 @@ router.get("/:q", (req, res) => {
           description: 'Max search results to retrieve',
           required: false,
           type: 'integer',
-          schema: 50
+          schema: 20
         } 
 
         #swagger.parameters["offset"] = {
@@ -41,9 +41,7 @@ router.get("/:q", (req, res) => {
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-              $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -69,7 +67,7 @@ router.get("/artists/:q", (req, res) => {
           description: 'Max search results to retrieve',
           required: false,
           type: 'integer',
-          schema: 50
+          schema: 20
         } 
 
         #swagger.parameters["offset"] = {
@@ -83,21 +81,14 @@ router.get("/artists/:q", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: [{ 
-            $id: 0,
-        	  $name: 'artist name',
-        	  $avatar: 'artist avatar url',
-        	  $description: 'artist description',
-            $kind: 'artist',
-        	  $source: 'e.g. soundcloud',
+            $ref: '#/definitions/Artist'
           }]
         }
 
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -123,7 +114,7 @@ router.get("/albums/:q", (req, res) => {
           description: 'Max search results to retrieve',
           required: false,
           type: 'integer',
-          schema: 50
+          schema: 20
         } 
 
         #swagger.parameters["offset"] = {
@@ -137,28 +128,14 @@ router.get("/albums/:q", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: [{ 
-            $id: 123,
-      			$cover: "http://url-to-cover.com",
-      			$description: "Great Album!",
-      			$duration: 1324123,
-      			$genres: ["Drum 'n' Bass"],
-      			$release_date: "1990-08-12",
-      			$artist_id: 1234,
-      			$title: "album title",
-            $artist: {
-              
-            }
-            $kind: "album",
-      			$source: "e.g. soundcloud"
+            $ref: '#/definitions/Album'
           }]
         }
 
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -184,7 +161,7 @@ router.get("/playlists/:q", (req, res) => {
           description: 'Max search results to retrieve',
           required: false,
           type: 'integer',
-          schema: 50
+          schema: 20
         } 
 
         #swagger.parameters["offset"] = {
@@ -197,26 +174,15 @@ router.get("/playlists/:q", (req, res) => {
 
         #swagger.responses[200] = {
           description: 'success',
-          schema: [{ 
-            $id: 123,
-      			$cover: "http://url-to-cover.com",
-      			$description: "Great Playlist!",
-      			$duration: 1324123,
-      			$genres: ["Drum 'n' Bass"],
-      			$user_id: 1234,
-      			$title: "playlist title",
-            $user: {},
-            $kind: "playlist",
-      			$source: "e.g. soundcloud"
+          schema: [{
+            $ref: '#/definitions/UserPlaylist'
           }]
         }
 
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: "#/definitions/ErrorInternal"
           }
         } 
     */
@@ -242,7 +208,7 @@ router.get("/tracks/:q", (req, res) => {
           description: 'Max search results to retrieve',
           required: false,
           type: 'integer',
-          schema: 50
+          schema: 20
         } 
 
         #swagger.parameters["offset"] = {
@@ -256,32 +222,74 @@ router.get("/tracks/:q", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: [{ 
-            $id: 123,
-      			$cover: "http://url-to-cover.com",
-      			$description: "Great Track!",
-      			$duration: 1324123,
-      			$genres: ["Drum 'n' Bass"],
-      			$artist_id: 1234,
-      			$album_id: 1234,
-            $release_date: "1990-08-12",
-      			$title: "album title",
-            $stream_url: "http://stream-url.com/track.mp3",
-            $kind: "track",
-      			$source: "e.g. soundcloud"
+            $ref: '#/definitions/Track'
           }]
         }
 
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
 
   search.tracks(req, res);
+});
+
+router.get("/users/:q", (req, res) => {
+  /*
+        #swagger.path = "/search/users/{q}"
+        #swagger.tags = ["Search"]
+        #swagger.summary = "soundcloud | internal"
+
+        #swagger.parameters["q"] = {
+          in: 'path',
+          description: 'The search query',
+          required: true,
+          type: 'string',
+          schema: 'drum and bass'
+        } 
+
+        #swagger.parameters["limit"] = {
+          in: 'query',
+          description: 'Max search results to retrieve',
+          required: false,
+          type: 'integer',
+          schema: 20
+        } 
+
+        #swagger.parameters["offset"] = {
+          in: 'query',
+          description: 'Skip the first X results',
+          required: false,
+          type: 'integer',
+          schema: 0
+        } 
+        
+        #swagger.parameters["src"] = {
+          in: 'query',
+          description: 'Where to get the data from',
+          required: false,
+          type: 'string',
+          schema: "soundcloud"
+        }
+
+        #swagger.responses[200] = {
+          description: 'success',
+          schema: [{ 
+            $ref: '#/definitions/User'
+          }]
+        }
+
+        #swagger.responses[500] = {
+          description: 'Internal error',
+          schema: { 
+            $ref: '#/definitions/ErrorInternal'
+          }
+        } 
+  */
+  search.users(req, res);
 });
 
 module.exports = router;

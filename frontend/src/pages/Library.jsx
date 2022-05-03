@@ -1,79 +1,109 @@
-import React, { useEffect, useState } from "react";
+import BigCard from "@components/BigCard";
+import CreatePlaylist from "@components/CreatePlaylistButton";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
-import PropTypes from "prop-types";
 import Searchbar from "../components/Search/Searchbar";
-import SearchResults from "../components/Search/SearchResults";
-import SearchNavbar from "../components/Search/SearchNavbar";
-import { searchAllEndpoint } from "../components/API";
 
-export default function Library(props) {
-  const { songQueue, setSongQueue } = props;
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-  const [responseStatus, setResponseStatus] = useState();
+/* Library Page
+initinally Create Playlist Card and Favourites Card
+New Card mounts after Playlist is created 
+*/
 
-  // Function that updates the searchTerm everytime the input field changes
-  function handleSearch(event) {
-    setSearchTerm(event.target.value);
-  }
+/* Create Playlist Button
+Opens Modal with Form
+Choose Playlist Name
+Submit Button
+Playlist displays as new Card on Library Page
+Automatically forwarded to Search Page to add songs
+ */
 
-  /* useEffect: everytime the component rerenders (everytime searchTerm gets updated), 
-    an API get request is sent with updated URL */
-  /* with setTimeout API request only is sent after 0.5s of not typing to avoid requests 
-    for every character the user is typing, time can be adjusted (now: 300 millisecs) */
+// Modal Component that opens up when Create New Playlist Button is clicked
 
-  // setting state for API search Endpoint. State is updated by clicking on component in SearchNavbar
-  // by default initial search is to search for all kinds
-  const [searchEndpoint, setSearchEndpoint] = useState(searchAllEndpoint);
+/* Favourite Songs is Playlist created by default */
 
-  // setting state for which category to search for
-  const [searchFilter, setSearchFilter] = useState("All");
+/* BigCard Component
+150px x 150px Cover Image
+H3 subheading
+     */
+
+/* Playlist Page
+Displays Songs in a List with following information:
+Song Title, Artist(s), 3dots for settings */
+
+export default function Library() {
+  const { t } = useTranslation();
+  const [playlist, setPlayList] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const userID = "2";
+
+  /* USEEFFECT TO  GET PLAYLISTS FROM DB AND UPDATE STATE */
 
   useEffect(() => {
-    const timeOut = setTimeout(() => {
-      axios
-        .get(`${searchEndpoint}${searchTerm}?limit=30`)
-        .then((response) => {
-          setResponseStatus(response.status);
-          /* console.log(response); */
-          setSearchResult(response.data);
-        })
-        .catch((error) => {
-          setResponseStatus(error.response.status);
-        });
-    }, 300);
-    return function cleanUp() {
-      clearTimeout(timeOut);
-    };
-  }, [searchTerm, searchEndpoint]);
+    axios
+      .get(
+        `http://localhost:5000/api/users/${userID}/playlists?source=internal`
+      )
+      .then((res) => {
+        console.error("Playlist query: ", res);
+        setPlayList(res.data);
+        /*         console.log(res.data); */
+        setDataLoaded(true);
+      });
+  }, []);
 
   return (
-    <div>
-      <Searchbar
-        searchTerm={searchTerm}
-        // eslint-disable-next-line
-        handleSearch={handleSearch}
-      />
-      <SearchNavbar
-        setSearchEndpoint={setSearchEndpoint}
-        searchFilter={searchFilter}
-        setSearchFilter={setSearchFilter}
-      />
-      <SearchResults
-        searchResult={searchResult}
-        responseStatus={responseStatus}
-        songQueue={songQueue}
-        setSongQueue={setSongQueue}
-        searchFilter={searchFilter}
-      />
+    <div id="library-page">
+      {/* Heading */}
+      {/* TO DO: Site Nav */}
+      {/* TO DO: Searchbar */}
+      {/* Optional: Switch to small Card View Toggle */}
+      {/* Create Playlist Button */}
+      <Container>
+        <Grid container gap={2} sx={{ justifyContent: "space-between" }}>
+          <Grid item xs={12} md={12} lg={12}>
+            <h1 style={{ margin: 0, marginTop: "4vh", textAlign: "left" }}>
+              {t("library-main-heading")}
+            </h1>
+          </Grid>
+          <Grid item xs={12} md={12} lg={12}>
+            <Searchbar />
+          </Grid>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
+            <CreatePlaylist />
+          </Grid>
+          <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
+            <BigCard />
+          </Grid>
+          {dataLoaded
+            ? playlist.map((pl) => {
+                /*  console.log(
+                  "CHECK: ",
+                  pl.playlist.cover,
+                  typeof pl.playlist.cover
+                ); */
+                return (
+                  <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
+                    <BigCard
+                      cover={
+                        pl.playlist.cover === "" || pl.playlist.cover === null
+                          ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
+                          : pl.playlist.cover
+                      }
+                      title={pl.playlist.title}
+                      key={pl.playlistId}
+                    />
+                  </Grid>
+                );
+              })
+            : null}
+        </Grid>
+      </Container>
+
+      {/* QUERY DB FOR PLAYLISTS AND RENDER A BIG CARD FOR ALL
+       */}
     </div>
   );
 }
-Library.propTypes = {
-  setSongQueue: PropTypes.shape(),
-  songQueue: PropTypes.shape(),
-};
-Library.defaultProps = {
-  setSongQueue: null,
-  songQueue: null,
-};

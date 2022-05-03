@@ -34,5 +34,8 @@
   "albums": "Albums",
   "playlist": "Playlist",
   "playlists": "Playlists",
-  "search-no-results": "No results found"
+  "search-no-results": "No results found",
+  "modal-form-createnewplaylist-heading": "Create new Playlist",
+  "modal-form-createnewplaylist-button": "Create Playlist",
+  "library-main-heading": "Music"
 }

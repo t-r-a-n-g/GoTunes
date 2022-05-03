@@ -80,14 +80,18 @@ class PlaylistController {
     let resData = {};
 
     try {
-      const playlist = await PlaylistService.getPlaylist(playlistId, src);
+      const playlist = await PlaylistService.getPlaylist(
+        playlistId,
+        src,
+        req.user
+      );
       resData = playlist;
     } catch (err) {
       switch (err.name) {
         case "NotFoundError":
           return res
             .status(404)
-            .json({ errors: { playlist: "err-not-found" } });
+            .json({ errors: { resource: "err-not-found" } });
         default:
           console.error(err);
           return res.status(500).json({ errors: { server: "err-internal" } });
@@ -109,7 +113,7 @@ class PlaylistController {
         case "NotFoundError":
           return res
             .status(404)
-            .json({ errors: { playlist: "err-not-found" } });
+            .json({ errors: { resource: "err-not-found" } });
         default:
           console.error(err);
           return res.status(500).json({ errors: { server: "err-internal" } });
@@ -117,6 +121,31 @@ class PlaylistController {
     }
 
     return res.json(resData);
+  }
+
+  static async addTrack(req, res) {
+    const { playlistId, track } = Controller.getParams(req);
+
+    try {
+      const data = await PlaylistService.addTrack(playlistId, track, req.user);
+      return res.json(data);
+    } catch (err) {
+      switch (err.name) {
+        case "NotFoundError":
+          return res
+            .status(404)
+            .json({ errors: { resource: "err-not-found" } });
+
+        case "AuthorizationError":
+          return res
+            .status(400)
+            .json({ errors: { auth: "err-not-authorized" } });
+
+        default:
+          console.error(err);
+          return res.status(500).json({ errors: { server: "err-internal" } });
+      }
+    }
   }
 }
 

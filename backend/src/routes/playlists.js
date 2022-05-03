@@ -9,7 +9,8 @@ router.delete("/:playlistId", verifyToken, (req, res) => {
   /*
         #swagger.path = "/playlists/{playlistId}"
         #swagger.tags = ["Playlists"]
-
+        #swagger.summary = "internal"
+  
         #swagger.parameters["playlistId"] = {
           in: 'path',
           description: 'The playlist id',
@@ -28,36 +29,35 @@ router.delete("/:playlistId", verifyToken, (req, res) => {
         #swagger.responses[403] = {
           description: 'Not authorized',
           schema: { 
-            $errors: {
-                $auth: "err-auth-not-authorized"
-            } 
+            $ref: '#/definitions/ErrorForbidden'
           }
         }
         
         #swagger.responses[403] = {
           description: 'No auth token provided',
           schema: { 
-            $errors: {
-                $auth: "err-auth-no-token"
-            } 
+            $ref: '#/definitions/ErrorNoToken'
+          }
+        }
+
+        #swagger.responses[403] = {
+          description: 'Invalid user',
+          schema: {
+            $ref: '#/definitions/ErrorInvalidUser'
           }
         }
         
         #swagger.responses[404] = {
           description: "Playlist not found",
           schema: {
-            $errors: {
-              $playlist: "err-not-found"
-            }
+            $ref: '#/definitions/ErrorNotFound'
           }
         }
         
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -69,6 +69,7 @@ router.post("/", verifyToken, (req, res) => {
   /*
         #swagger.path = "/playlists"
         #swagger.tags = ["Playlists"]
+        #swagger.summary = "internal"
 
         #swagger.parameters["title"] = {
           in: 'body',
@@ -81,41 +82,35 @@ router.post("/", verifyToken, (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: { 
-            $id: 123,
-      			$cover: "http://url-to-cover.com",
-      			$description: "Great Playlist!",
-      			$duration: 1324123,
-      			$genres: ["Drum 'n' Bass"],
-      			$user_id: 1234,
-      			$title: "playlist title",
-      			$source: "e.g. soundcloud"
-          }
-        }
-
-        #swagger.responses[403] = {
-          description: 'Not authorized',
-          schema: { 
-            $errors: {
-                $auth: "err-auth-not-authorized"
-            } 
+            $ref: '#/definitions/UserPlaylist'
           }
         }
         
         #swagger.responses[403] = {
+          description: 'Not authorized',
+          schema: { 
+            $ref: '#/definitions/ErrorForbidden'
+          }
+        }
+
+        #swagger.responses[403] = {
           description: 'No auth token provided',
           schema: { 
-            $errors: {
-                $auth: "err-auth-no-token"
-            } 
+            $ref: '#/definitions/ErrorNoToken'
+          }
+        }
+
+        #swagger.responses[403] = {
+          description: 'Invalid user',
+          schema: {
+            $ref: '#/definitions/ErrorInvalidUser'
           }
         }
         
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -127,6 +122,7 @@ router.get("/:playlistId", (req, res) => {
   /*
         #swagger.path = "/playlists/{playlistId}"
         #swagger.tags = ["Playlists"]
+        #swagger.summary = "internal | soundcloud"
 
         #swagger.parameters["playlistId"] = {
           in: 'path',
@@ -139,32 +135,21 @@ router.get("/:playlistId", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: { 
-            $id: 123,
-      			$cover: "http://url-to-cover.com",
-      			$description: "Great Playlist!",
-      			$duration: 1324123,
-      			$genres: ["Drum 'n' Bass"],
-      			$user_id: 1234,
-      			$title: "playlist title",
-      			$source: "e.g. soundcloud"
+            $ref: '#/definitions/UserPlaylist'
           }
         }
 
         #swagger.responses[404] = {
-          description: 'Playlist not found',
-          schema: { 
-            $errors: {
-                $playlist: "err-not-found"
-            } 
+          description: "Playlist not found",
+          schema: {
+            $ref: '#/definitions/ErrorNotFound'
           }
         }
         
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -176,6 +161,7 @@ router.get("/:playlistId/tracks", (req, res) => {
   /*
         #swagger.path = "/playlists/{playlistId}/tracks"
         #swagger.tags = ["Playlists"]
+        #swagger.summary = "soundcloud"
 
         #swagger.parameters["playlistId"] = {
           in: 'path',
@@ -188,35 +174,21 @@ router.get("/:playlistId/tracks", (req, res) => {
         #swagger.responses[200] = {
           description: 'success',
           schema: [{ 
-            $id: 123,
-      			$cover: "http://url-to-cover.com",
-      			$description: "Great Track!",
-      			$duration: 1324123,
-      			$genres: ["Drum 'n' Bass"],
-      			$artist_id: 1234,
-      			$album_id: 1234,
-                  $release_date: "1990-08-12",
-      			$title: "track title",
-      			$stream_url: "http://stream-url.com/track.mp3",
-                $source: "e.g. soundcloud"
+            $ref: '#/definitions/Track'
           }]
         }
 
         #swagger.responses[404] = {
-          description: 'Playlist not found',
-          schema: { 
-            $errors: {
-                $playlist: "err-not-found"
-            } 
+          description: "Playlist not found",
+          schema: {
+            $ref: '#/definitions/ErrorNotFound'
           }
         }
         
         #swagger.responses[500] = {
           description: 'Internal error',
           schema: { 
-            $errors: {
-                $server: "err-internal"
-            } 
+            $ref: '#/definitions/ErrorInternal'
           }
         } 
     */
@@ -224,4 +196,73 @@ router.get("/:playlistId/tracks", (req, res) => {
   playlist.getPlaylistTracks(req, res);
 });
 
+router.post("/:playlistId/tracks", verifyToken, (req, res) => {
+  /*
+    #swagger.path = "/playlists/{playlistId}/tracks"
+    #swagger.tags = ["Playlists"]
+    #swagger.summary = "internal"
+
+    #swagger.parameters["playlistId"] = {
+      in: 'path',
+      description: 'The playlist id',
+      required: true,
+      type: 'number',
+      schema: 123456
+    } 
+    
+    #swagger.parameters["track"] = {
+      in: 'body',
+      description: "the track to add",
+      required: true,
+      type: "object",
+      schema: {
+        $id: 123,
+        $source: "internal | soundcloud"
+      }
+    } 
+
+    #swagger.responses[200] = {
+      description: 'success',
+      schema: { 
+        $id: 123,
+      }
+    }
+
+    #swagger.responses[403] = {
+      description: 'Not authorized',
+      schema: { 
+        $ref: '#/definitions/ErrorForbidden'
+      }
+    }
+    
+    #swagger.responses[403] = {
+      description: 'No auth token provided',
+      schema: { 
+        $ref: '#/definitions/ErrorNoToken'
+      }
+    }
+
+    #swagger.responses[403] = {
+      description: 'Invalid user',
+      schema: {
+        $ref: '#/definitions/ErrorInvalidUser'
+      }
+    }
+    
+    #swagger.responses[404] = {
+      description: "Playlist not found",
+      schema: {
+        $ref: '#/definitions/ErrorNotFound'
+      }
+    }
+        
+    #swagger.responses[500] = {
+      description: 'Internal error',
+      schema: { 
+        $ref: '#/definitions/ErrorInternal'
+      }
+    } 
+  */
+  playlist.addTrack(req, res);
+});
 module.exports = router;
