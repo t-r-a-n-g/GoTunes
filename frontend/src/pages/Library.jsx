@@ -33,11 +33,11 @@ H3 subheading
 Displays Songs in a List with following information:
 Song Title, Artist(s), 3dots for settings */
 
-export default function Library(/* props */) {
+export default function Library() {
   const { t } = useTranslation();
   const [playlist, setPlayList] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const userID = "1";
+  const userID = "2";
 
   /* USEEFFECT TO  GET PLAYLISTS FROM DB AND UPDATE STATE */
 
@@ -47,11 +47,13 @@ export default function Library(/* props */) {
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
       )
       .then((res) => {
-        /*         console.log(res); */
+        console.error("Playlist query: ", res);
         setPlayList(res.data);
+        /*         console.log(res.data); */
         setDataLoaded(true);
       });
   }, []);
+
   return (
     <div id="library-page">
       {/* Heading */}
@@ -75,19 +77,33 @@ export default function Library(/* props */) {
           <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <BigCard />
           </Grid>
+          {dataLoaded
+            ? playlist.map((pl) => {
+                /*  console.log(
+                  "CHECK: ",
+                  pl.playlist.cover,
+                  typeof pl.playlist.cover
+                ); */
+                return (
+                  <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
+                    <BigCard
+                      cover={
+                        pl.playlist.cover === "" || pl.playlist.cover === null
+                          ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
+                          : pl.playlist.cover
+                      }
+                      title={pl.playlist.title}
+                      key={pl.playlistId}
+                    />
+                  </Grid>
+                );
+              })
+            : null}
         </Grid>
       </Container>
-      {/*  */}
 
       {/* QUERY DB FOR PLAYLISTS AND RENDER A BIG CARD FOR ALL
        */}
-      {dataLoaded
-        ? playlist.map((pl) => {
-            return (
-              <BigCard cover={pl.playlist.cover} title={pl.playlist.title} />
-            );
-          })
-        : null}
     </div>
   );
 }
