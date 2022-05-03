@@ -2,18 +2,17 @@ import React from "react";
 import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
 import PropTypes from "prop-types";
+import "./MusicPlayer.less";
 
 function MusicPlayer(props) {
   return (
     <div>
-      {/* eslint-disable-next-line */}
-      <ReactJkMusicPlayer {...props.playerOptions} showMediaSession />
-
-      {/*     FURTHER BUTTONS 
-            <button onClick={() => audioInstance.play()}>play</button>
-            <button onClick={() => audioInstance.pause()}>pause</button>
-            
-            <button onClick={() => audioInstance.load()}>reload</button> */}
+      <ReactJkMusicPlayer
+        /* eslint-disable-next-line */
+        {...props.playerOptions}
+        icon={{}}
+        className="playerClass"
+      />
     </div>
   );
 }

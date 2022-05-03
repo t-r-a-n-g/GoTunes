@@ -17,6 +17,7 @@ const themeGlobal = createTheme({
     },
     background: {
       default: "#121212",
+      secondary: "#272626",
     },
     text: {
       primary: "#f2f2f2",

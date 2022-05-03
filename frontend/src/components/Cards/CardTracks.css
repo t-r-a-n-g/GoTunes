@@ -1,38 +1,58 @@
-#card-container {
-  display: grid;
-  width: 25vw;
+/* root vars for container, so that they match evenly */
+:root {
+  --min-width: 40ch;
+  --width: 25vw;
+}
+#whole-component-box {
   margin: auto;
+  width: fit-content;
 }
 
-#card-cover-image-tracks {
-  width: 64px;
-  height: 64px;
+#card-container {
+  display: grid;
+  min-width: var(--min-width);
+  width: var(--width);
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+}
+#card-wrap-for-button-placement {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  border-radius: 2ch;
+}
+
+#card-tracks-cover-image-tracks {
+  width: fit-content;
+  height: fit-content;
   align-self: center;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 5;
   padding-right: 5px;
+  margin-left: 1rem;
+  border-radius: 2ch;
 }
 
-#card-heading {
+#card-tracks-heading {
   grid-column-start: 2;
-  grid-column-end: 4;
+  grid-column-end: 10;
   grid-row-start: 2;
   grid-row-end: 3;
   margin: 0;
   padding-top: 0;
   text-align: left;
-  margin: 1rem 0 0 0;
+  font-size: 1.5rem;
 }
 
-#card-subheading {
+#card-tracks-subheading {
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
   margin: 0;
   text-align: left;
+  font-size: 1.2rem;
 }
 
 #card-divider {
@@ -41,12 +61,14 @@
   padding-top: 1rem;
 }
 
-/* #card-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+#card-add-to-quere-button {
+  font-size: 3rem;
+  width: calc(var(--min-width) / 9);
 }
-#card-cover-image {
-  width: 64px;
-  position: relative;
-} */
+
+@media screen and (max-width: 768px) {
+  #card-add-to-quere-button {
+    font-size: 2.5rem;
+    width: 3ch;
+  }
+}

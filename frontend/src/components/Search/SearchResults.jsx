@@ -14,6 +14,7 @@ export default function SearchResults(props) {
     /* songQueue, */
     setSongQueue,
     searchFilter,
+    setAudioListToggle,
   } = props;
 
   return (
@@ -35,6 +36,7 @@ export default function SearchResults(props) {
                     },
                   ]);
                 }}
+                setAudioListToggle={setAudioListToggle}
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
@@ -150,6 +152,7 @@ SearchResults.propTypes = {
   responseStatus: PropTypes.number,
   setSongQueue: PropTypes.func,
   searchFilter: PropTypes.string,
+  setAudioListToggle: PropTypes.string,
 };
 
 SearchResults.defaultProps = {
@@ -157,4 +160,5 @@ SearchResults.defaultProps = {
   responseStatus: 404,
   setSongQueue: null,
   searchFilter: null,
+  setAudioListToggle: "",
 };
