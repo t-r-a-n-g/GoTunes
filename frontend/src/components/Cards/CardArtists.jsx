@@ -1,19 +1,42 @@
 import React from "react";
-
+import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
 import "./CardArtists.css";
+import { IconButton } from "@mui/material";
 
 function CardArtists({ cover, name, description, onClick }) {
   return (
-    <div onClick={onClick} aria-hidden="true">
-      <div id="card-container">
-        <img id="card-cover-image-artist" src={cover} alt="cover" />
-        <h3 id="card-heading">{name}</h3>
-        <p id="card-subheading">{description}</p>
-      </div>
-      <Divider id="card-divider" />
-    </div>
+    <Box id="card-artists-whole-component-box">
+      <Box
+        id="card-artists-wrap-for-button-placement"
+        sx={{ backgroundColor: "background.secondary" }}
+        onClick={onClick}
+        aria-hidden="true"
+      >
+        <div id="card-artists-container" style={{ whiteSpace: "nowrap" }}>
+          <img id="card-cover-image-artist" src={cover} alt="cover" />
+          <Box
+            component="div"
+            sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
+            id="card-artists-heading"
+          >
+            {name}
+          </Box>
+          <Box
+            component="div"
+            sx={{
+              color: "text.secondary",
+            }}
+            id="card-artists-subheading"
+          >
+            {description}
+          </Box>
+        </div>
+        <IconButton />
+      </Box>
+      <Divider id="card-artists-divider" />
+    </Box>
   );
 }
 

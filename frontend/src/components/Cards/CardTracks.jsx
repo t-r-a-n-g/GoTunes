@@ -15,15 +15,14 @@ function CardTracks(props) {
   };
 
   return (
-    // New style with grid mui
-    <Box id="whole-component-box">
+    <Box id="card-tracks-whole-component-box">
       <Box
-        id="card-wrap-for-button-placement"
+        id="card-tracks-wrap-for-button-placement"
         sx={{ backgroundColor: "background.secondary" }}
       >
         <div
           style={{ whiteSpace: "nowrap" }}
-          id="card-container"
+          id="card-tracks-container"
           onClick={onClick}
           aria-hidden="true"
         >
@@ -46,17 +45,18 @@ function CardTracks(props) {
           </Box>
         </div>
         <IconButton
+          id="card-tracks-add-to-quere-button"
           onClick={(e) => {
             handleAudioListToggle(e);
           }}
         >
           <AddCircleIcon
-            id="card-add-to-quere-button"
+            id="card-tracks-menu-button"
             sx={{ color: "primary.main" }}
           />
         </IconButton>
       </Box>
-      <Divider id="card-divider" />
+      <Divider id="card-tracks-divider" />
     </Box>
   );
 }
