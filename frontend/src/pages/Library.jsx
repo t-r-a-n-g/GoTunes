@@ -47,9 +47,9 @@ export default function Library() {
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
       )
       .then((res) => {
-        console.log("Playlist query: ", res);
+        console.error("Playlist query: ", res);
         setPlayList(res.data);
-        console.log(res.data);
+        /*         console.log(res.data); */
         setDataLoaded(true);
       });
   }, []);
@@ -79,11 +79,11 @@ export default function Library() {
           </Grid>
           {dataLoaded
             ? playlist.map((pl) => {
-                console.log(
+                /*  console.log(
                   "CHECK: ",
                   pl.playlist.cover,
                   typeof pl.playlist.cover
-                );
+                ); */
                 return (
                   <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
                     <BigCard

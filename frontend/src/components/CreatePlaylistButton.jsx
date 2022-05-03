@@ -48,7 +48,7 @@ export default function CreatePlaylist() {
   };
 
   const savePlaylist = () => {
-    console.log(playlistTitle);
+    /*     console.log(playlistTitle); */
     axios
       .post(
         "http://localhost:5000/api/playlists",
@@ -57,7 +57,7 @@ export default function CreatePlaylist() {
       )
       .then((res) => {
         // Add Snackbar
-        console.log("ADD PLAYLIST TO DB RESPONSE: ", res);
+        console.error("ADD PLAYLIST TO DB RESPONSE: ", res);
       });
   };
   return (
