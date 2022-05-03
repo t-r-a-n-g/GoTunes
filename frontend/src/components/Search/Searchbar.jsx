@@ -13,7 +13,7 @@ function Searchbar(props) {
   const { searchTerm, handleSearch } = props;
 
   return (
-    <div>
+    <div id="searchbar-container">
       <TextField
         value={searchTerm}
         onChange={handleSearch}
@@ -23,7 +23,7 @@ function Searchbar(props) {
         fullWidth
         id="searchbar"
         label={t("searchbar-label")}
-        variant="outlined"
+        variant="filled"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

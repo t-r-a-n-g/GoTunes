@@ -70,7 +70,7 @@ export default function Search(props) {
   );
 }
 Search.propTypes = {
-  setSongQueue: PropTypes.shape(),
+  setSongQueue: PropTypes.func,
   songQueue: PropTypes.shape(),
 };
 Search.defaultProps = {

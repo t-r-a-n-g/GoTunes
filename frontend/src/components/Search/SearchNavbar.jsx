@@ -17,7 +17,7 @@ export default function SearchNavbar(props) {
   const { setSearchEndpoint, searchFilter, setSearchFilter } = props;
 
   return (
-    <Stack direction="row" spacing={4}>
+    <Stack direction="row" spacing={1} id="searchnavbar-container">
       <Chip
         className="nav-chip"
         label={t("search-all")}
@@ -75,7 +75,7 @@ export default function SearchNavbar(props) {
 }
 
 SearchNavbar.propTypes = {
-  setSearchEndpoint: PropTypes.string,
+  setSearchEndpoint: PropTypes.func,
   setSearchFilter: PropTypes.func,
   searchFilter: PropTypes.string,
 };

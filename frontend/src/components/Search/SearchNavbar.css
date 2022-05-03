@@ -1,3 +1,16 @@
+#searchnavbar-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .nav-chip {
   font-size: 1rem;
+}
+
+/* Media query for mobile */
+@media only screen and (max-width: 400px) {
+  .nav-chip {
+    font-size: 0.5rem;
+  }
 }

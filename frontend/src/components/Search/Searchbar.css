@@ -1,3 +1,8 @@
+#searchbar-container {
+  margin: 1rem;
+}
+
 #searchbar {
+  width: 100%;
   color: black;
 }

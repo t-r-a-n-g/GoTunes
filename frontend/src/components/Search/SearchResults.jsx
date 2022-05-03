@@ -148,7 +148,7 @@ SearchResults.propTypes = {
   // eslint-disable-next-line
   searchResult: PropTypes.array,
   responseStatus: PropTypes.number,
-  setSongQueue: PropTypes.shape(),
+  setSongQueue: PropTypes.func,
   searchFilter: PropTypes.string,
 };
 
