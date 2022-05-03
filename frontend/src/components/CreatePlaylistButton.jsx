@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
+/* import Stack from "@mui/material/Stack"; */
 /* import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert"; */
 import { useTranslation } from "react-i18next";
@@ -48,7 +48,7 @@ export default function CreatePlaylist() {
   };
 
   const savePlaylist = () => {
-    console.log(playlistTitle);
+    /*     console.log(playlistTitle); */
     axios
       .post(
         "http://localhost:5000/api/playlists",
@@ -57,7 +57,7 @@ export default function CreatePlaylist() {
       )
       .then((res) => {
         // Add Snackbar
-        console.log("ADD PLAYLIST TO DB RESPONSE: ", res);
+        console.error("ADD PLAYLIST TO DB RESPONSE: ", res);
       });
   };
   return (

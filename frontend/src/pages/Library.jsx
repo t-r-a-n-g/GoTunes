@@ -47,9 +47,9 @@ export default function Library() {
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
       )
       .then((res) => {
-        console.log("Playlist query: ", res);
+        /*         console.log("Playlist query: ", res); */
         setPlayList(res.data);
-        console.log(res.data);
+        /*         console.log(res.data); */
         setDataLoaded(true);
       });
   }, []);
