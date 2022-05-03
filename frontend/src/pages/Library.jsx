@@ -33,7 +33,7 @@ H3 subheading
 Displays Songs in a List with following information:
 Song Title, Artist(s), 3dots for settings */
 
-export default function Library(/* props */) {
+export default function Library() {
   const { t } = useTranslation();
   const [playlist, setPlayList] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -47,8 +47,9 @@ export default function Library(/* props */) {
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
       )
       .then((res) => {
-        /*         console.log(res); */
+        console.log("Playlist query: ", res);
         setPlayList(res.data);
+        console.log(res.data);
         setDataLoaded(true);
       });
   }, []);
@@ -84,7 +85,11 @@ export default function Library(/* props */) {
       {dataLoaded
         ? playlist.map((pl) => {
             return (
-              <BigCard cover={pl.playlist.cover} title={pl.playlist.title} />
+              <BigCard
+                cover={pl.playlist.cover}
+                title={pl.playlist.title}
+                key={pl.playlistId}
+              />
             );
           })
         : null}
