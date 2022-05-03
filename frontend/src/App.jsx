@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
+import Library from "./pages/Library";
 
 function App() {
   // state for songQueue
@@ -123,6 +124,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <SearchResultGenre />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/library"
+                element={
+                  <ProtectedRoute>
+                    <Library />
                   </ProtectedRoute>
                 }
               />
