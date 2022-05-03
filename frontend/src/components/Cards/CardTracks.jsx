@@ -1,19 +1,63 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { IconButton } from "@mui/material";
+import Box from "@mui/material/Box";
 import "./CardTracks.css";
 
 function CardTracks(props) {
-  const { cover, title, artist, onClick } = props;
+  const { cover, title, artist, onClick, setAudioListToggle } = props;
+
+  const handleAudioListToggle = () => {
+    setAudioListToggle(false);
+    console.warn("Warteschlange on");
+  };
+
   return (
-    <div onClick={onClick} aria-hidden="true">
-      <div id="card-container">
-        <img id="card-cover-image-tracks" src={cover} alt="cover" />
-        <h3 id="card-heading">{title}</h3>
-        <p id="card-subheading">{artist}</p>
-      </div>
+    // New style with grid mui
+    <Box id="whole-component-box">
+      <Box
+        id="card-wrap-for-button-placement"
+        sx={{ backgroundColor: "background.secondary" }}
+      >
+        <div
+          style={{ whiteSpace: "nowrap" }}
+          id="card-container"
+          onClick={onClick}
+          aria-hidden="true"
+        >
+          <img id="card-tracks-cover-image-tracks" src={cover} alt="cover" />
+          <Box
+            component="div"
+            sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
+            id="card-tracks-heading"
+          >
+            {title}
+          </Box>
+          <Box
+            component="div"
+            id="card-tracks-subheading"
+            sx={{
+              color: "text.secondary",
+            }}
+          >
+            {artist}
+          </Box>
+        </div>
+        <IconButton
+          onClick={(e) => {
+            handleAudioListToggle(e);
+          }}
+        >
+          <AddCircleIcon
+            id="card-add-to-quere-button"
+            sx={{ color: "primary.main" }}
+          />
+        </IconButton>
+      </Box>
       <Divider id="card-divider" />
-    </div>
+    </Box>
   );
 }
 
@@ -22,6 +66,7 @@ CardTracks.propTypes = {
   title: PropTypes.string,
   artist: PropTypes.string,
   onClick: PropTypes.func,
+  setAudioListToggle: PropTypes.string,
 };
 
 CardTracks.defaultProps = {
@@ -29,5 +74,6 @@ CardTracks.defaultProps = {
   title: "",
   artist: "",
   onClick: () => {},
+  setAudioListToggle: "",
 };
 export default CardTracks;

@@ -1,40 +1,73 @@
+:root {
+  --main-color: #eaeaea;
+  --second-color: #801336;
+}
+
+// cover size
+.react-jinke-music-player-main .music-player-panel .panel-content .img-content {
+  width: 60px;
+  height: 60px;
+}
+
+// color for shuffle button if cklicket
+.buttonOn {
+  color: var(--second-color) !important;
+}
+.buttonOn2 {
+  color: #c35815 !important;
+}
+
+// player pre-defiened buttons
 .react-jinke-music-player-main
   .music-player-panel
   .panel-content
   .player-content {
   order: 1;
-  color: red;
-}
-.rc-slider-track {
-  color: red;
+  color: var(--main-color);
 }
 
-.react-jinke-music-player-main
-  .music-player-panel
-  .player-content
-  .rc-slider-handle,
-.react-jinke-music-player-main
-  .music-player-panel
-  .panel-content
-  .rc-slider-track {
-  background-color: red;
+// extended buttons
+svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
+  color: var(--main-color);
 }
 
-.react-jinke-music-player-main svg.css-17slstj-MuiSvgIcon-root {
-  color: red;
-}
-
+// hover over buttons
 .react-jinke-music-player-main
   .music-player-panel
   .panel-content
   .player-content
   svg:hover {
-  color: pink;
+  color: var(--second-color);
 }
 
+// position for extended shuffle button
 #shuffleBtn {
   order: -1;
 }
+
+// player progress bar for song and volume
+.react-jinke-music-player-main
+  .music-player-panel
+  .panel-content
+  .rc-slider-handle,
+.react-jinke-music-player-main
+  .music-player-panel
+  .panel-content
+  .rc-slider-track {
+  background-color: var(--second-color);
+}
+
+// disable rotation animation in fullscreen mode
+.react-jinke-music-player-mobile-cover .cover {
+  animation: none;
+}
+
+// disable rotation animation in panel mode
+.react-jinke-music-player-main .music-player-panel .panel-content .img-rotate {
+  animation: none;
+}
+
+// setting that progressbar do not disappear in small screen
 @media screen and (max-width: 767px) {
   .react-jinke-music-player-main
     .music-player-panel
@@ -42,4 +75,127 @@
     .progress-bar-content {
     display: block !important;
   }
+
+  .react-jinke-music-player-main .music-player-panel {
+    height: 100px;
+  }
+}
+// media queres for screen between 700px and 1000px
+@media screen and (max-width: 1000px) {
+  .react-jinke-music-player-main .panel-content {
+    flex-wrap: wrap;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .progress-bar-content {
+    flex: 0 0 75%;
+  }
+
+  .react-jinke-music-player-main .music-player-panel {
+    height: 100px;
+  }
+}
+
+// media quere for screen smaller than 700px
+@media screen and (max-width: 700px) {
+  .react-jinke-music-player-main .panel-content {
+    flex-wrap: nowrap;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .img-rotate {
+    flex: 0 0 60px;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .progress-bar-content {
+    flex: 0 0 60%;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .player-content {
+    flex: 0 0 20%;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .player-content {
+    padding: 0;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .player-content
+    .play-btn
+    svg {
+    font-size: 50px;
+  }
+
+  .rc-slider {
+    width: 100vw;
+  }
+
+  .react-jinke-music-player-main .music-player-panel {
+    height: 100px;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .progress-bar-content
+    .audio-main
+    .current-time,
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .progress-bar-content
+    .audio-main
+    .duration {
+    display: none;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .player-content
+    .next-audio
+    svg,
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .player-content
+    .prev-audio
+    svg {
+    display: none;
+  }
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
+    display: none !important;
+  }
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .player-content.group {
+    display: none;
+  }
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .player-content
+    .audio-lists-btn {
+    display: none;
+  }
+}
+
+.react-jinke-music-player-mobile {
+  display: flex;
 }

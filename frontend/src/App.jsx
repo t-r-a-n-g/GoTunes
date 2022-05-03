@@ -29,6 +29,9 @@ function App() {
   // state for custom shuffle button
   const [playModeOrder, setPlayModeOrder] = useState("order");
 
+  // state for audio list aka "Warteschlange"
+  const [audioListToggle, setAudioListToggle] = useState(true);
+
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
     audioLists: songQueue,
@@ -39,13 +42,16 @@ function App() {
     showReload: false,
     responsive: responsiveToggle,
     playMode: playModeOrder,
+    showPlayMode: false,
     toggleMode: false,
     glassBg: false,
+    // TO DO: SPACEBAR-OPTION NOT WORKING PROBABLY
+    spaceBar: true,
     autoHiddenCover: false,
     mobileMediaQuery:
       "(max-width: 1000000px) and (orientation: landscape), (max-width: 1000000px) and (orientation: portrait)",
     showMediaSession: true,
-    clearPriorAudioLists: true,
+    clearPriorAudioLists: audioListToggle,
     extendsContent: (
       <MusicPlayerExtendedButtons
         playModeOrder={playModeOrder}
@@ -78,7 +84,10 @@ function App() {
                 path="/search"
                 element={
                   <ProtectedRoute>
-                    <Search setSongQueue={setSongQueue} />
+                    <Search
+                      setSongQueue={setSongQueue}
+                      setAudioListToggle={setAudioListToggle}
+                    />
                   </ProtectedRoute>
                 }
               />

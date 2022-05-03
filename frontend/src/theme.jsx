@@ -17,14 +17,12 @@ const themeGlobal = createTheme({
     },
     background: {
       default: "#121212",
+      secondary: "#272626",
     },
     text: {
       primary: "#f2f2f2",
       secondary: "#949494",
       third: "#0000",
-    },
-    button: {
-      main: "#fff",
     },
   },
   typography: {

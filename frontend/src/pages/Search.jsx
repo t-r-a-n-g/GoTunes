@@ -7,7 +7,7 @@ import SearchNavbar from "../components/Search/SearchNavbar";
 import { searchAllEndpoint } from "../components/API";
 
 export default function Search(props) {
-  const { songQueue, setSongQueue } = props;
+  const { songQueue, setSongQueue, setAudioListToggle } = props;
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [responseStatus, setResponseStatus] = useState();
@@ -60,6 +60,7 @@ export default function Search(props) {
         setSearchFilter={setSearchFilter}
       />
       <SearchResults
+        setAudioListToggle={setAudioListToggle}
         searchResult={searchResult}
         responseStatus={responseStatus}
         songQueue={songQueue}
@@ -72,8 +73,10 @@ export default function Search(props) {
 Search.propTypes = {
   setSongQueue: PropTypes.shape(),
   songQueue: PropTypes.shape(),
+  setAudioListToggle: PropTypes.string,
 };
 Search.defaultProps = {
   setSongQueue: null,
   songQueue: null,
+  setAudioListToggle: "",
 };

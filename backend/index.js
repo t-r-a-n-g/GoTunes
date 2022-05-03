@@ -37,6 +37,7 @@ async function checkDB() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 async function syncDB(force = false) {
   try {
     db.createRelations();
@@ -74,4 +75,4 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 startServer();
 checkDB();
-syncDB(true);
+// syncDB(true);
