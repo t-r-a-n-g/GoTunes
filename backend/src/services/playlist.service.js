@@ -29,6 +29,7 @@ class PlaylistService {
 
   static async createPlaylist(title, currentUser) {
     const { Playlist } = db;
+    console.log(currentUser);
 
     const playlist = await Playlist.create({
       title,
