@@ -24,7 +24,7 @@ module.exports = {
     email: "YourEmail@example.com",
     language: "de_DE",
     soundcloud_username: "example_sc-user",
-    profile: {
+    userProfile: {
       $ref: "#/definitions/User",
     },
   },

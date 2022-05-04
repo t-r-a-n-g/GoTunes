@@ -1491,7 +1491,7 @@
           "type": "string",
           "example": "example_sc-user"
         },
-        "profile": {
+        "userProfile": {
           "$ref": "#/definitions/User"
         }
       },
