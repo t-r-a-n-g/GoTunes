@@ -17,6 +17,7 @@ async function verifyToken(req, res, next) {
       const user = await User.findOne({
         where: { id: userId },
         include: UserProfile,
+        attributes: { exclude: ["password"] },
       });
 
       if (!user) errors.auth = "err-auth-invalid-user";

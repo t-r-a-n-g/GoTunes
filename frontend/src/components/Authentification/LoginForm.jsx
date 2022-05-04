@@ -7,6 +7,7 @@ import axios from "axios";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
 import { loginEndpoint } from "../API";
+import authService from "../../services/AuthService";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -44,10 +45,7 @@ function LoginForm() {
         .then((response) => {
           setStatus(response.status);
           // localStorage.setItem stores anything in browser storage
-          localStorage.setItem(
-            "userToken",
-            JSON.stringify(response.data.token)
-          );
+          authService.setToken(response.data.token);
           // after correct login auto navigate to /page-u-want
           navigate("/profile");
         })

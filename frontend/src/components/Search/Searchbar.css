@@ -5,4 +5,9 @@
 #searchbar {
   width: 100%;
   color: black;
+  background-color: #282828;
+}
+
+#search-icon {
+  background-color: #282828;
 }

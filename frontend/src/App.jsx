@@ -42,6 +42,7 @@ function App() {
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
     audioLists: songQueue,
+    quietUpdate: true,
     mode: "full",
     showDownload: false,
     theme: "dark",
@@ -92,6 +93,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Search
+                      songQueue={songQueue}
                       setSongQueue={setSongQueue}
                       setAudioListToggle={setAudioListToggle}
                     />

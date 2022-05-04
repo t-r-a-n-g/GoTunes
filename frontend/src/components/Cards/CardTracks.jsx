@@ -1,17 +1,18 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
+import TracksOptionMenu from "../TracksOptionMenu";
 import "./CardTracks.css";
 
 function CardTracks(props) {
   const { cover, title, artist, onClick, setAudioListToggle } = props;
 
   const handleAudioListToggle = () => {
-    setAudioListToggle(false);
-    console.warn("Warteschlange on");
+    setAudioListToggle(true);
+    onClick();
+    console.warn("Warteschlange off");
   };
 
   return (
@@ -23,10 +24,18 @@ function CardTracks(props) {
         <div
           style={{ whiteSpace: "nowrap" }}
           id="card-tracks-container"
-          onClick={onClick}
+          onClick={handleAudioListToggle}
           aria-hidden="true"
         >
-          <img id="card-tracks-cover-image-tracks" src={cover} alt="cover" />
+          <img
+            id="card-tracks-cover-image"
+            src={
+              cover === "" || cover === null
+                ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
+                : cover
+            }
+            alt="cover"
+          />
           <Box
             component="div"
             sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
@@ -38,21 +47,19 @@ function CardTracks(props) {
             component="div"
             id="card-tracks-subheading"
             sx={{
+              textOverflow: "ellipsis",
+              overflow: "hidden",
               color: "text.secondary",
             }}
           >
             {artist}
           </Box>
         </div>
-        <IconButton
-          id="card-tracks-add-to-quere-button"
-          onClick={(e) => {
-            handleAudioListToggle(e);
-          }}
-        >
-          <AddCircleIcon
-            id="card-tracks-menu-button"
-            sx={{ color: "primary.main" }}
+        <IconButton>
+          <TracksOptionMenu
+            id="card-tracks-menu"
+            setAudioListToggle={setAudioListToggle}
+            onClickToQueue={onClick}
           />
         </IconButton>
       </Box>

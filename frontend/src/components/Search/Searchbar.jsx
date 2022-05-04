@@ -18,7 +18,7 @@ function Searchbar(props) {
         value={searchTerm}
         onChange={handleSearch}
         sx={{
-          bgcolor: "white",
+          bgcolor: "#282828",
         }}
         fullWidth
         id="searchbar"
@@ -26,8 +26,8 @@ function Searchbar(props) {
         variant="filled"
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end">
-              <IconButton>
+            <InputAdornment id="search-adornment" position="end">
+              <IconButton id="search-icon">
                 <SearchIcon />
               </IconButton>
             </InputAdornment>
