@@ -46,14 +46,18 @@ export default function MusicPlayerExtendedButtons(props) {
 
   return [
     // these iconButtons have multiple icons, which change visibility after click, so only one icon appears
-    <IconButton onClick={(e) => handlePlayModeOrderShuffle(e)} id="shuffleBtn">
+    <IconButton
+      onClick={(e) => handlePlayModeOrderShuffle(e)}
+      id="shuffleBtn"
+      key="1"
+    >
       <ShuffleIcon style={{ display: !activeShuffleBtn ? "block" : "none" }} />
       <ShuffleIcon
         className="buttonOn"
         style={{ display: !activeShuffleBtn ? "none" : "block" }}
       />
     </IconButton>,
-    <IconButton onClick={(e) => handlePlayModeLoop(e)} id="loopBtn">
+    <IconButton onClick={(e) => handlePlayModeLoop(e)} id="loopBtn" key="2">
       <LoopIcon
         className="buttonOn"
         style={{ display: activeLoopBtn === 1 ? "block" : "none" }}
@@ -70,8 +74,8 @@ export default function MusicPlayerExtendedButtons(props) {
 }
 
 MusicPlayerExtendedButtons.propTypes = {
-  playModeOrder: PropTypes.shape(),
-  setPlayModeOrder: PropTypes.shape(),
+  playModeOrder: PropTypes.string,
+  setPlayModeOrder: PropTypes.func,
 };
 MusicPlayerExtendedButtons.defaultProps = {
   playModeOrder: null,

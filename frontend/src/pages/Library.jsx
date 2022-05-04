@@ -2,14 +2,14 @@ import BigCard from "@components/BigCard";
 import CreatePlaylist from "@components/CreatePlaylistButton";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import React, { useState, useEffect, useContext } from "react";
 import LibraryNavbar from "@components/Library/LibraryNavBar";
 import "@components/Library/LibraryNavBar.css";
-import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 import Searchbar from "../components/Search/Searchbar";
-
+import UserContext from "../contexts/UserContext";
 /* Library Page
 initinally Create Playlist Card and Favourites Card
 New Card mounts after Playlist is created 
@@ -40,10 +40,9 @@ export default function Library() {
   const { t } = useTranslation();
   const [playlist, setPlayList] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const userID = "2";
-
+  const user = useContext(UserContext);
+  const userID = user.id;
   /* USEEFFECT TO  GET PLAYLISTS FROM DB AND UPDATE STATE */
-
   useEffect(() => {
     axios
       .get(

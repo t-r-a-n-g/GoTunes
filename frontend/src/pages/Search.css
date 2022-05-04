@@ -1,0 +1,12 @@
+#searchbar-nav-container {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  height: 8rem;
+  background-color: #121212;
+  z-index: 999;
+}
+
+#search-results {
+  margin-top: 10rem;
+}

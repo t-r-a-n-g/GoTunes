@@ -24,7 +24,7 @@ module.exports = {
     email: "YourEmail@example.com",
     language: "de_DE",
     soundcloud_username: "example_sc-user",
-    profile: {
+    userProfile: {
       $ref: "#/definitions/User",
     },
   },
@@ -68,6 +68,7 @@ module.exports = {
   UserPlaylist: {
     $can_edit: true,
     $is_creator: true,
+    $isFavorite: false,
     $playlist: {
       $ref: "#/definitions/Playlist",
     },

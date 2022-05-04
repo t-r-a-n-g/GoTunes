@@ -14,7 +14,7 @@ export default function SearchGenre() {
         <Grid container gap={2} sx={{ justifyContent: "space-between" }}>
           <Grid item xs={12} md={12} lg={12}>
             <h2 style={{ margin: 0, marginTop: "4vh", textAlign: "left" }}>
-              {t("serch-page-headline")}
+              {t("search")}
             </h2>
           </Grid>
           <Grid item xs={12} md={12} lg={12}>

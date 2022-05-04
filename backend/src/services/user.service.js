@@ -13,6 +13,26 @@ class UserService {
     const playlists = await api.getUserPlaylists(userId);
     return playlists;
   }
+
+  static async updateUser(
+    username,
+    soundcloudUsername,
+    avatar,
+    biography,
+    currentUser
+  ) {
+    const user = currentUser;
+
+    if (username) user.username = username;
+    if (soundcloudUsername) user.soundcloud_username = soundcloudUsername;
+    if (avatar) user.userProfile.avatar = avatar;
+    if (biography) user.userProfile.biography = biography;
+
+    user.userProfile.save();
+    user.save();
+
+    return user;
+  }
 }
 
 module.exports = UserService;
