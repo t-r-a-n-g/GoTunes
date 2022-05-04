@@ -7,10 +7,6 @@ import "@components/Library/LibraryNavBar.css";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
-import BigCard from "../components/BigCard";
-import CreatePlaylist from "../components/CreatePlaylistButton";
 
 import Searchbar from "../components/Search/Searchbar";
 
