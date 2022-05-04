@@ -46,7 +46,6 @@ export default function ImportMusic() {
         }}
       >
         {t("importmusic-soundcloud")}
-        <img src="frontend/src/assets/173910_soundcloud_icon.png"></img>
       </Paper>
       <Divider sx={{ bgcolor: "#18191a" }} />
       <Paper

@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
+import ImportMusic from "@pages/SynMusic";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
 import Library from "./pages/Library";
 import SearchResultGenre from "./pages/SearchResultGenre";
@@ -17,7 +18,6 @@ import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
 import Playlist from "./pages/Playlist";
 import Settings from "./pages/Settings";
-import ImportMusic from "@pages/SynMusic";
 
 function App() {
   // state for songQueue

@@ -255,7 +255,7 @@ export default function Settings() {
           />
 
           <h2 style={{ textAlign: "center" }}>{t("modal-form-logout")}</h2>
-          <p id="parent-modal-description"></p>
+          <p id="parent-modal-description" />
           <LogoutButton />
         </Box>
       </Modal>
