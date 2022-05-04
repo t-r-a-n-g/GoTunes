@@ -15,7 +15,7 @@ function CardArtists({ cover, name, description, onClick }) {
         aria-hidden="true"
       >
         <div id="card-artists-container" style={{ whiteSpace: "nowrap" }}>
-          <img id="card-cover-image-artist" src={cover} alt="cover" />
+          <img id="card-artists-cover-image" src={cover} alt="cover" />
           <Box
             component="div"
             sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
