@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,7 @@ import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
 import { registerEndpoint } from "../API";
 import "./RegistrationForm.css";
-
+import UserContext from "../../contexts/UserContext";
 // TO DO: ROUTING TO ANOTHER PAGE AFTER SUCCESSFUL REGISTRATION
 
 export default function RegistrationForm() {
@@ -20,7 +20,7 @@ export default function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
+  const { auth } = useContext(UserContext);
   // Checking if user provides correct (matching) emails and passwords
   function isSameEmail() {
     // this returns true if both matches, false if not
@@ -62,10 +62,11 @@ export default function RegistrationForm() {
         .then((response) => {
           /*  console.log(response); */
           setStatus(response.status);
-          localStorage.setItem(
-            "userToken",
-            JSON.stringify(response.data.token)
-          );
+          // localStorage.setItem(
+          //  "userToken",
+          //  JSON.stringify(response.data.token)
+          // );
+          auth.setToken(response.data.token);
           navigate("/profile");
         })
         .catch((error) => {

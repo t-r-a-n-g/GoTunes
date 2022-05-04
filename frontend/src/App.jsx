@@ -1,8 +1,10 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
+import AuthService from "@services/AuthService";
+import UserContext from "./contexts/UserContext";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
 import Library from "./pages/Library";
 import SearchResultGenre from "./pages/SearchResultGenre";
@@ -77,6 +79,26 @@ function App() {
     // },
   };
 
+  const [user, setUser] = useState(false);
+  function authChanged(u) {
+    setUser(u);
+  }
+
+  const [auth, setAuth] = useState(null);
+
+  // const auth = new AuthService(authEvent);
+  useEffect(async () => {
+    setAuth(new AuthService(authChanged));
+  }, []);
+
+  useEffect(async () => {
+    if (auth) setUser(await auth.getCurrentUser());
+  }, [auth]);
+
+  const userAuthMemo = useMemo(() => {
+    return { auth, user };
+  }, [auth, user]);
+
   return (
     <Router>
       <Suspense fallback="loading">
@@ -84,79 +106,86 @@ function App() {
           <CssBaseline />
 
           <div className="App">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/registration" element={<Registration />} />
-              <Route
-                path="/search"
-                element={
-                  <ProtectedRoute>
-                    <Search
-                      songQueue={songQueue}
-                      setSongQueue={setSongQueue}
-                      setAudioListToggle={setAudioListToggle}
-                    />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
-                    <Home />
-                  </ProtectedRoute>
-                }
-              />
-              <Route exact path="/login" element={<Login />} />
-              <Route excat path="/registration" element={<Registration />} />
-              <Route
-                excat
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <UserProfil />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/search-genre"
-                element={
-                  <ProtectedRoute>
-                    <SearchGenre />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/search-result-genre"
-                element={
-                  <ProtectedRoute>
-                    <SearchResultGenre />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/library"
-                element={
-                  <ProtectedRoute>
-                    <Library />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/playlists/:playlistId"
-                element={
-                  <ProtectedRoute>
-                    <Playlist
-                      playlistSource={playlistSource}
-                      setSongQueue={setSongQueue}
-                    />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/*" element={<SiteNav />} />
-            </Routes>
-
+            {user === false ? null : (
+              <UserContext.Provider value={userAuthMemo}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/registration" element={<Registration />} />
+                  <Route
+                    path="/search"
+                    element={
+                      <ProtectedRoute>
+                        <Search
+                          songQueue={songQueue}
+                          setSongQueue={setSongQueue}
+                          setAudioListToggle={setAudioListToggle}
+                        />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/"
+                    element={
+                      <ProtectedRoute>
+                        <Home />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route exact path="/login" element={<Login />} />
+                  <Route
+                    excat
+                    path="/registration"
+                    element={<Registration />}
+                  />
+                  <Route
+                    excat
+                    path="/profile"
+                    element={
+                      <ProtectedRoute>
+                        <UserProfil />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/search-genre"
+                    element={
+                      <ProtectedRoute>
+                        <SearchGenre />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/search-result-genre"
+                    element={
+                      <ProtectedRoute>
+                        <SearchResultGenre />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/library"
+                    element={
+                      <ProtectedRoute>
+                        <Library />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/playlists/:playlistId"
+                    element={
+                      <ProtectedRoute>
+                        <Playlist
+                          playlistSource={playlistSource}
+                          setSongQueue={setSongQueue}
+                        />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="/*" element={<SiteNav />} />
+                </Routes>
+              </UserContext.Provider>
+            )}
             <div id="playerContainer">
               <div id="playerHeartPiece">
                 <MusicPlayer playerOptions={playerOptions} />

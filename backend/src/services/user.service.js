@@ -1,5 +1,5 @@
 const getApi = require("../utils/apis");
-const db = require("../models");
+
 class UserService {
   static async getUser(userId, src) {
     const api = getApi(src);
