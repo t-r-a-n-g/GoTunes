@@ -3,8 +3,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
-import MusicPlayerExtendedButtons from "@components/MusicPlayerExtendetButtons";
-import Library from "@pages/Library";
+import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
+import Library from "./pages/Library";
 import SearchResultGenre from "./pages/SearchResultGenre";
 import SearchGenre from "./pages/SearchGenre";
 import Login from "./pages/Login";
@@ -41,6 +41,7 @@ function App() {
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
     audioLists: songQueue,
+    quietUpdate: true,
     mode: "full",
     showDownload: false,
     theme: "dark",
@@ -91,6 +92,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Search
+                      songQueue={songQueue}
                       setSongQueue={setSongQueue}
                       setAudioListToggle={setAudioListToggle}
                     />
