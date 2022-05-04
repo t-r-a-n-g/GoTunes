@@ -16,6 +16,7 @@ import Home from "./pages/Home";
 import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
 import Playlist from "./pages/Playlist";
+import SiteNav from "./components/SiteNav";
 
 function App() {
   // state for songQueue
@@ -151,6 +152,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="/*" element={<SiteNav />} />
             </Routes>
 
             <div id="playerContainer">
@@ -158,6 +160,7 @@ function App() {
                 <MusicPlayer playerOptions={playerOptions} />
               </div>
             </div>
+            <SiteNav />
           </div>
         </ThemeProvider>
       </Suspense>

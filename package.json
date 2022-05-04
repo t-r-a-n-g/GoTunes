@@ -19,6 +19,7 @@
     "husky": "^7.0.0"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.6.2",
     "convert-seconds-to-human": "^1.1.0"
   }
 }

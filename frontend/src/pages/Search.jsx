@@ -5,6 +5,7 @@ import Searchbar from "../components/Search/Searchbar";
 import SearchResults from "../components/Search/SearchResults";
 import SearchNavbar from "../components/Search/SearchNavbar";
 import { searchAllEndpoint } from "../components/API";
+import "./Search.css";
 
 export default function Search(props) {
   const { songQueue, setSongQueue, setAudioListToggle } = props;
@@ -50,24 +51,28 @@ export default function Search(props) {
 
   return (
     <div>
-      <Searchbar
-        searchTerm={searchTerm}
-        // eslint-disable-next-line
-        handleSearch={handleSearch}
-      />
-      <SearchNavbar
-        setSearchEndpoint={setSearchEndpoint}
-        searchFilter={searchFilter}
-        setSearchFilter={setSearchFilter}
-      />
-      <SearchResults
-        setAudioListToggle={setAudioListToggle}
-        searchResult={searchResult}
-        responseStatus={responseStatus}
-        songQueue={songQueue}
-        setSongQueue={setSongQueue}
-        searchFilter={searchFilter}
-      />
+      <div id="searchbar-nav-container">
+        <Searchbar
+          searchTerm={searchTerm}
+          // eslint-disable-next-line
+          handleSearch={handleSearch}
+        />
+        <SearchNavbar
+          setSearchEndpoint={setSearchEndpoint}
+          searchFilter={searchFilter}
+          setSearchFilter={setSearchFilter}
+        />
+      </div>
+      <div id="search-results">
+        <SearchResults
+          setAudioListToggle={setAudioListToggle}
+          searchResult={searchResult}
+          responseStatus={responseStatus}
+          songQueue={songQueue}
+          setSongQueue={setSongQueue}
+          searchFilter={searchFilter}
+        />
+      </div>
     </div>
   );
 }
