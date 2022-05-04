@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import CardTracks from "../Cards/CardTracks";
 import CardArtists from "../Cards/CardArtists";
 import CardPlaylists from "../Cards/CardPlaylists";
 
-// TO DO: think about changing cards to make them more distincive? Add description "Track", "Album" etc.?
 export default function SearchResults(props) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const {
     searchResult,
     responseStatus,
@@ -65,13 +66,12 @@ export default function SearchResults(props) {
                   element.artist?.name ?? t("waiting-for-loading")
                 }`}
               />
-            ) : element.kind === "playlist" ? (
+            ) : element.playlist.kind === "playlist" ? (
               <CardPlaylists
-                /* To Do: define onClick method */
-
-                key={element.id}
-                cover={element.cover}
-                title={element.title}
+                onClick={() => navigate(`/playlists/${element.playlist.id}`)}
+                key={element.playlist.id}
+                cover={element.playlist.cover}
+                title={element.playlist.title}
                 description={t("playlist")}
               />
             ) : (
@@ -129,18 +129,20 @@ export default function SearchResults(props) {
         : ""}
       {/* RENDERING PLAYLISTS RESULTS */}
       {responseStatus === 200 && searchFilter === "Playlists"
-        ? searchResult.map((element) => (
+        ? searchResult.map((element, index) => (
             <CardPlaylists
-              /* To Do: define onClick method */
-
-              key={element.id}
-              cover={element.cover}
-              title={element.title}
+              onClick={() => navigate(`/playlists/${element.playlist.id}`)}
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              cover={element.playlist?.cover ?? null}
+              title={element.playlist?.title ?? null}
             />
           ))
         : ""}
 
-      {responseStatus === 404 || responseStatus === 500
+      {responseStatus === 404 ||
+      responseStatus === 500 ||
+      searchResult.length === 0
         ? t("search-no-results")
         : ""}
     </div>
