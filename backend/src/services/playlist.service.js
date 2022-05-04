@@ -27,7 +27,23 @@ class PlaylistService {
     return tracks;
   }
 
-  static async createPlaylist(title, currentUser) {
+  static async getFavoritesPlaylist(user) {
+    const { PlaylistUser, Playlist } = db;
+    const playlist = await PlaylistUser.findOne({
+      where: { userId: user.id, is_favorite: true },
+      include: Playlist,
+    });
+
+    return {
+      can_edit: true,
+      is_creator: true,
+      is_favorite: true,
+      playlist: playlist.playlist,
+      user,
+    };
+  }
+
+  static async createPlaylist(title, currentUser, isFavorite = false) {
     const { Playlist } = db;
     /*     console.log(currentUser); */
 
@@ -42,12 +58,14 @@ class PlaylistService {
       through: {
         can_edit: true,
         is_creator: true,
+        is_favorite: isFavorite,
       },
     });
 
     return {
       can_edit: true,
       is_creator: true,
+      is_favorite: isFavorite,
       playlist,
       user: {
         id: currentUser.id,

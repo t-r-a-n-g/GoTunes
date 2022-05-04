@@ -1,5 +1,5 @@
 import axios from "axios";
-import { meEndpoint } from "@components/API";
+import { meEndpoint, favoritesPlaylistEndpoint } from "@components/API";
 
 class AuthService {
   constructor() {
@@ -12,13 +12,18 @@ class AuthService {
     if (this.me === undefined) {
       if (this.getToken()) {
         try {
-          const res = await axios(meEndpoint);
+          let res = await axios(meEndpoint);
           this.me = res.data;
+
           this.me.token = this.getToken();
+
+          res = await axios(favoritesPlaylistEndpoint);
+          this.me.favoritesPlaylist = res.data;
         } catch (err) {
           console.error(err);
           this.logout();
           this.me = null;
+          throw err;
         }
       } else this.me = null;
     }

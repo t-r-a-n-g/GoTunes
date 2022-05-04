@@ -7,15 +7,21 @@ import authService from "../../services/AuthService";
 function ProtectedRoute({ children }) {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(null);
+  const [loginFailed, setLoginFailed] = useState(false);
 
   useEffect(async () => {
-    const u = await authService.getCurrentUser();
-    setUser(u);
+    try {
+      setUser(await authService.getCurrentUser());
+    } catch (err) {
+      setLoginFailed(true);
+      setUser(false);
+    }
   }, []);
 
-  if (!authService.getToken()) {
+  if (loginFailed) {
     return <Navigate to="/login" replace />;
   }
+
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }
 

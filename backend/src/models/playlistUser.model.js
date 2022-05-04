@@ -30,6 +30,12 @@ const PlaylistUser = sequelize.define(
       allowNull: false,
       defaultValue: false,
     },
+
+    is_favorite: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   { tableName: "playlist_users", timestamps: false }
 );
