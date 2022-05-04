@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
 import AuthService from "@services/AuthService";
+import ImportMusic from "@pages/SynMusic";
 import UserContext from "./contexts/UserContext";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
 import Library from "./pages/Library";
@@ -13,17 +14,18 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import UserProfil from "./pages/UserProfil";
 import Search from "./pages/Search";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/Routing/ProtectedRoute";
 import Home from "./pages/Home";
 import themeGlobal from "./theme";
-import MusicPlayer from "./components/MusicPlayer";
 import Playlist from "./pages/Playlist";
-import SiteNav from "./components/SiteNav";
+import Settings from "./pages/Settings";
+import WhenLoggedOut from "./components/Routing/WhenLoggedOut";
+import WhenLoggedIn from "./components/Routing/WhenLoggedIn";
 
 function App() {
   // state for songQueue
   const [songQueue, setSongQueue] = useState([]);
-
+  const songQueue2 = [];
   // state for choosing between Soundcloud and internal playlists source
   // eslint-disable-next-line
   const [playlistSource, setPlaylistSource] = useState("soundcloud");
@@ -43,7 +45,7 @@ function App() {
 
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
-    audioLists: songQueue,
+    audioLists: songQueue2,
     quietUpdate: true,
     mode: "full",
     showDownload: false,
@@ -109,89 +111,102 @@ function App() {
             {user === false ? null : (
               <UserContext.Provider value={userAuthMemo}>
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/registration" element={<Registration />} />
+                  {/* In this route do not show the sitenav and musicplayer */}
+                  <Route element={<WhenLoggedOut />}>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/registration" element={<Registration />} />
+                  </Route>
+                  {/* In this route show the sitenav and musicplayer */}
                   <Route
-                    path="/search"
-                    element={
-                      <ProtectedRoute>
-                        <Search
-                          songQueue={songQueue}
-                          setSongQueue={setSongQueue}
-                          setAudioListToggle={setAudioListToggle}
-                        />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/"
-                    element={
-                      <ProtectedRoute>
-                        <Home />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route exact path="/login" element={<Login />} />
-                  <Route
-                    excat
-                    path="/registration"
-                    element={<Registration />}
-                  />
-                  <Route
-                    excat
-                    path="/profile"
-                    element={
-                      <ProtectedRoute>
-                        <UserProfil />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/search-genre"
-                    element={
-                      <ProtectedRoute>
-                        <SearchGenre />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/search-result-genre"
-                    element={
-                      <ProtectedRoute>
-                        <SearchResultGenre />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/library"
-                    element={
-                      <ProtectedRoute>
-                        <Library />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/playlists/:playlistId"
-                    element={
-                      <ProtectedRoute>
-                        <Playlist
-                          playlistSource={playlistSource}
-                          setSongQueue={setSongQueue}
-                        />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route path="/*" element={<SiteNav />} />
+                    element={<WhenLoggedIn playerOptions={playerOptions} />}
+                  >
+                    <Route
+                      path="/search"
+                      element={
+                        <ProtectedRoute>
+                          <Search
+                            songQueue={songQueue}
+                            songQueue2={songQueue2}
+                            setSongQueue={setSongQueue}
+                            setAudioListToggle={setAudioListToggle}
+                          />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/"
+                      element={
+                        <ProtectedRoute>
+                          <Home />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      excat
+                      path="/profile"
+                      element={
+                        <ProtectedRoute>
+                          <UserProfil />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      excat
+                      path="/settings"
+                      element={
+                        <ProtectedRoute>
+                          <Settings />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      excat
+                      path="/importmusic"
+                      element={
+                        <ProtectedRoute>
+                          <ImportMusic />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/search-genre"
+                      element={
+                        <ProtectedRoute>
+                          <SearchGenre />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/search-result-genre"
+                      element={
+                        <ProtectedRoute>
+                          <SearchResultGenre />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/library"
+                      element={
+                        <ProtectedRoute>
+                          <Library />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/playlists/:playlistId"
+                      element={
+                        <ProtectedRoute>
+                          <Playlist
+                            playlistSource={playlistSource}
+                            setSongQueue={setSongQueue}
+                          />
+                        </ProtectedRoute>
+                      }
+                    />
+                  </Route>
                 </Routes>
               </UserContext.Provider>
             )}
-            <div id="playerContainer">
-              <div id="playerHeartPiece">
-                <MusicPlayer playerOptions={playerOptions} />
-              </div>
-            </div>
-            <SiteNav />
           </div>
         </ThemeProvider>
       </Suspense>

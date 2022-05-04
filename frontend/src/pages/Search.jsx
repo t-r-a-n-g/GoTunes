@@ -8,7 +8,7 @@ import { searchAllEndpoint } from "../components/API";
 import "./Search.css";
 
 export default function Search(props) {
-  const { songQueue, setSongQueue, setAudioListToggle } = props;
+  const { songQueue, setSongQueue, setAudioListToggle, songQueue2 } = props;
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [responseStatus, setResponseStatus] = useState();
@@ -51,28 +51,25 @@ export default function Search(props) {
 
   return (
     <div>
-      <div id="searchbar-nav-container">
-        <Searchbar
-          searchTerm={searchTerm}
-          // eslint-disable-next-line
-          handleSearch={handleSearch}
-        />
-        <SearchNavbar
-          setSearchEndpoint={setSearchEndpoint}
-          searchFilter={searchFilter}
-          setSearchFilter={setSearchFilter}
-        />
-      </div>
-      <div id="search-results">
-        <SearchResults
-          setAudioListToggle={setAudioListToggle}
-          searchResult={searchResult}
-          responseStatus={responseStatus}
-          songQueue={songQueue}
-          setSongQueue={setSongQueue}
-          searchFilter={searchFilter}
-        />
-      </div>
+      <Searchbar
+        searchTerm={searchTerm}
+        // eslint-disable-next-line
+        handleSearch={handleSearch}
+      />
+      <SearchNavbar
+        setSearchEndpoint={setSearchEndpoint}
+        searchFilter={searchFilter}
+        setSearchFilter={setSearchFilter}
+      />
+      <SearchResults
+        setAudioListToggle={setAudioListToggle}
+        searchResult={searchResult}
+        responseStatus={responseStatus}
+        songQueue={songQueue}
+        setSongQueue={setSongQueue}
+        searchFilter={searchFilter}
+        songQueue2={songQueue2}
+      />
     </div>
   );
 }
@@ -80,9 +77,11 @@ Search.propTypes = {
   setSongQueue: PropTypes.func,
   songQueue: PropTypes.shape(),
   setAudioListToggle: PropTypes.func,
+  songQueue2: PropTypes.shape(),
 };
 Search.defaultProps = {
   setSongQueue: null,
   songQueue: null,
   setAudioListToggle: "",
+  songQueue2: null,
 };
