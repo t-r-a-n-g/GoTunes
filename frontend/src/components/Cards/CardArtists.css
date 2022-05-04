@@ -1,19 +1,12 @@
-/* root vars for container, so that they match evenly */
-:root {
-  --min-width: 40ch;
-  --width: 25vw;
-}
-
 #card-artists-whole-component-box {
   margin: auto;
-  width: fit-content;
+  width: clamp(350px, 85%, 90vw);
 }
 
 #card-artists-container {
   display: grid;
-  min-width: var(--min-width);
-  width: var(--width);
-  grid-template-columns: auto auto auto auto;
+  justify-content: start;
+  width: 100%;
 }
 
 #card-artists-wrap-for-button-placement {
@@ -23,37 +16,39 @@
   border-radius: 2ch;
 }
 
-#card-cover-image-artist {
-  width: 100px;
-  height: 100px;
+#card-artists-cover-image {
+  width: 50px;
+  height: 50px;
   align-self: center;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
-  grid-row-end: 5;
+  grid-row-end: 3;
   margin: 10px;
   border-radius: 50%;
 }
 
 #card-artists-heading {
+  align-self: flex-end;
   grid-column-start: 2;
-  grid-column-end: 10;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
   margin: 0;
   padding-top: 0;
   text-align: left;
-  font-size: 1.5rem;
+  font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1.2rem);
 }
 
 #card-artists-subheading {
+  align-self: flex-start;
   grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
   margin: 0;
   text-align: left;
-  font-size: 1.2rem;
+  font-size: clamp(0.3rem, -0.875rem + 8.333vw, 1rem);
 }
 
 #card-artists-divider {

@@ -37,5 +37,6 @@
   "search-no-results": "No results found",
   "modal-form-createnewplaylist-heading": "Create new Playlist",
   "modal-form-createnewplaylist-button": "Create Playlist",
-  "library-main-heading": "Music"
+  "library-main-heading": "Music",
+  "add-to-queue": "Add to Queue"
 }
