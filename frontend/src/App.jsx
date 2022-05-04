@@ -85,13 +85,12 @@ function App() {
 
           <div className="App">
             <Routes>
-              {/* In this route do not show the sitenavbar */}
+              {/* In this route do not show the sitenav and musicplayer */}
               <Route element={<WhenLoggedOut />}>
-                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
               </Route>
-              {/* In this route show the sitenavbar */}
+              {/* In this route show the sitenav and musicplayer */}
               <Route element={<WhenLoggedIn playerOptions={playerOptions} />}>
                 <Route
                   path="/search"
@@ -113,8 +112,6 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
-                <Route exact path="/login" element={<Login />} />
-                <Route excat path="/registration" element={<Registration />} />
                 <Route
                   excat
                   path="/profile"

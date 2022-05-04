@@ -18,6 +18,6 @@ export default function WhenLoggedIn(props) {
 WhenLoggedIn.propTypes = {
   playerOptions: PropTypes.shape(),
 };
-WhenLoggedIn.Player.defaultProps = {
+WhenLoggedIn.defaultProps = {
   playerOptions: null,
 };
