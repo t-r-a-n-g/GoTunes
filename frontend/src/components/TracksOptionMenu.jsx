@@ -5,10 +5,10 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
@@ -32,10 +32,8 @@ const StyledMenu = styled((props) => (
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color:
-      theme.palette.mode === "light"
-        ? "rgb(55, 65, 81)"
-        : theme.palette.grey[300],
+    backgroundColor: "#e4e6eb",
+    color: theme.palette.text.primary,
     boxShadow:
       "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
     "& .MuiMenu-list": {
@@ -44,7 +42,7 @@ const StyledMenu = styled((props) => (
     "& .MuiMenuItem-root": {
       "& .MuiSvgIcon-root": {
         fontSize: 18,
-        color: theme.palette.text.secondary,
+        color: theme.palette.text.primary,
         marginRight: theme.spacing(1.5),
       },
       "&:active": {
@@ -103,34 +101,24 @@ export default function TracksOptionMenu(props) {
         onClose={handleClose}
       >
         <MenuItem onClick={handleAudioListToggle} disableRipple>
-          <AddCircleIcon
-            sx={{ display: "block!important", color: "text.primary" }}
-          />
+          <AddCircleIcon sx={{ display: "block!important" }} />
           {t("add-to-queue")}
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-          <EditIcon
-            sx={{ display: "block!important", color: "text.primary" }}
-          />
-          Example 1
+          <PlaylistAddIcon sx={{ display: "block!important" }} />
+          {t("add-to-playlist")}
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-          <FileCopyIcon
-            sx={{ display: "block!important", color: "text.primary" }}
-          />
+          <FileCopyIcon sx={{ display: "block!important" }} />
           Example 2
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <ArchiveIcon
-            sx={{ display: "block!important", color: "text.primary" }}
-          />
+          <ArchiveIcon sx={{ display: "block!important" }} />
           Example 3
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon
-            sx={{ display: "block!important", color: "text.primary" }}
-          />
+          <MoreHorizIcon sx={{ display: "block!important" }} />
           More
         </MenuItem>
       </StyledMenu>

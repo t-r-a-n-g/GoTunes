@@ -38,5 +38,6 @@
   "modal-form-createnewplaylist-heading": "Create new Playlist",
   "modal-form-createnewplaylist-button": "Create Playlist",
   "library-main-heading": "Music",
-  "add-to-queue": "Add to Queue"
+  "add-to-queue": "Add to Queue",
+  "add-to-playlist": "Add to Playlist"
 }
