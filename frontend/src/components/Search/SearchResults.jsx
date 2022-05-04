@@ -155,7 +155,7 @@ SearchResults.propTypes = {
   songQueue: PropTypes.arrayOf(),
   setSongQueue: PropTypes.func,
   searchFilter: PropTypes.string,
-  setAudioListToggle: PropTypes.string,
+  setAudioListToggle: PropTypes.func,
 };
 
 SearchResults.defaultProps = {

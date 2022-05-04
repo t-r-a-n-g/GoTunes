@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
-import UserContext from "../contexts/UserContext";
-import authService from "../services/AuthService";
+import UserContext from "../../contexts/UserContext";
+import authService from "../../services/AuthService";
 
 function ProtectedRoute({ children }) {
   // eslint-disable-next-line no-unused-vars

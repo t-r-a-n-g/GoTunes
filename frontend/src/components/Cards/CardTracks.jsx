@@ -73,7 +73,7 @@ CardTracks.propTypes = {
   title: PropTypes.string,
   artist: PropTypes.string,
   onClick: PropTypes.func,
-  setAudioListToggle: PropTypes.string,
+  setAudioListToggle: PropTypes.func,
 };
 
 CardTracks.defaultProps = {
