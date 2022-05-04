@@ -1,12 +1,39 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import CardPlaylists from "./Cards/CardPlaylists";
+import FavArtist from "./User Profil/DummyFavArtist";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import "./User.css";
+import axios from "axios";
 
 function User({ avatar, playlistcount, followingcount, userName }) {
   const { t } = useTranslation();
+  const [playlist, setPlayList] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const [openPlaylist, setOpenPlaylist] = React.useState(false);
+  const [openArtist, setOpenArtist] = React.useState(false);
+  const handleOpenPlaylist = () => setOpenPlaylist(true);
+  const handleClosePlaylist = () => setOpenPlaylist(false);
+  const handleOpenArtist = () => setOpenArtist(true);
+  const handleCloseArtist = () => setOpenArtist(false);
+  const userID = "2";
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5000/api/users/${userID}/playlists?source=internal`
+      )
+      .then((res) => {
+        /*         console.error("Playlist query: ", res); */
+        setPlayList(res.data);
+        /*         console.log(res.data); */
+        setDataLoaded(true);
+      });
+  }, []);
+
   return (
     <div id="user-container">
       <Avatar id="user-avatar" src={avatar} />
@@ -18,13 +45,45 @@ function User({ avatar, playlistcount, followingcount, userName }) {
       <div id="user-button-container">
         <div id="user-playlistcount-container">
           <p id="user-playlistcount">{playlistcount}</p>
-          <Button variant="text">{t("user-profil-playlist")}</Button>
+          <Button
+            variant="text"
+            onClick={() => {
+              handleOpenPlaylist();
+              handleCloseArtist();
+            }}
+          >
+            {t("user-profil-playlist")}
+          </Button>
         </div>
         <div id="user-followingcount-container">
           <p id="user-followingcount">{followingcount}</p>
-          <Button variant="text">{t("user-profil-following")}</Button>
+          <Button
+            variant="text"
+            onClick={() => {
+              handleClosePlaylist();
+              handleOpenArtist();
+            }}
+          >
+            {t("user-profil-following")}
+          </Button>
         </div>
       </div>
+      {dataLoaded && openPlaylist
+        ? playlist.map((pl) => {
+            return (
+              <CardPlaylists
+                cover={
+                  pl.playlist.cover === "" || pl.playlist.cover === null
+                    ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
+                    : pl.playlist.cover
+                }
+                title={pl.playlist.title}
+                key={pl.playlistId}
+              />
+            );
+          })
+        : null}
+      {openArtist ? <FavArtist /> : null}
     </div>
   );
 }

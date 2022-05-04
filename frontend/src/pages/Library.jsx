@@ -2,6 +2,8 @@ import BigCard from "@components/BigCard";
 import CreatePlaylist from "@components/CreatePlaylistButton";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import LibraryNavbar from "@components/Library/LibraryNavBar";
+import "@components/Library/LibraryNavBar.css";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
@@ -69,7 +71,10 @@ export default function Library() {
             </h1>
           </Grid>
           <Grid item xs={12} md={12} lg={12}>
-            <Searchbar />
+            <LibraryNavbar id="LibraryNavBar" />
+          </Grid>
+          <Grid item xs={12} md={12} lg={12}>
+            <Searchbar id="librarySearchBar" />
           </Grid>
           <Grid item xs={5.7} sm={3.7} md={2} lg={1.8}>
             <CreatePlaylist />
