@@ -12,10 +12,11 @@ export default function SearchResults(props) {
   const {
     searchResult,
     responseStatus,
-    songQueue,
+    /* songQueue, */
     setSongQueue,
     searchFilter,
     setAudioListToggle,
+    /* songQueue2, */
   } = props;
 
   return (
@@ -36,7 +37,15 @@ export default function SearchResults(props) {
                       musicSrc: element.stream_url,
                     },
                   ]);
-                  console.warn(songQueue);
+                  /*  songQueue2.push([
+                    {
+                      name: element.title,
+                      singer: element.artist.name,
+                      cover: element.cover,
+                      musicSrc: element.stream_url,
+                    },
+                  ]);
+                  console.warn(songQueue2); */
                 }}
                 setAudioListToggle={setAudioListToggle}
                 key={element.id}
@@ -152,7 +161,7 @@ export default function SearchResults(props) {
 SearchResults.propTypes = {
   searchResult: PropTypes.arrayOf(),
   responseStatus: PropTypes.number,
-  songQueue: PropTypes.arrayOf(),
+  /* songQueue: PropTypes.arrayOf(), */
   setSongQueue: PropTypes.func,
   searchFilter: PropTypes.string,
   setAudioListToggle: PropTypes.string,
@@ -161,7 +170,7 @@ SearchResults.propTypes = {
 SearchResults.defaultProps = {
   searchResult: "",
   responseStatus: 404,
-  songQueue: [],
+  /* songQueue: [], */
   setSongQueue: null,
   searchFilter: null,
   setAudioListToggle: "",

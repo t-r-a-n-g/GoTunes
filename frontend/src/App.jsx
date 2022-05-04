@@ -20,7 +20,7 @@ import Playlist from "./pages/Playlist";
 function App() {
   // state for songQueue
   const [songQueue, setSongQueue] = useState([]);
-
+  const songQueue2 = [];
   // state for choosing between Soundcloud and internal playlists source
   // eslint-disable-next-line
   const [playlistSource, setPlaylistSource] = useState("soundcloud");
@@ -40,7 +40,7 @@ function App() {
 
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
-    audioLists: songQueue,
+    audioLists: songQueue2,
     quietUpdate: true,
     mode: "full",
     showDownload: false,
@@ -93,6 +93,7 @@ function App() {
                   <ProtectedRoute>
                     <Search
                       songQueue={songQueue}
+                      songQueue2={songQueue2}
                       setSongQueue={setSongQueue}
                       setAudioListToggle={setAudioListToggle}
                     />

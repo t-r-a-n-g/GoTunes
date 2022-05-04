@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext, useEffect, useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { IconButton } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -12,7 +12,10 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import axios from "axios";
+import UserContext from "../contexts/UserContext";
 
+// ########## STYLE_THEME FOR MUI OPTION MENU ########## //
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -32,7 +35,7 @@ const StyledMenu = styled((props) => (
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    backgroundColor: "#e4e6eb",
+    backgroundColor: "#3a3b3c",
     color: theme.palette.text.primary,
     boxShadow:
       "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
@@ -55,17 +58,26 @@ const StyledMenu = styled((props) => (
   },
 }));
 
+// ~~~~~~~~~~ BEGIN FUNCTION ~~~~~~~~~~ //
+
 export default function TracksOptionMenu(props) {
+  // ########## LANGUAGE PROP ########## //
   const { t } = useTranslation();
-  const { setAudioListToggle, onClickToQueue } = props;
-  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // ########## OPEN & CLOSE BEHAVIOR FOR MENU ########## //
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [showPlaylists, setShowPlaylists] = useState("none");
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+    setShowPlaylists("none");
   };
+
+  // ########## ADD TO QUEUE BUTTON BEHAVIOR ########## //
+  const { setAudioListToggle, onClickToQueue } = props;
   const handleAudioListToggle = () => {
     setAudioListToggle(false);
     onClickToQueue();
@@ -73,8 +85,42 @@ export default function TracksOptionMenu(props) {
     console.warn("Warteschlange on");
   };
 
+  // ########## PLAYLIST SUB_MENU BEHAVIOR ########## //
+  const handlePlaylistButton = () => {
+    if (showPlaylists !== "flex") {
+      setShowPlaylists("flex");
+    } else {
+      handleClose();
+    }
+  };
+  const handleSelectPlaylist = () => {
+    handleClose();
+    console.warn(`added to playlist: `);
+  };
+
+  // ########## USEEFFECT TO  GET PLAYLISTS FROM DB AND UPDATE STATE ##########//
+  const [playlist, setPlayList] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const user = useContext(UserContext);
+  const userID = user.id;
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5000/api/users/${userID}/playlists?source=internal`
+      )
+      .then((res) => {
+        console.error("Playlist query: ", res);
+        setPlayList(res.data);
+        /*         console.log(res.data); */
+        setDataLoaded(true);
+      });
+  }, []);
+
+  // ~~~~~~~~~~ BEGIN RETURN ~~~~~~~~~~//
   return (
     <div>
+      {/* ########## OPTION_MENU ICON ########## */}
       <IconButton
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -91,6 +137,7 @@ export default function TracksOptionMenu(props) {
           }}
         />
       </IconButton>
+      {/* ########## OPTION_MENU WITH MENU_ITEMS ########## */}
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{
@@ -100,24 +147,99 @@ export default function TracksOptionMenu(props) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleAudioListToggle} disableRipple>
+        <MenuItem
+          sx={{ "&:hover": { color: "text.secondary" } }}
+          onClick={handleAudioListToggle}
+          disableRipple
+        >
           <AddCircleIcon sx={{ display: "block!important" }} />
           {t("add-to-queue")}
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <PlaylistAddIcon sx={{ display: "block!important" }} />
-          {t("add-to-playlist")}
+        {/* ########## ADD TO PLAYLIST BUTTON AND PLAYLIST SUB_MENU ########## */}
+        <MenuItem
+          sx={
+            showPlaylists === "none"
+              ? {
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  "&:hover": { color: "text.secondary" },
+                }
+              : {
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                }
+          }
+          onClick={handlePlaylistButton}
+          disableRipple
+        >
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <PlaylistAddIcon sx={{ display: "block!important" }} />
+            {t("add-to-playlist")}
+          </div>
+          <div
+            style={{
+              display: showPlaylists,
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
+            {/* ########## FETCH PLAYLIST DATA AND DISPLAY AS MENU_ITEM IN SUB_MENU ########## */}
+            {dataLoaded
+              ? playlist.map((pl) => {
+                  return (
+                    <MenuItem
+                      onClick={handleSelectPlaylist}
+                      sx={{
+                        paddingLeft: 0,
+                        "&:hover": { color: "text.secondary" },
+                      }}
+                    >
+                      <img
+                        style={{
+                          height: "20px",
+                          weigth: "20px",
+                          marginRight: "10px",
+                        }}
+                        id="tracks-option-menu-playlist-cover"
+                        src={
+                          pl.playlist.cover === "" || pl.playlist.cover === null
+                            ? "https://cdn.pixabay.com/photo/2013/07/12/18/17/equalizer-153212_1280.png"
+                            : pl.playlist.cover
+                        }
+                        alt="cover"
+                      />
+                      {pl.playlist.title}
+                    </MenuItem>
+                  );
+                })
+              : null}
+          </div>
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        {/* ########## OPTION_MENU WITH OTHER MENU_ITEMS ########## */}
+        <MenuItem
+          sx={{ "&:hover": { color: "text.secondary" } }}
+          onClick={handleClose}
+          disableRipple
+        >
           <FileCopyIcon sx={{ display: "block!important" }} />
           Example 2
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          sx={{ "&:hover": { color: "text.secondary" } }}
+          onClick={handleClose}
+          disableRipple
+        >
           <ArchiveIcon sx={{ display: "block!important" }} />
           Example 3
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          sx={{ "&:hover": { color: "text.secondary" } }}
+          onClick={handleClose}
+          disableRipple
+        >
           <MoreHorizIcon sx={{ display: "block!important" }} />
           More
         </MenuItem>
