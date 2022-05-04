@@ -13,7 +13,7 @@ router.get("/me", verifyToken, (req, res) => {
     #swagger.responses[200] = {
       description: 'success',
       schema: { 
-        $ref: '#/definitions/User'
+        $ref: '#/definitions/Me'
       }
     }
 
