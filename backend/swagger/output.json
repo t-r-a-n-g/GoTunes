@@ -1200,6 +1200,33 @@
         }
       }
     },
+    "/users/me": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Me"
+            }
+          },
+          "403": {
+            "description": "Invalid user",
+            "schema": {
+              "$ref": "#/definitions/ErrorInvalidUser"
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorInternal"
+            }
+          }
+        }
+      }
+    },
     "/users/{userId}": {
       "get": {
         "tags": ["Users"],
@@ -1365,7 +1392,7 @@
           "type": "string",
           "example": "example_sc-user"
         },
-        "profile": {
+        "userProfile": {
           "$ref": "#/definitions/User"
         }
       },

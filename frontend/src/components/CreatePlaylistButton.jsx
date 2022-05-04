@@ -128,7 +128,7 @@ export default function CreatePlaylist() {
                   setPlaylistTitle(event.target.value);
                 }}
               />
-
+              {/*               <Stack spacing={2} sx={{ width: "100%" }}> */}
               <Button
                 onClick={() => {
                   savePlaylist();
@@ -146,9 +146,9 @@ export default function CreatePlaylist() {
               >
                 {t("modal-form-createnewplaylist-button")}
               </Button>
-              {/*  <Stack spacing={2} sx={{ width: "100%" }}>
-                <Snackbar
-                  onChange={handleAlert}
+
+              {/*                 <Snackbar
+                  open={open}
                   autoHideDuration={6000}
                   onClose={handleClose}
                 >

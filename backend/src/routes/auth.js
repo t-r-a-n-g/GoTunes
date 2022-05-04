@@ -134,8 +134,5 @@ router.post("/register", (req, res) => {
 */
   auth.register(req, res);
 });
-// router.get("/me", verifyToken, (req, res) => {
-//   res.json({ id: req.userId });
-// });
 
 module.exports = router;
