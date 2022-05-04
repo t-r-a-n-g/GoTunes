@@ -35,6 +35,25 @@ class UserController {
       }
     }
   }
+
+  static async updateUser(req, res) {
+    const { avatar, biography, username, soundcloudUsername } =
+      Controller.getParams(req);
+
+    try {
+      const user = await UserService.updateUser(
+        username,
+        soundcloudUsername,
+        avatar,
+        biography,
+        req.user
+      );
+      return res.json(user);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ errors: { server: "err-internal" } });
+    }
+  }
 }
 
 module.exports = UserController;

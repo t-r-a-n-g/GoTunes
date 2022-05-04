@@ -68,6 +68,7 @@ module.exports = {
   UserPlaylist: {
     $can_edit: true,
     $is_creator: true,
+    $isFavorite: false,
     $playlist: {
       $ref: "#/definitions/Playlist",
     },

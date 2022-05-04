@@ -9,6 +9,13 @@ function LogoutButton() {
     <IconButton
       variant="contained"
       id="logout-button"
+      sx={{
+        mt: "20px",
+        alignItems: "center",
+        width: "50%",
+        ml: "25%",
+        mr: "25%",
+      }}
       onClick={() => {
         localStorage.removeItem("userToken");
         navigate("/login");

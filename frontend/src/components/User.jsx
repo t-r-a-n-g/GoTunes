@@ -38,9 +38,9 @@ function User({ avatar, playlistcount, followingcount, userName }) {
       <Avatar id="user-avatar" src={avatar} />
       <br />
       <h1 id="user-userName">{userName}</h1>
-      <Button sx={{ px: 8, py: 1 }} variant="contained">
+      {/*       <Button sx={{ px: 8, py: 1 }} variant="contained">
         {t("edit-profil-button")}
-      </Button>
+      </Button> */}
       <div id="user-button-container">
         <div id="user-playlistcount-container">
           <p id="user-playlistcount">{playlistcount}</p>

@@ -5,6 +5,7 @@ import Searchbar from "../components/Search/Searchbar";
 import SearchResults from "../components/Search/SearchResults";
 import SearchNavbar from "../components/Search/SearchNavbar";
 import { searchAllEndpoint } from "../components/API";
+import "./Search.css";
 
 export default function Search(props) {
   const { songQueue, setSongQueue, setAudioListToggle, songQueue2 } = props;

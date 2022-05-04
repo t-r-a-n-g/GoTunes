@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const { User } = require("../models");
 const { AuthentificationError, DuplicationError } = require("../exceptions");
+const PlaylistService = require("./playlist.service");
 
 class AuthService {
   static async usernameExists(username) {
@@ -57,6 +58,7 @@ class AuthService {
       password: encryptedPassword,
     });
 
+    await PlaylistService.createPlaylist("user-favorites-playlist", user, true);
     return { id: user.id, username: user.username, email: user.email };
   }
 }

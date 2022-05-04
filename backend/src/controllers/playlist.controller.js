@@ -75,6 +75,16 @@ class PlaylistController {
     return res.json(resData);
   }
 
+  static async getFavoritesPlaylist(req, res) {
+    try {
+      const playlist = await PlaylistService.getFavoritesPlaylist(req.user);
+      return res.json(playlist);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ errors: { server: "err-internal" } });
+    }
+  }
+
   static async getPlaylist(req, res) {
     const { playlistId, src } = Controller.getParams(req);
     let resData = {};

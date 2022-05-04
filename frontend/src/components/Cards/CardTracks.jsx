@@ -3,7 +3,7 @@ import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
 import { IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
-import TracksOptionMenu from "@components/TracksOptionMenu";
+import TracksOptionMenu from "../TracksOptionMenu";
 import "./CardTracks.css";
 
 function CardTracks(props) {
@@ -73,7 +73,7 @@ CardTracks.propTypes = {
   title: PropTypes.string,
   artist: PropTypes.string,
   onClick: PropTypes.func,
-  setAudioListToggle: PropTypes.string,
+  setAudioListToggle: PropTypes.func,
 };
 
 CardTracks.defaultProps = {
