@@ -1,7 +1,7 @@
 import React from "react";
 import CardArtists from "@components/Cards/CardArtists";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
+/* import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container"; */
 
 export default function FavArtist() {
   return (

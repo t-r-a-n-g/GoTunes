@@ -1,13 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-/* import PropTypes from "prop-types"; */
+import PropTypes from "prop-types";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import "./LibraryNavBar.css";
 
 export default function LibraryNavbar(props) {
   const { t } = useTranslation();
-  const { searchFilter, setSearchFilter } = props;
+  const { searchFilter } = props;
 
   return (
     <Stack direction="row" spacing={1} id="searchnavbar-container">
@@ -47,13 +47,9 @@ export default function LibraryNavbar(props) {
   );
 }
 
-/* SearchNavbar.propTypes = {
-  setSearchEndpoint: PropTypes.func,
-  setSearchFilter: PropTypes.func,
+LibraryNavbar.propTypes = {
   searchFilter: PropTypes.string,
 };
-SearchNavbar.defaultProps = {
-  setSearchEndpoint: null,
-  setSearchFilter: () => {},
+LibraryNavbar.defaultProps = {
   searchFilter: null,
-}; */
+};

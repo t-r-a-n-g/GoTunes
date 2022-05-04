@@ -5,25 +5,25 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+/* import Stack from "@mui/material/Stack"; */
+/* import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert"; */
 import { useTranslation } from "react-i18next";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 
 // Alert
-const Alert = React.forwardRef(function Alert(props, ref) {
+/* const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+}); */
 
 export default function CreatePlaylist() {
   const [open, setOpen] = React.useState(false);
   const [playlistTitle, setPlaylistTitle] = React.useState("");
-  const [alert, setAlert] = React.useState(false);
+  /*   const [alert, setAlert] = React.useState(false); */
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleAlert = () => setAlert(true);
+  /*   const handleAlert = () => setAlert(true); */
   const { t } = useTranslation();
 
   /* SAVE PLAYLIST TO DB */
@@ -128,27 +128,26 @@ export default function CreatePlaylist() {
                   setPlaylistTitle(event.target.value);
                 }}
               />
-              <Stack spacing={2} sx={{ width: "100%" }}>
-                <Button
-                  onClick={() => {
-                    savePlaylist();
-                    handleClose();
-                    handleAlert();
-                  }}
-                  variant="contained"
-                  sx={{
-                    mt: "20px",
-                    alignItems: "center",
-                    width: "50%",
-                    ml: "25%",
-                    mr: "25%",
-                  }}
-                  size="large"
-                >
-                  {t("modal-form-createnewplaylist-button")}
-                </Button>
+              {/*               <Stack spacing={2} sx={{ width: "100%" }}> */}
+              <Button
+                onClick={() => {
+                  savePlaylist();
+                  handleClose();
+                }}
+                variant="contained"
+                sx={{
+                  mt: "20px",
+                  alignItems: "center",
+                  width: "50%",
+                  ml: "25%",
+                  mr: "25%",
+                }}
+                size="large"
+              >
+                {t("modal-form-createnewplaylist-button")}
+              </Button>
 
-                <Snackbar
+              {/*                 <Snackbar
                   open={open}
                   autoHideDuration={6000}
                   onClose={handleClose}
@@ -161,7 +160,7 @@ export default function CreatePlaylist() {
                     Playlist succesfully created!
                   </Alert>
                 </Snackbar>
-              </Stack>
+              </Stack> */}
             </form>
           </p>
         </Box>

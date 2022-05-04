@@ -1,13 +1,12 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CardPlaylists from "./Cards/CardPlaylists";
-import FavArtist from "./User Profil/DummyFavArtist";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import "./User.css";
 import axios from "axios";
+import CardPlaylists from "./Cards/CardPlaylists";
+import FavArtist from "./User Profil/DummyFavArtist";
 
 function User({ avatar, playlistcount, followingcount, userName }) {
   const { t } = useTranslation();
