@@ -16,6 +16,8 @@ import Home from "./pages/Home";
 import themeGlobal from "./theme";
 import MusicPlayer from "./components/MusicPlayer";
 import Playlist from "./pages/Playlist";
+import Settings from "./pages/Settings";
+import ImportMusic from "@pages/SynMusic";
 
 function App() {
   // state for songQueue
@@ -115,6 +117,24 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <UserProfil />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                excat
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                excat
+                path="/importmusic"
+                element={
+                  <ProtectedRoute>
+                    <ImportMusic />
                   </ProtectedRoute>
                 }
               />
