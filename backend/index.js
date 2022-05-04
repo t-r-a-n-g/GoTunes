@@ -58,11 +58,11 @@ async function syncDB(force = false) {
     });
 
     const playlist = await db.Playlist.create({
-      title: `${username} playlist`,
+      title: `user-favorites-playlist`,
     });
 
     user.addPlaylist(playlist, {
-      through: { can_edit: true, is_creator: true },
+      through: { can_edit: true, is_creator: true, is_favorite: true },
     });
 
     const profile = await db.UserProfile.create({
