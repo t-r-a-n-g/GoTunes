@@ -6,7 +6,7 @@ const { artist } = require("../controllers");
 
 router.get("/:artistId", (req, res) => {
   /*
-        #swagger.path = "/artist/{artistId}"
+        #swagger.path = "/artists/{artistId}"
         #swagger.tags = ["Artist"]
 
         #swagger.parameters["artistId"] = {
@@ -44,7 +44,7 @@ router.get("/:artistId", (req, res) => {
 
 router.get("/:artistId/albums", (req, res) => {
   /*
-        #swagger.path = "/artist/{artistId}/albums"
+        #swagger.path = "/artists/{artistId}/albums"
         #swagger.tags = ["Artist"]
 
         #swagger.parameters["artistId"] = {
@@ -80,9 +80,9 @@ router.get("/:artistId/albums", (req, res) => {
   artist.getAlbums(req, res);
 });
 
-router.get("/:artistId/playlists", (req, res) => {
-  /*
-        #swagger.path = "/artist/{artistId}/playlists"
+// router.get("/:artistId/playlists", (req, res) => {
+/*
+        #swagger.path = "/artists/{artistId}/playlists"
         #swagger.tags = ["Artist"]
 
         #swagger.parameters["artistId"] = {
@@ -115,8 +115,8 @@ router.get("/:artistId/playlists", (req, res) => {
         } 
     */
 
-  artist.getPlaylists(req, res);
-});
+// artist.getPlaylists(req, res);
+// });
 
 router.get("/:artistId/tracks", (req, res) => {
   /*
