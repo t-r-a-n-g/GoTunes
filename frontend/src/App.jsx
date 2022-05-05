@@ -207,7 +207,7 @@ function App() {
                     />
 
                     <Route
-                      path="/artists/:artistsId"
+                      path="/artists/:artistId"
                       element={
                         <ProtectedRoute>
                           <ArtistOverview />

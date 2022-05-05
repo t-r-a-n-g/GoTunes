@@ -10,7 +10,11 @@ function BigCard({ cover, title /* onClick */ }) {
     <div /* onClick={onClick} */>
       <div id="big-card-container">
         <img id="big-card-cover" src={cover} alt="cover" />
-        <Typography component="div" variant="h5">
+        <Typography
+          component="div"
+          variant="h6"
+          sx={{ width: 150, wordWrap: "break-word" }}
+        >
           {title}
         </Typography>
       </div>

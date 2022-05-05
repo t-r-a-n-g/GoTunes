@@ -1,0 +1,28 @@
+#artist-description {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 0.9rem;
+}
+
+.section-headlines {
+  text-align: left;
+}
+
+/* #artist-main-container {
+  margin-left: 1rem;
+  margin-right: 1rem;
+} */
+
+#artist-body-container {
+  margin: 2rem 1rem 1rem 1rem;
+}
+
+#artist-flex-container {
+  display: flex;
+  justify-content: row;
+  flex-wrap: wrap;
+}
+
+.not-available {
+  text-align: left;
+}
