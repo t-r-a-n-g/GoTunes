@@ -3,8 +3,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
+// eslint-disable-next-line
 import AuthService from "@services/AuthService";
+// eslint-disable-next-line
 import ImportMusic from "@pages/SynMusic";
+import ArtistOverview from "./pages/ArtistOverview";
 import UserContext from "./contexts/UserContext";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
 import Library from "./pages/Library";
@@ -199,6 +202,15 @@ function App() {
                             playlistSource={playlistSource}
                             setSongQueue={setSongQueue}
                           />
+                        </ProtectedRoute>
+                      }
+                    />
+
+                    <Route
+                      path="/artists/:artistsId"
+                      element={
+                        <ProtectedRoute>
+                          <ArtistOverview />
                         </ProtectedRoute>
                       }
                     />

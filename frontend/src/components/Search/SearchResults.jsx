@@ -104,8 +104,7 @@ export default function SearchResults(props) {
       {responseStatus === 200 && searchFilter === "Artists"
         ? searchResult.map((element) => (
             <CardArtists
-              /* To Do: define onClick method */
-
+              onClick={() => navigate(`/artists/${element.id}`)}
               key={element.id}
               cover={element.avatar}
               name={element.name}
@@ -148,9 +147,9 @@ export default function SearchResults(props) {
 }
 
 SearchResults.propTypes = {
-  searchResult: PropTypes.arrayOf(),
+  searchResult: PropTypes.arrayOf(PropTypes.objectOf()),
   responseStatus: PropTypes.number,
-  /* songQueue: PropTypes.arrayOf(), */
+  /*   songQueue: PropTypes.arrayOf(PropTypes.objectOf()), */
   setSongQueue: PropTypes.func,
   searchFilter: PropTypes.string,
   setAudioListToggle: PropTypes.func,
