@@ -7,6 +7,7 @@ import "./App.css";
 import AuthService from "@services/AuthService";
 // eslint-disable-next-line
 import ImportMusic from "@pages/SynMusic";
+import EditProfile from "@pages/EditUserProfile";
 import ArtistOverview from "./pages/ArtistOverview";
 import UserContext from "./contexts/UserContext";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
@@ -31,7 +32,6 @@ function App() {
   // state for choosing between Soundcloud and internal playlists source
   // eslint-disable-next-line
   const [playlistSource, setPlaylistSource] = useState("soundcloud");
-
   // This creates a variable representing the audio element. To connect the player with buttons (our own controls),
   // we can then call its methods, such as audioInstance.pause().
   // const [audioInstance, setAudioInstance] = useState(null);
@@ -44,7 +44,6 @@ function App() {
 
   // state for audio list aka "Warteschlange"
   const [audioListToggle, setAudioListToggle] = useState(true);
-
   // config options for the player (audioLists is current songQueue)
   const playerOptions = {
     audioLists: songQueue,
@@ -73,11 +72,18 @@ function App() {
         setPlayModeOrder={setPlayModeOrder}
       />
     ),
+    onAudioListsChange() {
+      // this throws an exception and crashes the function but it somehow fixes the problem that not all tracks are playable...
+      // eslint-disable-next-line
+      if (this.clearPriorAudioLists) return Promise.reject();
 
+      return true;
+    },
     onCoverClick() {
       console.warn(`responsive: ${responsiveToggle}`);
       setResponsiveToggle(!responsiveToggle);
     },
+
     // TO DO: CHECK IF LINES BELOW ARE NECCESSARY OR COULD BE DELETED
     // getAudioInstance(instance) {
     //   setAudioInstance(instance);
@@ -149,6 +155,15 @@ function App() {
                       element={
                         <ProtectedRoute>
                           <UserProfil />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      excat
+                      path="/editprofile"
+                      element={
+                        <ProtectedRoute>
+                          <EditProfile />
                         </ProtectedRoute>
                       }
                     />

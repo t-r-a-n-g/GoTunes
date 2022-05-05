@@ -4,7 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Playlist.css";
-import CardTracks from "../Components/Cards/CardTracks";
+import CardTracks from "../components/Cards/CardTracks";
 
 export default function Playlist(props) {
   // NEEDS THE FOLLOWING PROPS:
