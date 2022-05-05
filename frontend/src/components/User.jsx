@@ -5,12 +5,12 @@ import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import "./User.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import CardPlaylists from "./Cards/CardPlaylists";
 import FavArtist from "./User Profil/DummyFavArtist";
-import { useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 
-function User({ avatar, playlistcount, followingcount, userName }) {
+function User({ playlistcount, followingcount }) {
   const { t } = useTranslation();
   const [playlist, setPlayList] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -97,16 +97,11 @@ function User({ avatar, playlistcount, followingcount, userName }) {
 }
 
 User.propTypes = {
-  avatar: PropTypes.string,
   playlistcount: PropTypes.number,
   followingcount: PropTypes.number,
-  userName: PropTypes.string,
 };
 
 User.defaultProps = {
-  avatar:
-    "https://www.seekpng.com/png/detail/60-608286_kanye-west-is-the-avatar-kanye-avatar.png",
-  userName: "User",
   playlistcount: 5,
   followingcount: 10,
 };

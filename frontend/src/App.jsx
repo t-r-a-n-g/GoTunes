@@ -5,6 +5,7 @@ import { CssBaseline } from "@mui/material";
 import "./App.css";
 import AuthService from "@services/AuthService";
 import ImportMusic from "@pages/SynMusic";
+import EditProfile from "@pages/EditUserProfile";
 import UserContext from "./contexts/UserContext";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
 import Library from "./pages/Library";
@@ -21,7 +22,6 @@ import Playlist from "./pages/Playlist";
 import Settings from "./pages/Settings";
 import WhenLoggedOut from "./components/Routing/WhenLoggedOut";
 import WhenLoggedIn from "./components/Routing/WhenLoggedIn";
-import EditProfile from "@pages/EditUserProfile";
 
 function App() {
   // state for songQueue
