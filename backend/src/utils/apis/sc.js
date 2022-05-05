@@ -94,29 +94,33 @@ class SoundCloud {
       if (track.duration) {
         // eslint-disable-next-line
         const streamUrl = await this.getTrackStreamUrl(track);
-        const title =
-          track.duration !== track.full_duration
-            ? `PREVIEW | ${track.title}`
-            : track.title;
 
-        data.push({
-          id: track.id,
-          cover: track.artwork_url,
-          description: track.description,
-          duration: track.duration,
-          genres: [track.genre],
-          artist_id: track.user_id,
-          album_id: null,
-          title,
-          release_date: track.release_date,
-          stream_url: streamUrl,
-          artist: SoundCloud.formatArtistData(track.user),
-          kind: "track",
-          source: "soundcloud",
-        });
+        if (streamUrl) {
+          const title =
+            track.duration !== track.full_duration
+              ? `PREVIEW | ${track.title}`
+              : track.title;
+
+          data.push({
+            id: track.id,
+            cover: track.artwork_url,
+            description: track.description,
+            duration: track.duration,
+            genres: [track.genre],
+            artist_id: track.user_id,
+            album_id: null,
+            title,
+            release_date: track.release_date,
+            stream_url: streamUrl,
+            artist: SoundCloud.formatArtistData(track.user),
+            kind: "track",
+            source: "soundcloud",
+          });
+        }
       }
     }
 
+    if (data.length <= 0) return null;
     return Array.isArray(tracks) ? data : data[0];
   }
 
@@ -162,25 +166,30 @@ class SoundCloud {
 
   async searchAll(q, options) {
     const res = await this.search(null, { q, ...options });
-    const data = Promise.all(
-      res.collection.map(async (item) => {
-        switch (item.kind) {
-          case "user":
-            return SoundCloud.formatArtistData(item);
+    const data = [];
+    for (const item of res.collection) {
+      let d = null;
 
-          case "playlist":
-            if (item.is_album) return SoundCloud.formatAlbumData(item);
-            return SoundCloud.formatPlaylistData(item);
+      switch (item.kind) {
+        case "user":
+          d = SoundCloud.formatArtistData(item);
+          break;
 
-          case "track":
-            return this.formatTrackData(item);
+        case "playlist":
+          if (item.is_album) d = SoundCloud.formatAlbumData(item);
+          d = SoundCloud.formatPlaylistData(item);
+          break;
 
-          default:
-            return {};
-        }
-      })
-    );
+        case "track":
+          d = await this.formatTrackData(item);
+          break;
 
+        default:
+          d = null;
+      }
+
+      if (d) data.push(d);
+    }
     return data;
   }
 
@@ -284,8 +293,19 @@ class SoundCloud {
   }
 
   async getTrackStreamUrl(track) {
-    const streamUrl = `${track.media?.transcodings[1]?.url}?client_id=${this.clientId}`;
+    const transcodings = track.media?.transcodings;
+    if (!transcodings || transcodings.length <= 0) {
+      return null;
+    }
 
+    const tIndex = transcodings.length === 1 ? 0 : 1;
+    // They return a playlist file, so we filter them out for now
+    // ToDo: Take a look to this
+    if (!transcodings[tIndex].url || tIndex === 0) {
+      return null;
+    }
+
+    const streamUrl = `${transcodings[tIndex].url}?client_id=${this.clientId}`;
     const res = await axios({
       url: streamUrl,
       headers: {
@@ -294,6 +314,9 @@ class SoundCloud {
     });
 
     const mp3File = res.data.url;
+
+    // Same thing as above - filter out playlist format. Fuck soundcloud
+    if (mp3File.includes(".m3u8")) return null;
     return mp3File;
   }
 }
