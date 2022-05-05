@@ -97,6 +97,7 @@ export default function SearchResults(props) {
               cover={element.cover}
               title={element.title}
               artist={element.artist?.name ?? t("waiting-for-loading")}
+              setAudioListToggle={setAudioListToggle}
             />
           ))
         : ""}
