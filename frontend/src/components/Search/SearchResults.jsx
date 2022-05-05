@@ -16,7 +16,6 @@ export default function SearchResults(props) {
     setSongQueue,
     searchFilter,
     setAudioListToggle,
-    /* songQueue2, */
   } = props;
 
   return (
@@ -37,15 +36,6 @@ export default function SearchResults(props) {
                       musicSrc: element.stream_url,
                     },
                   ]);
-                  /*  songQueue2.push([
-                    {
-                      name: element.title,
-                      singer: element.artist.name,
-                      cover: element.cover,
-                      musicSrc: element.stream_url,
-                    },
-                  ]);
-                  console.warn(songQueue2); */
                 }}
                 setAudioListToggle={setAudioListToggle}
                 key={element.id}

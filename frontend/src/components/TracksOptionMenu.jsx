@@ -163,6 +163,7 @@ export default function TracksOptionMenu(props) {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
+                  justifyContent: "center",
                   "&:hover": { color: "text.secondary" },
                 }
               : {

@@ -8,7 +8,7 @@ import { searchAllEndpoint } from "../components/API";
 import "./Search.css";
 
 export default function Search(props) {
-  const { songQueue, setSongQueue, setAudioListToggle, songQueue2 } = props;
+  const { songQueue, setSongQueue, setAudioListToggle } = props;
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [responseStatus, setResponseStatus] = useState();
@@ -68,7 +68,6 @@ export default function Search(props) {
         songQueue={songQueue}
         setSongQueue={setSongQueue}
         searchFilter={searchFilter}
-        songQueue2={songQueue2}
       />
     </div>
   );
@@ -77,11 +76,9 @@ Search.propTypes = {
   setSongQueue: PropTypes.func,
   songQueue: PropTypes.shape(),
   setAudioListToggle: PropTypes.func,
-  songQueue2: PropTypes.shape(),
 };
 Search.defaultProps = {
   setSongQueue: null,
   songQueue: null,
   setAudioListToggle: "",
-  songQueue2: null,
 };
