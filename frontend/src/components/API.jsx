@@ -11,6 +11,7 @@ const searchAllEndpoint = `${baseUrl}/api/search/all/`;
 const favoritesPlaylistEndpoint = `${baseUrl}/api/playlists/favorites`;
 
 export {
+  baseUrl,
   meEndpoint,
   loginEndpoint,
   registerEndpoint,
