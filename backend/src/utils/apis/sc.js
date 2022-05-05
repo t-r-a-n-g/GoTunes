@@ -181,6 +181,7 @@ class SoundCloud {
           break;
 
         case "track":
+          // eslint-disable-next-line
           d = await this.formatTrackData(item);
           break;
 

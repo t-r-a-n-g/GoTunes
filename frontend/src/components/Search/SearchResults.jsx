@@ -17,7 +17,6 @@ export default function SearchResults(props) {
     searchFilter,
     setAudioListToggle,
   } = props;
-  console.log(searchResult);
   return (
     <div>
       {/* eslint-disable */}
