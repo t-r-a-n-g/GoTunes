@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Playlist.css";
 import CardTracks from "../Components/Cards/CardTracks";
+import MenuBanner from "../Components/Playlist/MenuBanner";
 
 export default function Playlist(props) {
   // NEEDS THE FOLLOWING PROPS:
@@ -57,68 +58,6 @@ export default function Playlist(props) {
 
   /*  console.log(playlistTracks); */
   /************************************************************************************************ */
-
-  // CARD COMPONENT FOR ONE TRACK
-
-  //  eslint-disable-next-line
-  function TrackCard(props) {
-    //  eslint-disable-next-line
-    return (
-      <div>
-        {/*  eslint-disable-next-line */}
-        <div
-          id="trackCardMainSection"
-          onClick={() =>
-            setSongQueue([
-              {
-                //  eslint-disable-next-line
-
-                name: props.title,
-                //  eslint-disable-next-line
-
-                singer: props.artistName,
-                //  eslint-disable-next-line
-
-                cover: props.cover,
-                //  eslint-disable-next-line
-
-                musicSrc: props.stream_url,
-              },
-            ])
-          }
-        >
-          TRACK CARD
-          {/*  eslint-disable-next-line */}
-          <img src={props.cover} alt="cover for this song" />
-          {/*  eslint-disable-next-line */}
-          {props.title} by {props.artistName}
-        </div>
-        <div>
-          <button type="button">Options</button>
-        </div>
-      </div>
-    );
-  }
-
-  /**************************************************************************************/
-
-  // MAPPING CARDS FOR ALL TRACKS TO BE DISPLAYED
-
-  function mapAllTracksToCards() {
-    return playlistTracks.map((trackObject) => (
-      <TrackCard
-        artistName={trackObject.artist.name}
-        cover={trackObject.cover}
-        title={trackObject.title}
-        key={trackObject.id}
-        id={trackObject.id}
-        stream_url={trackObject.stream_url}
-      />
-    ));
-  }
-
-  /*************************************************************************************/
-
   // RENDER METHOD OF THE WHOLE PLAYLIST COMPONENT
 
   if (playlistDataHasLoaded && playlistTracksHasLoaded) {
@@ -159,11 +98,8 @@ export default function Playlist(props) {
           </div>
         </div>
         {/* GRAY BACKGROUND SECTION (BOTTOM HALF) */}
+        <MenuBanner />
         <div id="bottomSection">
-          BOTTOM SECTION___
-          <button>Heart button</button>
-          <button>Options</button>
-          <button>Play</button>
           {/* CARDS FOR ALL TRACKS    (I MOVED THE MAPPING FUNCTION UP IN THE CODE (JUST FOR BETTER READABILITY)) */}
           {/* mapAllTracksToCards() */}
           {/* Ab hier von Trang: Instead, Use the Cards for Tracks that we already have */}
