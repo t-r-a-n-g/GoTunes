@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { User } = require("../models");
+const { User, UserProfile } = require("../models");
 const { AuthentificationError, DuplicationError } = require("../exceptions");
 const PlaylistService = require("./playlist.service");
 
@@ -58,6 +58,8 @@ class AuthService {
       password: encryptedPassword,
     });
 
+    const userProfile = await UserProfile.create();
+    await user.setUserProfile(userProfile);
     await PlaylistService.createPlaylist("user-favorites-playlist", user, true);
     return { id: user.id, username: user.username, email: user.email };
   }

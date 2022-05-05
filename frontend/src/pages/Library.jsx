@@ -40,7 +40,8 @@ export default function Library() {
   const { t } = useTranslation();
   const [playlist, setPlayList] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
+
   const userID = user.id;
   /* USEEFFECT TO  GET PLAYLISTS FROM DB AND UPDATE STATE */
   useEffect(() => {

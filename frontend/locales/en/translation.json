@@ -43,5 +43,19 @@
   "library": "Library",
   "library-main-heading": "Library",
   "library-all": "all",
-  "add-to-queue": "Add to Queue"
+  "add-to-queue": "Add to Queue",
+  "add-to-playlist": "Add to Playlist",
+  "modal-form-logout": "Where do you wanna go?",
+  "settings-heading": "Settings",
+  "settings-your-profil": "Your Profil",
+  "settings-interface-style": "Interface Style",
+  "settings-your-insights": "Your Insights",
+  "settings-streaming-quality": "Streaming Quality",
+  "settings-sync-your-music": "Sync Your Music",
+  "settings-log-out": "Sign Out",
+  "importmusic-personal-library": "Import Personal Library",
+  "importmusic-soundcloud": "Import Soundcloud Playlist",
+  "importmusic-spotify": "Import Spotify Playlist",
+  "import-mixcloud": "Import Mixcloud Playlist",
+  "importmusic-heading": "Import your Playlists"
 }

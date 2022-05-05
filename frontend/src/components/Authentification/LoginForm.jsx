@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,7 @@ import axios from "axios";
 import validator from "validator";
 import { useNavigate, Link } from "react-router-dom";
 import { loginEndpoint } from "../API";
-import authService from "../../services/AuthService";
+import UserContext from "../../contexts/UserContext";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function LoginForm() {
   const [emailInvalid, setEmailInvalid] = React.useState(false);
   // stateHook vor response status of API request
   const [status, setStatus] = React.useState();
-
+  const { auth } = useContext(UserContext);
   // stores user login data for further usage
   const userLoginData = {};
   userLoginData.email = email;
@@ -45,7 +45,7 @@ function LoginForm() {
         .then((response) => {
           setStatus(response.status);
           // localStorage.setItem stores anything in browser storage
-          authService.setToken(response.data.token);
+          auth.setToken(response.data.token);
           // after correct login auto navigate to /page-u-want
           navigate("/profile");
         })

@@ -45,7 +45,6 @@ class PlaylistService {
 
   static async createPlaylist(title, currentUser, isFavorite = false) {
     const { Playlist } = db;
-    /*     console.log(currentUser); */
 
     const playlist = await Playlist.create({
       title,
@@ -70,7 +69,7 @@ class PlaylistService {
       user: {
         id: currentUser.id,
         username: currentUser.username,
-        userProfile: currentUser.userProfile.get({ plain: true }), // convert model to plain object
+        userProfile: currentUser.userProfile?.get({ plain: true }), // convert model to plain object
       },
     };
   }

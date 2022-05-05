@@ -12,7 +12,7 @@ export default function SearchResults(props) {
   const {
     searchResult,
     responseStatus,
-    songQueue,
+    /* songQueue, */
     setSongQueue,
     searchFilter,
     setAudioListToggle,
@@ -36,7 +36,6 @@ export default function SearchResults(props) {
                       musicSrc: element.stream_url,
                     },
                   ]);
-                  console.warn(songQueue);
                 }}
                 setAudioListToggle={setAudioListToggle}
                 key={element.id}
@@ -151,7 +150,7 @@ export default function SearchResults(props) {
 SearchResults.propTypes = {
   searchResult: PropTypes.arrayOf(PropTypes.objectOf()),
   responseStatus: PropTypes.number,
-  songQueue: PropTypes.arrayOf(PropTypes.objectOf()),
+  /*   songQueue: PropTypes.arrayOf(PropTypes.objectOf()), */
   setSongQueue: PropTypes.func,
   searchFilter: PropTypes.string,
   setAudioListToggle: PropTypes.func,
@@ -160,7 +159,7 @@ SearchResults.propTypes = {
 SearchResults.defaultProps = {
   searchResult: "",
   responseStatus: 404,
-  songQueue: [],
+  /* songQueue: [], */
   setSongQueue: null,
   searchFilter: null,
   setAudioListToggle: "",

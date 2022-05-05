@@ -51,28 +51,24 @@ export default function Search(props) {
 
   return (
     <div>
-      <div id="searchbar-nav-container">
-        <Searchbar
-          searchTerm={searchTerm}
-          // eslint-disable-next-line
-          handleSearch={handleSearch}
-        />
-        <SearchNavbar
-          setSearchEndpoint={setSearchEndpoint}
-          searchFilter={searchFilter}
-          setSearchFilter={setSearchFilter}
-        />
-      </div>
-      <div id="search-results">
-        <SearchResults
-          setAudioListToggle={setAudioListToggle}
-          searchResult={searchResult}
-          responseStatus={responseStatus}
-          songQueue={songQueue}
-          setSongQueue={setSongQueue}
-          searchFilter={searchFilter}
-        />
-      </div>
+      <Searchbar
+        searchTerm={searchTerm}
+        // eslint-disable-next-line
+        handleSearch={handleSearch}
+      />
+      <SearchNavbar
+        setSearchEndpoint={setSearchEndpoint}
+        searchFilter={searchFilter}
+        setSearchFilter={setSearchFilter}
+      />
+      <SearchResults
+        setAudioListToggle={setAudioListToggle}
+        searchResult={searchResult}
+        responseStatus={responseStatus}
+        songQueue={songQueue}
+        setSongQueue={setSongQueue}
+        searchFilter={searchFilter}
+      />
     </div>
   );
 }

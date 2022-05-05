@@ -1,28 +1,16 @@
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
-import authService from "../../services/AuthService";
 
-function ProtectedRoute({ children }) {
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState(null);
-  const [loginFailed, setLoginFailed] = useState(false);
-
-  useEffect(async () => {
-    try {
-      setUser(await authService.getCurrentUser());
-    } catch (err) {
-      setLoginFailed(true);
-      setUser(false);
-    }
-  }, []);
-
-  if (loginFailed) {
+export default function ProtectedRoute({ children }) {
+  const { auth } = useContext(UserContext);
+  if (!auth.token) {
     return <Navigate to="/login" replace />;
   }
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  return children;
+  // return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }
 
 ProtectedRoute.propTypes = {
@@ -33,5 +21,3 @@ ProtectedRoute.defaultProps = {
   /*  user: true, */
   children: "",
 };
-
-export default ProtectedRoute;
