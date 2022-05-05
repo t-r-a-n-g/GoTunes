@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
+import ArtistOverview from "./pages/ArtistOverview";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
 import Library from "./pages/Library";
 import SearchResultGenre from "./pages/SearchResultGenre";
@@ -153,6 +154,15 @@ function App() {
                         playlistSource={playlistSource}
                         setSongQueue={setSongQueue}
                       />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/artists/:artistId"
+                  element={
+                    <ProtectedRoute>
+                      {" "}
+                      <ArtistOverview />
                     </ProtectedRoute>
                   }
                 />
