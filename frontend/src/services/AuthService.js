@@ -1,5 +1,6 @@
 import axios from "axios";
 import { meEndpoint, favoritesPlaylistEndpoint } from "@components/API";
+import UserService from "./UserService";
 
 class AuthService {
   constructor(callback) {
@@ -17,9 +18,10 @@ class AuthService {
         this.me = res.data;
 
         this.me.token = this.token;
+        const userService = new UserService(this.me.id);
 
-        res = await axios(favoritesPlaylistEndpoint);
-        this.me.favoritesPlaylist = res.data;
+        this.me.favoritesPlaylist = await userService.getFavoritesPlaylist();
+        this.me.playlists = await userService.getPlaylists();
       } catch (err) {
         console.error(err);
         this.logout();
