@@ -4,9 +4,9 @@ const router = express.Router();
 
 const { search } = require("../controllers");
 
-router.get("/:q", (req, res) => {
+router.get("/all/:q", (req, res) => {
   /*
-        #swagger.path = "/search/{q}"
+        #swagger.path = "/search/all/{q}"
         #swagger.tags = ["Search"]
 
         #swagger.parameters["q"] = {

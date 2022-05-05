@@ -17,7 +17,6 @@ export default function SearchResults(props) {
     searchFilter,
     setAudioListToggle,
   } = props;
-
   return (
     <div>
       {/* eslint-disable */}
@@ -98,6 +97,7 @@ export default function SearchResults(props) {
               cover={element.cover}
               title={element.title}
               artist={element.artist?.name ?? t("waiting-for-loading")}
+              setAudioListToggle={setAudioListToggle}
             />
           ))
         : ""}
@@ -105,8 +105,7 @@ export default function SearchResults(props) {
       {responseStatus === 200 && searchFilter === "Artists"
         ? searchResult.map((element) => (
             <CardArtists
-              /* To Do: define onClick method */
-
+              onClick={() => navigate(`/artists/${element.id}`)}
               key={element.id}
               cover={element.avatar}
               name={element.name}
@@ -149,9 +148,9 @@ export default function SearchResults(props) {
 }
 
 SearchResults.propTypes = {
-  searchResult: PropTypes.arrayOf(),
+  searchResult: PropTypes.arrayOf(PropTypes.objectOf()),
   responseStatus: PropTypes.number,
-  /* songQueue: PropTypes.arrayOf(), */
+  /*   songQueue: PropTypes.arrayOf(PropTypes.objectOf()), */
   setSongQueue: PropTypes.func,
   searchFilter: PropTypes.string,
   setAudioListToggle: PropTypes.func,

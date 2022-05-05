@@ -4,6 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Playlist.css";
+import CardTracks from "../components/Cards/CardTracks";
 
 export default function Playlist(props) {
   // NEEDS THE FOLLOWING PROPS:
@@ -44,14 +45,17 @@ export default function Playlist(props) {
 
     // GET TRACKS FOR THE PLAYLIST            -> STORED INTO playlistTracks
     //   later: with source? .get(`http://localhost:5000/api/playlists/${props.playlistId}/tracks?source=${props.playlistSrc}`)
+    /* React.useEffect(() => { */
     axios
       .get(`http://localhost:5000/api/playlists/${params.playlistId}/tracks`)
       .then((res) => {
         setPlaylistTracks(res.data);
+
         /* eslint-disable */ setPlaylistTracksHasLoaded(true);
       });
   }, []);
 
+  /*  console.log(playlistTracks); */
   /************************************************************************************************ */
 
   // CARD COMPONENT FOR ONE TRACK
@@ -146,7 +150,7 @@ export default function Playlist(props) {
             <p id="playlistCreatorName">{playlistData.user[0].username}</p>
             {/* PLAYLIST DURATION */}
             <p id="playlistDuration">
-              {Math.round(playlistData.playlist.duration / 60)} min
+              {Math.round(playlistData.playlist.duration / 60000)} min
               {/* Seems there is no React module on npmjs for converting seconds to hh:mm
               Good plain JS modules:
               https://www.npmjs.com/package/humanize-duration
@@ -161,7 +165,15 @@ export default function Playlist(props) {
           <button>Options</button>
           <button>Play</button>
           {/* CARDS FOR ALL TRACKS    (I MOVED THE MAPPING FUNCTION UP IN THE CODE (JUST FOR BETTER READABILITY)) */}
-          {mapAllTracksToCards()}
+          {/* mapAllTracksToCards() */}
+          {/* Ab hier von Trang: Instead, Use the Cards for Tracks that we already have */}
+          {playlistTracks.map((track) => (
+            <CardTracks
+              key={track.id}
+              cover={track.cover}
+              title={track.title}
+            />
+          ))}
         </div>
       </div>
     );

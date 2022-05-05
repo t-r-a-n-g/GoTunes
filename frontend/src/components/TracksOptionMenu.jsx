@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { IconButton } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -12,7 +12,6 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import axios from "axios";
 import UserContext from "../contexts/UserContext";
 
 // ########## STYLE_THEME FOR MUI OPTION MENU ########## //
@@ -99,12 +98,11 @@ export default function TracksOptionMenu(props) {
   };
 
   // ########## USEEFFECT TO  GET PLAYLISTS FROM DB AND UPDATE STATE ##########//
-  const [playlist, setPlayList] = useState([]);
-  const [dataLoaded, setDataLoaded] = useState(false);
-  const user = useContext(UserContext);
-  const userID = user.id;
-
-  useEffect(() => {
+  // const [playlist, setPlayList] = useState([]);
+  // const [dataLoaded, setDataLoaded] = useState(true);
+  const { user } = useContext(UserContext);
+  // const userID = user.id;
+  /* useEffect(() => {
     axios
       .get(
         `http://localhost:5000/api/users/${userID}/playlists?source=internal`
@@ -112,10 +110,9 @@ export default function TracksOptionMenu(props) {
       .then((res) => {
         console.error("Playlist query: ", res);
         setPlayList(res.data);
-        /*         console.log(res.data); */
         setDataLoaded(true);
       });
-  }, []);
+  }, []); */
 
   // ~~~~~~~~~~ BEGIN RETURN ~~~~~~~~~~//
   return (
@@ -187,35 +184,34 @@ export default function TracksOptionMenu(props) {
             }}
           >
             {/* ########## FETCH PLAYLIST DATA AND DISPLAY AS MENU_ITEM IN SUB_MENU ########## */}
-            {dataLoaded
-              ? playlist.map((pl) => {
-                  return (
-                    <MenuItem
-                      onClick={handleSelectPlaylist}
-                      sx={{
-                        paddingLeft: 0,
-                        "&:hover": { color: "text.secondary" },
-                      }}
-                    >
-                      <img
-                        style={{
-                          height: "20px",
-                          weigth: "20px",
-                          marginRight: "10px",
-                        }}
-                        id="tracks-option-menu-playlist-cover"
-                        src={
-                          pl.playlist.cover === "" || pl.playlist.cover === null
-                            ? "https://cdn.pixabay.com/photo/2013/07/12/18/17/equalizer-153212_1280.png"
-                            : pl.playlist.cover
-                        }
-                        alt="cover"
-                      />
-                      {pl.playlist.title}
-                    </MenuItem>
-                  );
-                })
-              : null}
+
+            {user.playlists.map((pl) => {
+              return (
+                <MenuItem
+                  onClick={handleSelectPlaylist}
+                  sx={{
+                    paddingLeft: 0,
+                    "&:hover": { color: "text.secondary" },
+                  }}
+                >
+                  <img
+                    style={{
+                      height: "20px",
+                      weigth: "20px",
+                      marginRight: "10px",
+                    }}
+                    id="tracks-option-menu-playlist-cover"
+                    src={
+                      pl.playlist.cover === "" || pl.playlist.cover === null
+                        ? "https://cdn.pixabay.com/photo/2013/07/12/18/17/equalizer-153212_1280.png"
+                        : pl.playlist.cover
+                    }
+                    alt="cover"
+                  />
+                  {pl.playlist.title}
+                </MenuItem>
+              );
+            })}
           </div>
         </MenuItem>
         {/* ########## OPTION_MENU WITH OTHER MENU_ITEMS ########## */}

@@ -74,7 +74,7 @@ export default function Search(props) {
 }
 Search.propTypes = {
   setSongQueue: PropTypes.func,
-  songQueue: PropTypes.shape(),
+  songQueue: PropTypes.arrayOf(PropTypes.objectOf()),
   setAudioListToggle: PropTypes.func,
 };
 Search.defaultProps = {
