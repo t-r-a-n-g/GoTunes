@@ -29,6 +29,24 @@ export default function FavArtist() {
         name="Traumer"
         description="Minimal / Deep Tech"
       />
+
+      <CardArtists
+        cover="https://geo-static.traxsource.com/files/artists/9839.jpg"
+        name="Tripmastaz"
+        description="Minimal / Deep Tech"
+      />
+
+      <CardArtists
+        cover="https://i1.sndcdn.com/avatars-3DP5dIABZxhmuCZ4-NaXQww-t500x500.jpg"
+        name="Dragutesku"
+        description="Minimal / Deep Tech"
+      />
+
+      <CardArtists
+        cover="https://pbs.twimg.com/profile_images/1061597791489875968/GT141vNy_400x400.jpg"
+        name="Darwin | Reef"
+        description="Jungle / Break Beat"
+      />
     </div>
   );
 }

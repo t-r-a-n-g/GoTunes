@@ -7,6 +7,7 @@ import "./App.css";
 import AuthService from "@services/AuthService";
 // eslint-disable-next-line
 import ImportMusic from "@pages/SynMusic";
+import EditProfile from "@pages/EditUserProfile";
 import ArtistOverview from "./pages/ArtistOverview";
 import UserContext from "./contexts/UserContext";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
@@ -154,6 +155,15 @@ function App() {
                       element={
                         <ProtectedRoute>
                           <UserProfil />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      excat
+                      path="/editprofile"
+                      element={
+                        <ProtectedRoute>
+                          <EditProfile />
                         </ProtectedRoute>
                       }
                     />
