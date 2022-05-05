@@ -21,6 +21,7 @@ import Playlist from "./pages/Playlist";
 import Settings from "./pages/Settings";
 import WhenLoggedOut from "./components/Routing/WhenLoggedOut";
 import WhenLoggedIn from "./components/Routing/WhenLoggedIn";
+import EditProfile from "@pages/EditUserProfile";
 
 function App() {
   // state for songQueue
@@ -146,6 +147,15 @@ function App() {
                       element={
                         <ProtectedRoute>
                           <UserProfil />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      excat
+                      path="/editprofile"
+                      element={
+                        <ProtectedRoute>
+                          <EditProfile />
                         </ProtectedRoute>
                       }
                     />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,8 @@ import "./User.css";
 import axios from "axios";
 import CardPlaylists from "./Cards/CardPlaylists";
 import FavArtist from "./User Profil/DummyFavArtist";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 
 function User({ avatar, playlistcount, followingcount, userName }) {
   const { t } = useTranslation();
@@ -18,7 +20,9 @@ function User({ avatar, playlistcount, followingcount, userName }) {
   const handleClosePlaylist = () => setOpenPlaylist(false);
   const handleOpenArtist = () => setOpenArtist(true);
   const handleCloseArtist = () => setOpenArtist(false);
-  const userID = "2";
+  const { user } = useContext(UserContext);
+  const userID = user.id;
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -35,12 +39,17 @@ function User({ avatar, playlistcount, followingcount, userName }) {
 
   return (
     <div id="user-container">
-      <Avatar id="user-avatar" src={avatar} />
+      <Avatar id="user-avatar" src={user.userProfile.avatar} />
       <br />
-      <h1 id="user-userName">{userName}</h1>
-      {/*       <Button sx={{ px: 8, py: 1 }} variant="contained">
+      <h1 id="user-userName">{user.username}</h1>
+      <Button
+        sx={{ px: 8, py: 1, color: "#f2f2f2" }}
+        variant="outlined"
+        size="small"
+        onClick={() => navigate("/editprofile")}
+      >
         {t("edit-profil-button")}
-      </Button> */}
+      </Button>
       <div id="user-button-container">
         <div id="user-playlistcount-container">
           <p id="user-playlistcount">{playlistcount}</p>
