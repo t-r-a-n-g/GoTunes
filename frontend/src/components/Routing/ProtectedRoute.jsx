@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
-function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children }) {
   const { auth } = useContext(UserContext);
   if (!auth.token) {
     return <Navigate to="/login" replace />;
@@ -21,5 +21,3 @@ ProtectedRoute.defaultProps = {
   /*  user: true, */
   children: "",
 };
-
-export default ProtectedRoute;

@@ -63,6 +63,7 @@ function App() {
     mobileMediaQuery:
       "(max-width: 1000000px) and (orientation: landscape), (max-width: 1000000px) and (orientation: portrait)",
     clearPriorAudioLists: audioListToggle,
+    remember: true,
     extendsContent: (
       <MusicPlayerExtendedButtons
         playModeOrder={playModeOrder}
