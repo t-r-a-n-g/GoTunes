@@ -188,6 +188,7 @@ export default function TracksOptionMenu(props) {
             {user.playlists.map((pl) => {
               return (
                 <MenuItem
+                  key={pl.playlist.id}
                   onClick={handleSelectPlaylist}
                   sx={{
                     paddingLeft: 0,
@@ -246,11 +247,11 @@ export default function TracksOptionMenu(props) {
 }
 
 TracksOptionMenu.propTypes = {
-  setAudioListToggle: PropTypes.string,
+  setAudioListToggle: PropTypes.func,
   onClickToQueue: PropTypes.func,
 };
 
 TracksOptionMenu.defaultProps = {
-  setAudioListToggle: "",
+  setAudioListToggle: () => {},
   onClickToQueue: null,
 };

@@ -81,6 +81,6 @@ CardTracks.defaultProps = {
   title: "",
   artist: "",
   onClick: () => {},
-  setAudioListToggle: "",
+  setAudioListToggle: () => {},
 };
 export default CardTracks;
