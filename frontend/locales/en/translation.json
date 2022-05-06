@@ -60,5 +60,7 @@
   "importmusic-heading": "Import your Playlists",
   "edit-profil-submit": "Submit",
   "edit-profile-change-name": "Change Your User Name",
-  "edit-profile-change-avatar": "Change Your Avatar"
+  "edit-profile-change-avatar": "Change Your Avatar",
+  "loading-tracks": "Loading Tracks...",
+  "no-music-available": "No music avalaible"
 }

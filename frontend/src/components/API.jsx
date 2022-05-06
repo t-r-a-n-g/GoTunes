@@ -9,6 +9,8 @@ const searchPlaylistsEndpoint = `${baseUrl}/api/search/playlists/`;
 const searchAlbumsEndpoint = `${baseUrl}/api/search/albums/`;
 const searchAllEndpoint = `${baseUrl}/api/search/all/`;
 const favoritesPlaylistEndpoint = `${baseUrl}/api/playlists/favorites`;
+const artistsEndpoint = `${baseUrl}/api/artists`;
+const usersEndpoint = `${baseUrl}/api/users`;
 
 export {
   baseUrl,
@@ -21,4 +23,6 @@ export {
   searchAlbumsEndpoint,
   searchAllEndpoint,
   favoritesPlaylistEndpoint,
+  artistsEndpoint,
+  usersEndpoint,
 };

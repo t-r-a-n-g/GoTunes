@@ -46,8 +46,7 @@ export default function SearchResults(props) {
               />
             ) : element.kind === "artist" ? (
               <CardArtists
-                /* To Do: define onClick method */
-
+                onClick={() => navigate(`/artists/${element.id}`)}
                 key={element.id}
                 cover={element.avatar}
                 name={element.name}
