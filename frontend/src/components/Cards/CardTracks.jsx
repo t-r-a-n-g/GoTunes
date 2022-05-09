@@ -38,7 +38,11 @@ function CardTracks(props) {
           />
           <Box
             component="div"
-            sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
+            sx={{
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              color: "text.primary",
+            }}
             id="card-tracks-heading"
           >
             {title}
