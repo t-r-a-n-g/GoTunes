@@ -8,13 +8,15 @@ import CardTracks from "../Components/Cards/CardTracks";
 import MenuBanner from "../Components/Playlist/MenuBanner";
 
 export default function Playlist(props) {
+  const { setSongQueue } = props;
+
   // NEEDS THE FOLLOWING PROPS:
   // playlistSource
   // setSongQueue
 
   // THE SETTER FOR PASSING A SONG TO THE PLAYER
   //  eslint-disable-next-line
-  const setSongQueue = props.setSongQueue;
+  /* const setSongQueue = props.setSongQueue; */
 
   // WILL BE RETRIEVED FROM API
   const [playlistData, setPlaylistData] = React.useState();
@@ -105,9 +107,26 @@ export default function Playlist(props) {
           {/* Ab hier von Trang: Instead, Use the Cards for Tracks that we already have */}
           {playlistTracks.map((track) => (
             <CardTracks
-              key={track.id}
+              onClick={() => {
+                setSongQueue([
+                  {
+                    name: element.title,
+                    singer: element.artist.name,
+                    cover: element.cover,
+                    musicSrc: element.stream_url,
+                  },
+                ]);
+              }}
+              setAudioListToggle={setAudioListToggle}
+              key={element.id}
+              cover={element.cover}
+              title={element.title}
+              artist={`${t("track")} |  ${
+                element.artist?.name ?? t("waiting-for-loading")
+              }`}
+              /* key={track.id}
               cover={track.cover}
-              title={track.title}
+              title={track.title} */
             />
           ))}
         </div>

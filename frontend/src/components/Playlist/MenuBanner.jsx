@@ -13,15 +13,15 @@ export default function MenuBanner() {
     <div id="menu-banner-whole-container">
       <Box>
         <IconButton>
-          <FavoriteBorderIcon />
-          <FavoriteIcon />
-          <ArrowCircleDownIcon />
-          <MoreHorizIcon />
+          <FavoriteBorderIcon id="menu-banner-button" />
+          <FavoriteIcon id="menu-banner-button" />
+          <ArrowCircleDownIcon id="menu-banner-button" />
+          <MoreHorizIcon id="menu-banner-button" />
         </IconButton>
       </Box>
       <Box>
         <IconButton>
-          <PlayCircleIcon />
+          <PlayCircleIcon id="menu-banner-button" />
         </IconButton>
       </Box>
     </div>

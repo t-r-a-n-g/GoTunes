@@ -3,3 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+#menu-banner-button {
+  font-size: 2rem;
+}
