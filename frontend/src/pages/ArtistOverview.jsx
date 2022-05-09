@@ -1,42 +1,189 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import Avatar from "@mui/material/Avatar";
+import Grid from "@mui/material/Grid";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import axios from "axios";
+import "./ArtistOverview.css";
+import { useTranslation } from "react-i18next";
+import CardTracks from "../components/Cards/CardTracks";
+import BigCard from "../components/BigCard";
+import { artistsEndpoint, usersEndpoint } from "../components/API";
 
-export default function ArtistOverview() {
+export default function ArtistOverview(props) {
+  const { setSongQueue } = props;
+  const { t } = useTranslation();
   const params = useParams();
+  const navigate = useNavigate();
   const [artistInfo, setArtistInfo] = useState();
-  const [responseStatus, setResponseStatus] = useState();
-  /*   const [artistInfoLoaded, setArtistInfoLoaded] = useState(false); */
+  const [tracks, setTracks] = useState();
+  const [albums, setAlbums] = useState();
+  const [playlists, setPlaylists] = useState();
+  const [artistInfoLoaded, setArtistInfoLoaded] = useState(false);
+  const [tracksLoaded, setTracksLoaded] = useState(false);
+  const [albumsLoaded, setAlbumsLoaded] = useState(false);
+  const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
 
-  // requesting artist information when site renders the first time
+  // requesting artist information
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/artists/${params.artistId}`)
-      .then((response) => {
-        setResponseStatus(response.status);
+    let isMounted = true;
+    axios.get(`${artistsEndpoint}/${params.artistId}`).then((response) => {
+      if (isMounted) {
         setArtistInfo(response.data);
-        /* setArtistInfoLoaded(true); */
+        setArtistInfoLoaded(true);
+      }
+    });
+    // artist's tracks information
+    axios
+      .get(`${artistsEndpoint}/${params.artistId}/tracks`)
+      .then((response) => {
+        if (isMounted) {
+          setTracks(response.data);
+          setTracksLoaded(true);
+        }
       });
-    /*  .then(console.log(artistInfo)); */
+    // artist album information
+    axios
+      .get(`${artistsEndpoint}/${params.artistId}/albums`)
+      .then((response) => {
+        if (isMounted) {
+          setAlbums(response.data);
+          setAlbumsLoaded(true);
+        }
+      });
+    // artist playlist information
+    axios
+      .get(`${usersEndpoint}/${params.artistId}/playlists`)
+      .then((response) => {
+        if (isMounted) {
+          setPlaylists(response.data);
+          setPlaylistsLoaded(true);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  // artist track information
+  /*   console.log(artistInfo);
+  console.log(tracks);
+  console.log(albums); */
 
-  // artist album information
+  if (artistInfoLoaded && tracksLoaded && albumsLoaded && playlistsLoaded) {
+    return (
+      <div>
+        <div id="artist-main-container">
+          <div id="artist-head-container">
+            <ChevronLeftIcon
+              sx={{
+                color: "#f2f2f2",
+                position: "absolute",
+                top: "18px",
+                left: "10px",
+              }}
+              onClick={() => navigate(`/search`)}
+            />
+            <Avatar id="user-avatar" src={artistInfo.avatar} />
+            <br />
+            <h1 id="user-userName">{artistInfo.name}</h1>
+            <p id="artist-description">{artistInfo.description}</p>
+          </div>
 
-  // artist playlist information
-  return (
-    <div>
-      {responseStatus === 200 ? (
-        <div id="user-container">
-          <Avatar id="user-avatar" src={artistInfo?.avatar ?? "Loading"} />
-          <br />
-          <h1 id="user-userName">{artistInfo?.name ?? "Loading"}</h1>
+          {/* DISPLAY MESSAGE WHEN ARTIST / USER HAS NOT UPLOADED ANY MUSIC */}
+          <div id="artist-body-container">
+            {(tracks === null || tracks.length === 0) &&
+            (albums === null || albums.length === 0) &&
+            (playlists === null || playlists.length === 0)
+              ? t("no-music-available")
+              : null}
+
+            {/* RENDER TRACKS OF ARTIST IF THERE ARE ANY */}
+            {tracks !== null && tracks.length !== 0 ? (
+              <div>
+                <h2 className="section-headlines">{t("tracks")}</h2>
+                {tracks.map((track) => (
+                  <CardTracks
+                    onClick={() => {
+                      setSongQueue([
+                        {
+                          name: track.title,
+                          singer: track.artist.name,
+                          cover: track.cover,
+                          musicSrc: track.stream_url,
+                        },
+                      ]);
+                    }}
+                    key={track.id}
+                    cover={track.cover}
+                    title={track.title}
+                    artist={track.artist.name}
+                  />
+                ))}
+              </div>
+            ) : null}
+
+            {/* RENDER ALBUMS OF ARTIST IF THERE ARE ANY */}
+            {albums !== null && albums.length !== 0 ? (
+              <div>
+                <h2 className="section-headlines">{t("albums")}</h2>
+                <Grid
+                  container
+                  gap={2}
+                  sx={{ justifyContent: "space-between" }}
+                >
+                  {albums.map((album) => (
+                    <BigCard
+                      /* To Do: define onClick method: navigate to album page (not existing yet) */
+                      cover={
+                        album.cover === "" || album.cover === null
+                          ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
+                          : album.cover
+                      }
+                      title={album.title}
+                      key={album.id}
+                    />
+                  ))}
+                </Grid>{" "}
+              </div>
+            ) : null}
+
+            {/* RENDER PLAYLISTS OF ARTIST IF THERE ARE ANY */}
+            {playlists !== null && playlists.length !== 0 ? (
+              <div>
+                <h2 className="section-headlines">{t("playlists")}</h2>
+                <Grid
+                  container
+                  gap={2}
+                  sx={{ justifyContent: "space-between" }}
+                >
+                  {playlists.map((pl) => (
+                    <BigCard
+                      onClick={() => navigate(`/playlists/${pl.playlist.id}`)}
+                      cover={
+                        pl.playlist.cover === "" || pl.playlist.cover === null
+                          ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
+                          : pl.playlist.cover
+                      }
+                      title={pl.playlist.title}
+                      key={pl.playlist.id}
+                    />
+                  ))}
+                </Grid>
+              </div>
+            ) : null}
+          </div>
         </div>
-      ) : (
-        "not found"
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
+  return <h4>{t("waiting-for-loading")}</h4>;
 }
+
+ArtistOverview.propTypes = {
+  setSongQueue: PropTypes.func,
+};
+
+ArtistOverview.defaultProps = {
+  setSongQueue: () => {},
+};
