@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import User from "@components/User";
 import CardPlaylists from "@components/Cards/CardPlaylists";
 import SettingsIcon from "@mui/icons-material/Settings";
+import Switch from "@mui/material/Switch";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 // Fetch Playlists and display in Profil
 // Fetch Favourite Artists and display in Profil
@@ -15,10 +18,25 @@ export default function UserProfil() {
 
   return (
     <div>
-      <SettingsIcon
-        sx={{ position: "absolute", top: "20px", right: "20px" }}
-        onClick={() => navigate("/settings")}
-      />
+      <div
+        style={{
+          padding: "20px",
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }}
+      >
+        <Stack direction="row" alignItems="baseline">
+          <Typography>EN</Typography>
+          <Switch defaultChecked />
+          <Typography>DE</Typography>
+        </Stack>
+
+        <SettingsIcon
+          sx={{ marginLeft: "20px" }}
+          onClick={() => navigate("/settings")}
+        />
+      </div>
       <User /* avatar="/" playlistcount="/" followingcount="/" userName="/" */
       />
       <CardPlaylists /* cover="/" name="/" details="/" */ />

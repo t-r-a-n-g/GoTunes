@@ -25,6 +25,7 @@ import Settings from "./pages/Settings";
 import WhenLoggedOut from "./components/Routing/WhenLoggedOut";
 import WhenLoggedIn from "./components/Routing/WhenLoggedIn";
 import Album from "./pages/Album";
+import "./pages/theme.css";
 
 function App() {
   // state for songQueue
@@ -223,8 +224,8 @@ function App() {
                       element={
                         <ProtectedRoute>
                           <Album
-                            setAudioListToggle={setAudioListToggle}
                             setSongQueue={setSongQueue}
+                            setAudioListToggle={setAudioListToggle}
                           />
                         </ProtectedRoute>
                       }
