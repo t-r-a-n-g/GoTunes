@@ -18,7 +18,7 @@ Object.keys(routes).forEach((route) => {
 });
 
 async function startServer() {
-  const port = process.env.APP_PORT || 5000;
+  const port = process.env.APP_PORT || 3003;
   app.listen(port, () => {
     // eslint-disable-next-line no-restricted-syntax
     console.log(`Server started on port ${port}`);

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "swagger": "node swagger/index.js",
-    "dev": "nodemon index.js",
+    "dev": "APP_PORT=3003 nodemon index.js",
     "migrate": "node migrate.js",
     "start": "node index.js",
     "lint": "echo '----- Checking Backend...' && npx prettier --debug-check . && eslint --ext .js . && echo '----- Done!'",
