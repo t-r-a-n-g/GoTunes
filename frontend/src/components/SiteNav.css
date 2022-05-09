@@ -1,0 +1,11 @@
+#sitenav-outter-container {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  z-index: 999;
+}
+
+#sitenav-container {
+  background-color: #18191a;
+  height: 4rem;
+}

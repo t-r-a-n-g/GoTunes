@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "gotunes",
+      "script": "npm run-script dev"
+    }
+  ]
+}

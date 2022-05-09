@@ -1,0 +1,13 @@
+#searchbar-container {
+  margin: 1rem;
+}
+
+#searchbar {
+  width: 100%;
+  color: white;
+  background-color: #282828;
+}
+
+#search-icon {
+  background-color: #282828;
+}

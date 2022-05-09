@@ -1,0 +1,28 @@
+#user-avatar {
+  width: 128px;
+  height: 128px;
+  margin: auto;
+  margin-top: 10vh;
+}
+
+#user-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#user-playlistcount {
+  margin: 0;
+}
+
+#user-followingcount {
+  margin: 0;
+}
+
+#user-playlistcount-container {
+  margin: 2em;
+}
+
+#user-followingcount-container {
+  margin: 2em;
+}

@@ -1,3 +1,4 @@
+import "./i18nextConfig";
 import React from "react";
 import ReactDOM from "react-dom";
 

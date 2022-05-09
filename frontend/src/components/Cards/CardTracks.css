@@ -1,0 +1,75 @@
+#card-tracks-whole-component-box {
+  margin: auto;
+  width: clamp(350px, 85%, 90vw);
+}
+
+#card-tracks-container {
+  display: grid;
+  justify-content: start;
+  width: 100%;
+}
+
+#card-tracks-wrap-for-button-placement {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  border-radius: 2ch;
+}
+
+#card-tracks-cover-image {
+  width: 50px;
+  height: 50px;
+  align-self: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  margin: 10px;
+  border-radius: 4px;
+}
+
+#card-tracks-heading {
+  align-self: flex-end;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  margin: 0;
+  padding-top: 0;
+  text-align: left;
+  font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1.2rem);
+}
+
+#card-tracks-subheading {
+  align-self: flex-start;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  margin: 0;
+  text-align: left;
+  font-size: clamp(0.3rem, -0.875rem + 8.333vw, 1rem);
+}
+
+#card-tracks-divider {
+  width: 30vw;
+  margin: auto;
+  padding-top: 1rem;
+}
+
+.react-jinke-music-player-mobile-cover {
+  border-radius: 10px !important;
+}
+
+.react-jinke-music-player-mobile-toggle .group svg {
+  color: #eaeaea !important;
+}
+
+.react-jinke-music-player-mobile-toggle .group svg:hover {
+  color: #801336 !important;
+}
+
+.react-jinke-music-player-mobile-progress .rc-slider-handle,
+.react-jinke-music-player-mobile-progress .rc-slider-track {
+  background-color: #801336 !important;
+}
