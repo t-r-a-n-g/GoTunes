@@ -1,0 +1,12 @@
+#big-card-container {
+  margin: auto;
+}
+
+#big-card-cover {
+  width: 150px;
+  height: 150px;
+}
+
+#big-card-heading {
+  margin: auto;
+}
