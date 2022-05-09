@@ -5,9 +5,8 @@ import { CssBaseline } from "@mui/material";
 import "./App.css";
 // eslint-disable-next-line
 import AuthService from "@services/AuthService";
-// eslint-disable-next-line
-import ImportMusic from "@pages/SynMusic";
-import EditProfile from "@pages/EditUserProfile";
+import ImportMusic from "./pages/SynMusic";
+import EditProfile from "./pages/EditUserProfile";
 import ArtistOverview from "./pages/ArtistOverview";
 import UserContext from "./contexts/UserContext";
 import MusicPlayerExtendedButtons from "./components/MusicPlayerExtendetButtons";
@@ -25,13 +24,12 @@ import Playlist from "./pages/Playlist";
 import Settings from "./pages/Settings";
 import WhenLoggedOut from "./components/Routing/WhenLoggedOut";
 import WhenLoggedIn from "./components/Routing/WhenLoggedIn";
+import Album from "./pages/Album";
 
 function App() {
   // state for songQueue
   const [songQueue, setSongQueue] = useState([]);
-  // state for choosing between Soundcloud and internal playlists source
-  // eslint-disable-next-line
-  const [playlistSource, setPlaylistSource] = useState("soundcloud");
+
   // This creates a variable representing the audio element. To connect the player with buttons (our own controls),
   // we can then call its methods, such as audioInstance.pause().
   // const [audioInstance, setAudioInstance] = useState(null);
@@ -214,7 +212,18 @@ function App() {
                       element={
                         <ProtectedRoute>
                           <Playlist
-                            playlistSource={playlistSource}
+                            setAudioListToggle={setAudioListToggle}
+                            setSongQueue={setSongQueue}
+                          />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/albums/:albumId"
+                      element={
+                        <ProtectedRoute>
+                          <Album
+                            setAudioListToggle={setAudioListToggle}
                             setSongQueue={setSongQueue}
                           />
                         </ProtectedRoute>

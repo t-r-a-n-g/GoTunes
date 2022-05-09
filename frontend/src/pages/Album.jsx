@@ -7,40 +7,38 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import "./Playlist.css";
 import CardTracks from "../components/Cards/CardTracks";
 import MenuBanner from "../components/Playlist/MenuBanner";
-import { playlistsEndpoint } from "../components/API";
+import { albumsEndpoint } from "../components/API";
 
-export default function Playlist(props) {
+/* THIS IS A COPY OF THE PLAYLIST PAGE */
+
+export default function Album(props) {
   const { setSongQueue, setAudioListToggle } = props;
   const params = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const [playlistData, setPlaylistData] = useState();
-  const [playlistTracks, setPlaylistTracks] = useState();
-  const [playlistDataHasLoaded, setPlaylistDataHasLoaded] = useState(false);
-  const [playlistTracksHasLoaded, setPlaylistTracksHasLoaded] = useState(false);
+  const [albumData, setAlbumData] = useState();
+  const [albumTracks, setAlbumTracks] = useState();
+  const [albumDataHasLoaded, setAlbumDataHasLoaded] = useState(false);
+  const [albumTracksHasLoaded, setAlbumTracksHasLoaded] = useState(false);
 
-  // GETTING ALL DATA ABOUT THE PLAYLIST  (ON FIRST RENDER ONLY)
+  // GETTING ALL DATA ABOUT THE ALBUM  (ON FIRST RENDER ONLY)
 
   useEffect(() => {
-    // GET PLAYLIST'S GENERAL INFORMATION
-    axios.get(`${playlistsEndpoint}/${params.playlistId}`).then((res) => {
-      setPlaylistData(res.data);
-      setPlaylistDataHasLoaded(true);
+    // GET ALBUM'S GENERAL INFORMATION
+    axios.get(`${albumsEndpoint}/${params.albumId}`).then((res) => {
+      setAlbumData(res.data);
+      setAlbumDataHasLoaded(true);
     });
 
-    // GET TRACKS FOR THE PLAYLIST
-    axios
-      .get(`${playlistsEndpoint}/${params.playlistId}/tracks`)
-      .then((res) => {
-        setPlaylistTracks(res.data);
-        setPlaylistTracksHasLoaded(true);
-      });
+    // GET TRACKS FOR THE ALBUM
+    axios.get(`${albumsEndpoint}/${params.albumId}/tracks`).then((res) => {
+      setAlbumTracks(res.data);
+      setAlbumTracksHasLoaded(true);
+    });
   }, []);
 
-  /*  console.log(playlistTracks); */
-
-  if (playlistDataHasLoaded && playlistTracksHasLoaded) {
+  if (albumDataHasLoaded && albumTracksHasLoaded) {
     return (
       <div>
         {/* BLACK BACKGROUND SECTION (TOP HALF) */}
@@ -56,34 +54,33 @@ export default function Playlist(props) {
           />
           <div id="outerContainerForPlaylistCover">
             <div id="innerContainerForPlaylistCover">
-              {/* PLAYLIST COVER */}
+              {/* ALBUM COVER */}
               <img
                 id="playlistCover"
                 src={
-                  playlistData.playlist.cover === null ||
-                  playlistData.playlist.cover === ""
-                    ? "https://cdn.pixabay.com/photo/2013/07/12/18/17/equalizer-153212_1280.png"
-                    : playlistData.playlist.cover
+                  albumData.cover === null || albumData.cover === ""
+                    ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
+                    : albumData.cover
                 }
-                alt="playlist cover"
+                alt="album cover"
               />
             </div>
           </div>
           <div id="containerForPlaylistInfo">
-            {/* PLAYLIST TITLE */}
-            <h1 id="playlistTitle">{playlistData.playlist.title}</h1>
-            {/* PLAYLIST DESCRIPTION */}
-            <p id="playlistDescription">{playlistData.playlist.description}</p>
-            {/* PLAYLIST CREATOR / USER */}
+            {/* ALBUM TITLE */}
+            <h1 id="playlistTitle">{albumData.title}</h1>
+            {/* ALBUM DESCRIPTION */}
+            <p id="playlistDescription">{albumData.description}</p>
+            {/* ARTIST */}
             <img
               id="playlistCreatorPicture"
-              src={playlistData.user[0].userProfile.avatar}
-              alt="playlist creator"
+              src={albumData.artist.avatar}
+              alt="artist"
             />
-            <p id="playlistCreatorName">{playlistData.user[0].username}</p>
-            {/* PLAYLIST DURATION */}
+            <p id="playlistCreatorName">{albumData.artist.name}</p>
+            {/* ALBUM DURATION */}
             <p id="playlistDuration">
-              {Math.round(playlistData.playlist.duration / 60000)} min
+              {Math.round(albumData.duration / 60000)} min
               {/* Seems there is no React module on npmjs for converting seconds to hh:mm
               Good plain JS modules:
               https://www.npmjs.com/package/humanize-duration
@@ -94,9 +91,9 @@ export default function Playlist(props) {
         {/* GRAY BACKGROUND SECTION (BOTTOM HALF) */}
         <MenuBanner />
         <div id="bottomSection">
-          {playlistTracks !== null && playlistTracks.length !== 0 ? (
+          {albumTracks !== null && albumTracks.length !== 0 ? (
             <div>
-              {playlistTracks.map((element) => (
+              {albumTracks.map((element) => (
                 <CardTracks
                   onClick={() => {
                     setSongQueue([
@@ -126,11 +123,11 @@ export default function Playlist(props) {
   return <h4>{t("waiting-for-loading")}</h4>;
 }
 
-Playlist.propTypes = {
+Album.propTypes = {
   setSongQueue: PropTypes.func,
   setAudioListToggle: PropTypes.func,
 };
-Playlist.defaultProps = {
+Album.defaultProps = {
   setSongQueue: () => {},
   setAudioListToggle: () => {},
 };

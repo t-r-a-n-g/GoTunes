@@ -54,8 +54,7 @@ export default function SearchResults(props) {
               />
             ) : element.kind === "album" ? (
               <CardTracks
-                /* To Do: define onClick method */
-
+                onClick={() => navigate(`/albums/${element.id}`)}
                 key={element.id}
                 cover={element.cover}
                 title={element.title}
@@ -115,8 +114,7 @@ export default function SearchResults(props) {
       {responseStatus === 200 && searchFilter === "Albums"
         ? searchResult.map((element) => (
             <CardTracks
-              /* To Do: define onClick method */
-
+              onClick={() => navigate(`/albums/${element.id}`)}
               key={element.id}
               cover={element.cover}
               title={element.title}

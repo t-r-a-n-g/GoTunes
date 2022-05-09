@@ -33,7 +33,7 @@ export default function Search(props) {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       axios
-        .get(`${searchEndpoint}${searchTerm}`)
+        .get(`${searchEndpoint}${searchTerm}?limit=30`)
         .then((response) => {
           setResponseStatus(response.status);
           /* console.log(response); */
