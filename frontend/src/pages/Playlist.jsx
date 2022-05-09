@@ -8,7 +8,7 @@ import CardTracks from "../Components/Cards/CardTracks";
 import MenuBanner from "../Components/Playlist/MenuBanner";
 
 export default function Playlist(props) {
-  const { setSongQueue } = props;
+  const { setSongQueue, setAudioListToggle } = props;
 
   // NEEDS THE FOLLOWING PROPS:
   // playlistSource

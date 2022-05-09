@@ -216,6 +216,7 @@ function App() {
                           <Playlist
                             playlistSource={playlistSource}
                             setSongQueue={setSongQueue}
+                            setAudioListToggle={setAudioListToggle}
                           />
                         </ProtectedRoute>
                       }
