@@ -17,6 +17,12 @@ export default function SearchResults(props) {
     searchFilter,
     setAudioListToggle,
   } = props;
+
+  const handleAudioListToggle = () => {
+    setAudioListToggle(true);
+    console.warn("Warteschlange off");
+  };
+
   return (
     <div>
       {/* eslint-disable */}
@@ -35,6 +41,7 @@ export default function SearchResults(props) {
                       musicSrc: element.stream_url,
                     },
                   ]);
+                  handleAudioListToggle();
                 }}
                 setAudioListToggle={setAudioListToggle}
                 key={element.id}
@@ -90,6 +97,7 @@ export default function SearchResults(props) {
                     musicSrc: element.stream_url,
                   },
                 ]);
+                handleAudioListToggle();
               }}
               key={element.id}
               cover={element.cover}

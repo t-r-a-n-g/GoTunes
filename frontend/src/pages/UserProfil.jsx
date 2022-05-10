@@ -1,8 +1,7 @@
 /* eslint-disable */
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import User from "@components/User";
-import CardPlaylists from "@components/Cards/CardPlaylists";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Button } from "@mui/material";
 import i18n from "../i18nextConfig";
@@ -18,13 +17,16 @@ export default function UserProfil() {
   const [checked, setChecked] = React.useState(
     localStorage.getItem("languageToggle")
   );
+  function handleChange() {
+    const temp = !checked;
+    setChecked(temp);
+    localStorage.setItem("languageToggle", temp);
+    temp === true ? i18n.changeLanguage("en") : i18n.changeLanguage("de");
+  }
 
-  const handleChange = () => {
-    setChecked(!checked);
-    localStorage.setItem("languageToggle", checked);
-
-    checked === true ? i18n.changeLanguage("en") : i18n.changeLanguage("de");
-  };
+  /* useEffect(() => {
+    handleChange();
+  }, []); */
 
   return (
     <div>
@@ -40,7 +42,7 @@ export default function UserProfil() {
           onClick={handleChange}
           sx={{ height: "50px", width: "50px", color: "text.primary" }}
         >
-          {checked === true ? "DE" : "EN"}
+          {i18n.language}
         </Button>
 
         <SettingsIcon
@@ -50,7 +52,6 @@ export default function UserProfil() {
       </div>
       <User /* avatar="/" playlistcount="/" followingcount="/" userName="/" */
       />
-      <CardPlaylists /* cover="/" name="/" details="/" */ />
     </div>
   );
 }

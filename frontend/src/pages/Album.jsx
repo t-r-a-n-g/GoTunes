@@ -24,6 +24,11 @@ export default function Album(props) {
 
   // GETTING ALL DATA ABOUT THE ALBUM  (ON FIRST RENDER ONLY)
 
+  const handleAudioListToggle = () => {
+    setAudioListToggle(true);
+    console.warn("Warteschlange off");
+  };
+
   useEffect(() => {
     // GET ALBUM'S GENERAL INFORMATION
     axios.get(`${albumsEndpoint}/${params.albumId}`).then((res) => {
@@ -104,8 +109,8 @@ export default function Album(props) {
                         musicSrc: element.stream_url,
                       },
                     ]);
+                    handleAudioListToggle();
                   }}
-                  setAudioListToggle={setAudioListToggle}
                   key={element.id}
                   cover={element.cover}
                   title={element.title}
