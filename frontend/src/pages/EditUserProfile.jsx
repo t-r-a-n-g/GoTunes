@@ -36,7 +36,8 @@ export default function EditProfile() {
       )
       .then((res) => {
         console.error("New Avatar Url: ", res);
-      });
+      })
+      .then(navigate("/profile"));
   };
 
   /*   const editUserName = () => {

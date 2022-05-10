@@ -24,9 +24,9 @@ export default function UserProfil() {
     temp === true ? i18n.changeLanguage("en") : i18n.changeLanguage("de");
   }
 
-  /* useEffect(() => {
+  useEffect(() => {
     handleChange();
-  }, []); */
+  }, []);
 
   return (
     <div>
