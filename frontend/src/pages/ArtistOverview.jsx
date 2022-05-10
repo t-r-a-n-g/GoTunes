@@ -12,7 +12,7 @@ import BigCard from "../components/BigCard";
 import { artistsEndpoint, usersEndpoint } from "../components/API";
 
 export default function ArtistOverview(props) {
-  const { setSongQueue } = props;
+  const { setSongQueue, setAudioListToggle } = props;
   const { t } = useTranslation();
   const params = useParams();
   const navigate = useNavigate();
@@ -24,6 +24,11 @@ export default function ArtistOverview(props) {
   const [tracksLoaded, setTracksLoaded] = useState(false);
   const [albumsLoaded, setAlbumsLoaded] = useState(false);
   const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
+
+  const handleAudioListToggle = () => {
+    setAudioListToggle(true);
+    console.warn("Warteschlange off");
+  };
 
   // requesting artist information
   useEffect(() => {
@@ -113,6 +118,7 @@ export default function ArtistOverview(props) {
                           musicSrc: track.stream_url,
                         },
                       ]);
+                      handleAudioListToggle();
                     }}
                     key={track.id}
                     cover={track.cover}
@@ -134,7 +140,7 @@ export default function ArtistOverview(props) {
                 >
                   {albums.map((album) => (
                     <BigCard
-                      /* To Do: define onClick method: navigate to album page (not existing yet) */
+                      onClick={() => navigate(`/albums/${album.id}`)}
                       cover={
                         album.cover === "" || album.cover === null
                           ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
@@ -182,8 +188,10 @@ export default function ArtistOverview(props) {
 
 ArtistOverview.propTypes = {
   setSongQueue: PropTypes.func,
+  setAudioListToggle: PropTypes.string,
 };
 
 ArtistOverview.defaultProps = {
   setSongQueue: () => {},
+  setAudioListToggle: null,
 };

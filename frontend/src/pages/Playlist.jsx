@@ -20,6 +20,11 @@ export default function Playlist(props) {
   const [playlistDataHasLoaded, setPlaylistDataHasLoaded] = useState(false);
   const [playlistTracksHasLoaded, setPlaylistTracksHasLoaded] = useState(false);
 
+  const handleAudioListToggle = () => {
+    setAudioListToggle(true);
+    console.warn("Warteschlange off");
+  };
+
   // GETTING ALL DATA ABOUT THE PLAYLIST  (ON FIRST RENDER ONLY)
 
   useEffect(() => {
@@ -107,8 +112,8 @@ export default function Playlist(props) {
                         musicSrc: element.stream_url,
                       },
                     ]);
+                    handleAudioListToggle();
                   }}
-                  setAudioListToggle={setAudioListToggle}
                   key={element.id}
                   cover={element.cover}
                   title={element.title}

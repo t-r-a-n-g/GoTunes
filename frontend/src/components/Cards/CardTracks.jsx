@@ -9,12 +9,6 @@ import "./CardTracks.css";
 function CardTracks(props) {
   const { cover, title, artist, onClick, setAudioListToggle } = props;
 
-  /*  const handleAudioListToggle = () => {
-    setAudioListToggle(true);
-    onClick();
-    console.warn("Warteschlange off");
-  }; */
-
   return (
     <Box id="card-tracks-whole-component-box">
       <Box
@@ -24,7 +18,7 @@ function CardTracks(props) {
         <div
           style={{ whiteSpace: "nowrap" }}
           id="card-tracks-container"
-          onClick={onClick /* handleAudioListToggle */}
+          onClick={onClick}
           aria-hidden="true"
         >
           <img

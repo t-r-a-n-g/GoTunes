@@ -71,6 +71,7 @@ export default function CreatePlaylist() {
               color: "text.secondary",
               width: "75px",
               height: "75px",
+              marginLeft: "10px",
             }}
           />
         }

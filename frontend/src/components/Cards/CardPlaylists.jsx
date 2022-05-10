@@ -29,7 +29,7 @@ function CardPlaylists({ cover, title, description, onClick }) {
             sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
             id="card-playlists-heading"
           >
-            {title}
+            {title === "user-favorites-playlist" ? "Favorites" : title}
           </Box>
           <Box
             component="div"
