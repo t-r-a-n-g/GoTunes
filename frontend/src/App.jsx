@@ -235,7 +235,10 @@ function App() {
                       path="/artists/:artistId"
                       element={
                         <ProtectedRoute>
-                          <ArtistOverview setSongQueue={setSongQueue} />
+                          <ArtistOverview
+                            setSongQueue={setSongQueue}
+                            setAudioListToggle={setAudioListToggle}
+                          />
                         </ProtectedRoute>
                       }
                     />

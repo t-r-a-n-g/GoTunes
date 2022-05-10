@@ -5,9 +5,9 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Divider from "@mui/material/Divider";
+/* import Divider from "@mui/material/Divider";
 import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
+import FileCopyIcon from "@mui/icons-material/FileCopy"; */
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useTranslation } from "react-i18next";
@@ -209,14 +209,16 @@ export default function TracksOptionMenu(props) {
                     }
                     alt="cover"
                   />
-                  {pl.playlist.title}
+                  {pl.playlist.title === "user-favorites-playlist"
+                    ? "Favorites"
+                    : pl.playlist.title}
                 </MenuItem>
               );
             })}
           </div>
         </MenuItem>
         {/* ########## OPTION_MENU WITH OTHER MENU_ITEMS ########## */}
-        <MenuItem
+        {/* <MenuItem
           sx={{ "&:hover": { color: "text.secondary" } }}
           onClick={handleClose}
           disableRipple
@@ -232,7 +234,7 @@ export default function TracksOptionMenu(props) {
         >
           <ArchiveIcon sx={{ display: "block!important" }} />
           Example 3
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem
           sx={{ "&:hover": { color: "text.secondary" } }}
           onClick={handleClose}

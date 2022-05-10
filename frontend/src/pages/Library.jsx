@@ -98,7 +98,11 @@ export default function Library() {
                           ? "https://cdn.pixabay.com/photo/2021/11/11/14/28/disk-6786456_1280.png"
                           : pl.playlist.cover
                       }
-                      title={pl.playlist.title}
+                      title={
+                        pl.playlist.title === "user-favorites-playlist"
+                          ? "Favorites"
+                          : pl.playlist.title
+                      }
                       key={pl.playlistId}
                     />
                   </Grid>
